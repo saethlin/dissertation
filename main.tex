@@ -1,0 +1,179 @@
+\documentclass[editMode]{ufdissertation}\sloppy
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                 User Package and Style File loading.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{CustomMacros}%  This is a user macro/style file.
+
+%\usepackage{tikz}%       tikz is used by almost everyone, but certainly by me for this.
+%\usepackage{pgfplots}%   pgfplots is tikz but better.
+%\usepackage{amsrefs}%   amsrefs contains the .bibtex style content for mathematician papers.
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{color}
+
+\newcommand\HI{{H\,\textsc{i}}} % neutral hydrogen
+\newcommand\HII{{H\,\textsc{ii}}} % ionized hydrogen
+
+\definecolor{mygray}{rgb}{0.4,0.4,0.4}
+\definecolor{mygreen}{rgb}{0,0.8,0.6}
+\definecolor{myorange}{rgb}{1.0,0.4,0}
+\lstset{language=C++}
+\lstset{
+    basicstyle=\linespread{0.9}\ttfamily\color{black},
+    commentstyle=\color{mygray},
+    numbers=left,
+    numbersep=5pt,
+    numberstyle=\ttfamily\color{mygray},
+    keywordstyle=\color{mygreen},
+    showspaces=false,
+    showstringspaces=false,
+    stringstyle=\color{myorange},
+    tabsize=4
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                     User Configuration commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Uncomment the relevant line below if you have tables or figures.
+\haveTablestrue%        Uncomment this if you have tables in your thesis.
+\haveFigurestrue%       Uncomment this if you have figures in your thesis.
+%\haveObjectstrue%       Uncomment this if you have Objects in your thesis. This is almost certainly not the case however.
+
+% Standard journal abbreviations
+% Mostly as used by ADS, with a few additions for journals where MNRAS does not
+% follow normal IAU style.
+
+\newcommand\aap{A\&A}                % Astronomy and Astrophysics
+\let\astap=\aap                          % alternative shortcut
+\newcommand\aapr{A\&ARv}             % Astronomy and Astrophysics Review (the)
+\newcommand\aaps{A\&AS}              % Astronomy and Astrophysics Supplement Series
+\newcommand\actaa{Acta Astron.}      % Acta Astronomica
+\newcommand\afz{Afz}                 % Astrofizika
+\newcommand\aj{AJ}                   % Astronomical Journal (the)
+\newcommand\ao{Appl. Opt.}           % Applied Optics
+\let\applopt=\ao                         % alternative shortcut
+\newcommand\aplett{Astrophys.~Lett.} % Astrophysics Letters
+\newcommand\apj{ApJ}                 % Astrophysical Journal
+\newcommand\apjl{ApJ}                % Astrophysical Journal, Letters
+\let\apjlett=\apjl                       % alternative shortcut
+\newcommand\apjs{ApJS}               % Astrophysical Journal, Supplement
+\let\apjsupp=\apjs                       % alternative shortcut
+% The following journal does not appear to exist! Disabled.
+%\newcommand\apspr{Astrophys.~Space~Phys.~Res.} % Astrophysics Space Physics Research
+\newcommand\apss{Ap\&SS}             % Astrophysics and Space Science
+\newcommand\araa{ARA\&A}             % Annual Review of Astronomy and Astrophysics
+\newcommand\arep{Astron. Rep.}       % Astronomy Reports
+\newcommand\aspc{ASP Conf. Ser.}     % ASP Conference Series
+\newcommand\azh{Azh}                 % Astronomicheskii Zhurnal
+\newcommand\baas{BAAS}               % Bulletin of the American Astronomical Society
+\newcommand\bac{Bull. Astron. Inst. Czechoslovakia} % Bulletin of the Astronomical Institutes of Czechoslovakia 
+\newcommand\bain{Bull. Astron. Inst. Netherlands} % Bulletin Astronomical Institute of the Netherlands
+\newcommand\caa{Chinese Astron. Astrophys.} % Chinese Astronomy and Astrophysics
+\newcommand\cjaa{Chinese J.~Astron. Astrophys.} % Chinese Journal of Astronomy and Astrophysics
+\newcommand\fcp{Fundamentals Cosmic Phys.}  % Fundamentals of Cosmic Physics
+\newcommand\gca{Geochimica Cosmochimica Acta}   % Geochimica Cosmochimica Acta
+\newcommand\grl{Geophys. Res. Lett.} % Geophysics Research Letters
+\newcommand\iaucirc{IAU~Circ.}       % IAU Cirulars
+\newcommand\icarus{Icarus}           % Icarus
+\newcommand\japa{J.~Astrophys. Astron.} % Journal of Astrophysics and Astronomy
+\newcommand\jcap{J.~Cosmology Astropart. Phys.} % Journal of Cosmology and Astroparticle Physics
+\newcommand\jcp{J.~Chem.~Phys.}      % Journal of Chemical Physics
+\newcommand\jgr{J.~Geophys.~Res.}    % Journal of Geophysics Research
+\newcommand\jqsrt{J.~Quant. Spectrosc. Radiative Transfer} % Journal of Quantitiative Spectroscopy and Radiative Transfer
+\newcommand\jrasc{J.~R.~Astron. Soc. Canada} % Journal of the RAS of Canada
+\newcommand\memras{Mem.~RAS}         % Memoirs of the RAS
+\newcommand\memsai{Mem. Soc. Astron. Italiana} % Memoire della Societa Astronomica Italiana
+\newcommand\mnassa{MNASSA}           % Monthly Notes of the Astronomical Society of Southern Africa
+\newcommand\mnras{MNRAS}             % Monthly Notices of the Royal Astronomical Society
+\newcommand\na{New~Astron.}          % New Astronomy
+\newcommand\nar{New~Astron.~Rev.}    % New Astronomy Review
+\newcommand\nat{Nature}              % Nature
+\newcommand\nphysa{Nuclear Phys.~A}  % Nuclear Physics A
+\newcommand\pra{Phys. Rev.~A}        % Physical Review A: General Physics
+\newcommand\prb{Phys. Rev.~B}        % Physical Review B: Solid State
+\newcommand\prc{Phys. Rev.~C}        % Physical Review C
+\newcommand\prd{Phys. Rev.~D}        % Physical Review D
+\newcommand\pre{Phys. Rev.~E}        % Physical Review E
+\newcommand\prl{Phys. Rev.~Lett.}    % Physical Review Letters
+\newcommand\pasa{Publ. Astron. Soc. Australia}  % Publications of the Astronomical Society of Australia
+\newcommand\pasp{PASP}               % Publications of the Astronomical Society of the Pacific
+\newcommand\pasj{PASJ}               % Publications of the Astronomical Society of Japan
+\newcommand\physrep{Phys.~Rep.}      % Physics Reports
+\newcommand\physscr{Phys.~Scr.}      % Physica Scripta
+\newcommand\planss{Planet. Space~Sci.} % Planetary Space Science
+\newcommand\procspie{Proc.~SPIE}     % Proceedings of the Society of Photo-Optical Instrumentation Engineers
+\newcommand\rmxaa{Rev. Mex. Astron. Astrofis.} % Revista Mexicana de Astronomia y Astrofisica
+\newcommand\qjras{QJRAS}             % Quarterly Journal of the RAS
+\newcommand\sci{Science}             % Science
+\newcommand\skytel{Sky \& Telesc.}   % Sky and Telescope
+\newcommand\solphys{Sol.~Phys.}      % Solar Physics
+\newcommand\sovast{Soviet~Ast.}      % Soviet Astronomy (aka Astronomy Reports)
+\newcommand\ssr{Space Sci. Rev.}     % Space Science Reviews
+\newcommand\zap{Z.~Astrophys.}       % Zeitschrift fuer Astrophysik
+
+\newcommand{\red}[1]{{\textcolor{red}{#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Below are the commands to set the degree type, department, graduation time, and chair. 
+%       Most of these are self explanatory. 
+%       Note: The \chair command takes an optional argument for a cochair. 
+%           So if John was your chair and Jacob was a cochair, you would use \chair[Jacob]{John}.
+%           If John was your chair and you had no cochair, you can simply use \chair{John}.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Massive Blobs in Space}
+
+\degreeType{Doctorate of Philosophy}
+\major{Astronomy}
+\author{Benjamin Kimock}
+\thesisType{Dissertation}
+\degreeYear{2020}
+\degreeMonth{May}
+\chair{Desika Narayanan}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% For each of the following, type in the name of the file that contains each section. 
+%       They are assumed to be tex files, but if they aren't the command takes an optional argument for the extension.
+%       So, you could load dedication.tex as your dedication file using \setDedicationFile{dedication}
+%       You could load dedication.txt instead with \setDedicationFile[txt]{dedication}.
+%       NOTE: For some compilers they may or may not add a .tex to the end of the file automatically.
+%           If you get a "couldn't find dedication.tex.tex" type error, try the command with an empty optional argument,
+%           e.g. \setDedicationFile[]{dedication}
+%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%% These are REQUIRED sections; easiest to do via these commands.
+
+\setDedicationFile{dedicationFile}%                 Dedication Page
+\setAcknowledgementsFile{acknowledgementsFile}%     Acknowledgements Page
+\setAbstractFile{abstractFile}%                     Abstract Page (This should only include the abstract itself)
+\setReferenceFile{biblio}{plainnat}%         References. First argument is your bibtex source file
+%                                                       the second argument is your bibtex style file.
+\setBiographicalFile{biographyFile}%                Biography file of the Author (you).
+
+%%% These are NOT required, so only use them if you actually need/have them.
+
+%\setAbbreviationsFile{abbreviations}%         Abbreviations Page
+\setAppendixFile{appendix}%                    Appendix Content; hyperlinking might be weird.
+\multipleAppendixtrue%                         Uncomment this if you have more than one appendix, 
+%                                                   comment it if you have only one appendix.
+
+%%%%%%%                     End of File Assignment
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\include{intro}
+\include{methods}
+\include{results}
+\include{agn}
+\include{experiments}
+\include{conclusions}
+
+\end{document}

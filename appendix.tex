@@ -1,0 +1,134 @@
+\section{PingPong Example}
+\label{appendix:pingpong}
+\begin{lstlisting}
+#include <chrono>
+#include <iostream>
+#include <mpi.h>
+#include <vector>
+
+using namespace std::chrono_literals;
+
+int rank, n_ranks, n_threads;
+
+struct Photon {
+    double a, b, c, d, e, f, g, h, i, j;
+    int rank;
+    int id;
+};
+
+const int OUTGOING_TAG = 1;
+const int PHOTON_TAG = 2;
+const int SHUTDOWN_TAG = 3;
+
+const int n_photons = 10'000'000;
+
+void be_worker() {
+
+#pragma omp parallel
+    {
+        Photon p;
+        MPI_Status status;
+
+        while (true) {
+#pragma omp critical
+            MPI_Recv(&p, sizeof(Photon), MPI_UNSIGNED_CHAR, 0,
+                     MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+            if (status.MPI_TAG == SHUTDOWN_TAG) {
+                break;
+            }
+#pragma omp critical
+            MPI_Send(&p, sizeof(Photon), MPI_UNSIGNED_CHAR, 0,
+                     PHOTON_TAG, MPI_COMM_WORLD);
+        }
+    }
+}
+
+int main(int argc, char **argv) {
+    int provided;
+
+    n_threads = atoi(std::getenv("SLURM_CPUS_PER_TASK"));
+
+    MPI_Init_thread(&argc, &argv, MPI_THREAD_SERIALIZED, &provided);
+    if (provided != MPI_THREAD_SERIALIZED) {
+        std::cout << "MPI thread initialization failed\n";
+        return 1;
+    }
+
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    MPI_Comm_size(MPI_COMM_WORLD, &n_ranks);
+
+    if (rank == 0) {
+        std::vector<Photon> outgoing_photons(n_ranks * n_threads);
+        std::vector<MPI_Request> send_requests(n_ranks * n_threads);
+        std::vector<Photon> processed_photons;
+        processed_photons.reserve(n_ranks + 1);
+        int sent_photons = 0;
+
+        auto start = std::chrono::high_resolution_clock::now();
+
+        // Send an initial request to each worker
+        // TODO: Don't submit to rank 1 at the moment to save on
+        // locking in the main loop
+        int id = 0;
+        for (int r = 1; r < n_ranks; r++) {
+            for (int t = 0; t < n_threads; t++) {
+                outgoing_photons[id].id = id;
+                outgoing_photons[id].rank = r;
+                MPI_Isend(&outgoing_photons[id], sizeof(Photon),
+                          MPI_UNSIGNED_CHAR, r, OUTGOING_TAG,
+                          MPI_COMM_WORLD, &send_requests[id]);
+                id++;
+                sent_photons++;
+            }
+        }
+
+        auto now = std::chrono::high_resolution_clock::now();
+        std::cout << "Set up in " << (now - start).count() / 1e9
+                  << " seconds\n";
+
+        // Main event loop to pick up photons and send back a request
+        // if more are required
+        Photon p;
+        while (sent_photons < n_photons) {
+            MPI_Recv(&p, sizeof(Photon), MPI_UNSIGNED_CHAR,
+                     MPI_ANY_SOURCE, PHOTON_TAG, MPI_COMM_WORLD,
+                     MPI_STATUS_IGNORE);
+            processed_photons.push_back(p);
+
+            MPI_Request_free(&send_requests[p.id]);
+            MPI_Isend(&outgoing_photons[p.id], sizeof(Photon),
+                      MPI_UNSIGNED_CHAR, p.rank, OUTGOING_TAG,
+                      MPI_COMM_WORLD, &send_requests[p.id]);
+            sent_photons++;
+        }
+
+        // Pick up the remaining photons and tell processes to shut
+        // down
+        for (int i = 0; i < id; i++) {
+            MPI_Recv(&p, sizeof(Photon), MPI_UNSIGNED_CHAR,
+                     MPI_ANY_SOURCE, PHOTON_TAG, MPI_COMM_WORLD,
+                     MPI_STATUS_IGNORE);
+            processed_photons.push_back(p);
+
+            MPI_Request_free(&send_requests[p.id]);
+            MPI_Isend(&outgoing_photons[p.id], sizeof(Photon),
+                      MPI_UNSIGNED_CHAR, p.rank, SHUTDOWN_TAG,
+                      MPI_COMM_WORLD, &send_requests[p.id]);
+        }
+
+        now = std::chrono::high_resolution_clock::now();
+        std::cout << "Got responses in "
+                  << (now - start).count() / 1e9 << " seconds\n";
+
+        for (int i = 0; i < id; i++) {
+            MPI_Wait(&send_requests[i], MPI_STATUS_IGNORE);
+        }
+
+    } else {
+        be_worker();
+    }
+
+    MPI_Barrier(MPI_COMM_WORLD);
+    MPI_Finalize();
+}
+\end{lstlisting}

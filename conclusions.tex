@@ -1,0 +1,34 @@
+\chapter{Conclusions and Future Directions}
+\label{sec:discussion}
+
+\section{Conclusions}
+\label{sec:conclusions}
+
+
+\section{Scientific Future Directions}
+
+One of the most fundamental problems in this project (and in most of this flavor) is that the simulations that we draw snapshots from are wrong.
+This is not a little-known fact; as mentioned earlier the maintainers of the code that 
+
+\section{Software Future Directions}
+
+It's generally accepted that most code in the world is vastly slower than it could be, even if it's written by experts in a language like C++.
+But software in astronomy is somewhat of an extreme case, for a number of reasons.
+With the growth of data in the field (and especially in this project) a number of strategies that were technically sub-optimal but not a serious issue are heading towards that.
+In this project there are two specific examples: Numerical tables stored in text files, and eager initialization of large data structures.
+Storing arrays in text files is a very attractive solution for data interchange; unlike all other formats if documentation is lost entirely at least the data itself can be recovered (if not the semantics thereof).
+But text files are rather slow to read, and the common tools for reading and writing them are embarrassingly slow. To be clear, we are referring to \lstinline{fprintf} and \lstinline{fscanf} and in the Python world, \lstinline{numpy.savetxt} and \lstinline{numpy.loadtxt}.
+A disappointing (but not large in an absolute sense) amount of time in this project was spent waiting for text files to save or load.
+There are partial solutions to this problem; reading and writing of text formats can be made much faster.
+For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files.
+We very strongly advocate for HDF5 everywhere as an actual solution to this problem of scaling (that is, pipelines often become dominated by parsing of input files in awkard formats such as text as datasets grow).
+HDF5 by default stores data in a binary format, can efficiently load single datasets at a time, and supports transparent compression.
+
+
+\subsection{Octrees}
+
+Note that we can store the width of an octant in a single byte by just storing the level, then get the width via
+\begin{lstlisting}
+smallest_octant_width * (1 << level)
+\end{lstlisting}
+
