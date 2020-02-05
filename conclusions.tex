@@ -22,7 +22,29 @@ Therefore, the physical conditions we base our ionization state at time $t$ upon
 
 \section{Ly$\alpha$ Photon Tracking}
 
+The widely-recognized advantage of simulations in astronomy is that we can conduct experiments, wheras in observations one must make do with whatever is present or visible on the sky.
+There is another massive advantage though; in a simulation we can extract information which in observations is not just difficult but impossible to obtain.
 
+
+\section{Convergence in Radiative Transfer Simulations}
+
+A few places in this work we have commented that our simulations run with {\sc colt} were run with $10^{7}$ MCRT photon packets.
+This is a magic number, which we chose because it is a reasonable compromise between runtime (2,000 CPU-hours per snapshot) and the reliability of our contours shown in Figure~\ref{fig:area_plot}.
+We do not have hard criteria for the convergence of the ionization state when we run {\sc lycrt} either, which since it is evolving the state of the gas has multiple parameters that can be used to adjust convergence (number of iterations, number of photons emitted from stars per iteration, number of UV background photons per iteration).
+The closest we get to rigor here is watching the total ionized mass of the simulation over iterations, then setting the number of iterations to a few after it looks like that number has stopped trending in any direction.
+
+These procedures we adopted are are fundamentally unsatisfying for multiple reasons.
+Most importantly, they are not necessarily reproducible.
+In general, astronomy has a problem with the reproducability of our analysis and magic numbers like this certainly aren't helping.
+Additionally, we do not have any guarantee that these outputs are {\emph actually} converged.
+It's very unlikely that the results presented in this paper are meaningfully incorrect due to convergence issues, because all the code used here has been re-run for a variety of reasons and the plots do not seem to shift at all.
+But even that is a claim of reproducability, not convergence.
+We also know from experience running these simulations that the intensity plotted in our Ly$\alpha$ surface brightness images does not converge uniformly.
+As the simulation runs, the surface brightness of dimmer regions becomes brighter, and sometimes in a manner that is visually obvious.
+Therefore, it is possible that though we have run the code a few times and gotten results that are similar, that surface brightness profiles (or some equivalent) that we compute are too steep, and systematically so because we do not have (or have an incorrect) metric for convergence.
+
+But lastly and perhaps most importantly, what we want is a setting that can be toggled on the simulation or in the code that simply says ``run however long it takes to get a converged result''.
+% TODO: Continue here
 
 \section{Software Future Directions}
 
@@ -38,7 +60,18 @@ For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text fi
 
 The HDF5 format is a much better solution to rapidly reading data from files.
 It's fast enough, supports transparent compression, and allows adding metadata to files and datasets within a file.
-This could even be used to associate units with data.
+This could even be used to associate units with data, which is invaluable in a field where there are multiple reasonable units for any quantity.
+
+The one downside to the HDF5 format is that there is a single implementation, a C library which is produced by the HDF group, which is not without flaws.
+The original plan for this project included a study of the impact of subhalos on Ly$\alpha$ blob formation, but the halo finder that the research group uses (and this project relies upon) does not have information about subhalos because it relies on a simple 3d friends-of-friends implementation.
+The planned fix for this was to incorporate Amiga's Halo Finder (AHF), but at the time AHF did not support loading snapshots from HDF5 files.
+We attempted to add such support from AHF, but were stymied by problems with the HDF5 library.
+The interface in AHF for adding input file support is rather complex and involves a lot of type erasure through \lstinline{void*}, so we tried to build and test the additions with the sanitizers.
+The sanitizers are a set of compiler flags supported by clang and gcc (sometimes) which add a large number of runtime checks to a program to look for things like integer overflow, out-of-bounds array acceses, invalid pointer dereferences, use of uninitialized memory, and data races.
+Unfortunately we were unable to test our additions to AHF with memory sanitizer, because it detected a use of uninitialized memory in the intiializaion code for the HDF5 library.
+While two of the sanitizers (undefined behavior sanitizer and thread sanitizer) are able to continue execution of the program even if it is invalid by producing a sensible default, memory sanitizer is not.
+This problem (or problems) with the HDF5 library are more widespread than just this effort, it effectively means that since there is a bug in the HDF5 library we are unable to use a very high-quality tool to automatically discover similar bugs in any software that uses the HDF5 library.
+Ideally, in this project we could have patched the HDF5 library but that codebase is very hard to approach because the format it is dealing with has some idiosyncracies, and because the HDF5 library makes very heavy use of unhygienic macros.
 
 \section{Better Octrees}
 
