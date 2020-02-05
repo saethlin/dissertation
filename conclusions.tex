@@ -5,10 +5,22 @@
 \label{sec:conclusions}
 
 
-\section{Scientific Future Directions}
+\section{The Case for Rad Hydro}
 
-One of the most fundamental problems in this project (and in most of this flavor) is that the simulations that we draw snapshots from are wrong.
-This is not a little-known fact; as mentioned earlier the maintainers of the code that 
+The most uncertain part of this project is the ionization state and temperature of the gas, and most unfortunately that is the most out-of-scope improvement that could be made to this work.
+The core problem is that the hydrodynamic simulations this work is based on do not include an accurate accounting for the effect of the UV background and the ionization of gas due to stars.
+There are approximations for both of these, but they are very coarse and not self-consistent.
+Specifically, the approxiamation for the cosmological UV background assumes that there is an ever-present UV field in the simulation, and thus ignores that the self-shielding effect of any neutral gas in the simulation against the cosmological UV background.
+The approximation for stars is that a star will ionize some mass of gas near it, which while it does not ignore self-shielding entirely does tend to ignore radiative transfer effects that may cause highly asymmetric structure in the ionization state of the gas.
+If there is one lesson from this work it is that radiative transfer rapidly becomes complex, so we are very wary of such an approximation.
+Unfortunately fixing these problems properly requires an on-the-fly treatment of the feedback loop between the heating of gas, resultant collisional ionization, radiative transfer of ionizing energy, radiative ionization, then re-calculation of the radiative transfer due to updated opacity of the gas.
+This is not computationally cheap, but may be critical for future more accurate Ly$\alpha$ studies.
+
+To be clear, the work we have done here in post-processing is not a panacea; this \emph{must} be done on-the-fly because all computations done in post-processing will not be self-consistent.
+In this work, we try to compute a more accurate ionization state at a timestep $t$ based on the physical conditions at $t$, but the ionization state will alter the evolution of the simulation.
+Therefore, the physical conditions we base our ionization state at time $t$ upon are incorrect, and we actually needed to do this more accurate calculation at timestep $t-1$ and so on.
+
+\section{Ly$\alpha$ flow and radiation pressure}
 
 \section{Software Future Directions}
 
@@ -16,19 +28,55 @@ It's generally accepted that most code in the world is vastly slower than it cou
 But software in astronomy is somewhat of an extreme case, for a number of reasons.
 With the growth of data in the field (and especially in this project) a number of strategies that were technically sub-optimal but not a serious issue are heading towards that.
 In this project there are two specific examples: Numerical tables stored in text files, and eager initialization of large data structures.
-Storing arrays in text files is a very attractive solution for data interchange; unlike all other formats if documentation is lost entirely at least the data itself can be recovered (if not the semantics thereof).
+Storing data in a text format is a very attractive solution for data interchange; unlike all other formats if documentation is lost entirely at least the data itself can be recovered (if not the semantics thereof).
 But text files are rather slow to read, and the common tools for reading and writing them are embarrassingly slow. To be clear, we are referring to \lstinline{fprintf} and \lstinline{fscanf} and in the Python world, \lstinline{numpy.savetxt} and \lstinline{numpy.loadtxt}.
 A disappointing (but not large in an absolute sense) amount of time in this project was spent waiting for text files to save or load.
 There are partial solutions to this problem; reading and writing of text formats can be made much faster.
-For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files.
-We very strongly advocate for HDF5 everywhere as an actual solution to this problem of scaling (that is, pipelines often become dominated by parsing of input files in awkard formats such as text as datasets grow).
-HDF5 by default stores data in a binary format, can efficiently load single datasets at a time, and supports transparent compression.
+For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files (though as with code, reading is the more common operation).
 
+The HDF5 format is a much better solution to rapidly reading data from files.
+It's fast enough, supports transparent compression, and allows adding metadata to files and datasets within a file.
+This could even be used to associate units with data.
 
 \subsection{Octrees}
 
-Note that we can store the width of an octant in a single byte by just storing the level, then get the width via
+Much of this work involves octrees, which are a rather common data structure in simulations in general.
+While we use them as an adaptive grid, they're often also used as a way to look up nearest neighbors in a particle simulation.
+Navigating an octree does not dominate the runtime of \textsc{colt}, but it does dominate the runtime of \textsc{lycrt}, and it can dominate the runtime of some other codes like \textsc{gizmo} when additional self-gravitating particles are added.
+For this reason, one might naively expect that there exists a highly-polished implementation of an octree that is used ubiquitously, or at least that the data structure is well-studied enough that the most optimal implementation strategies are well-established.
+Unfortunately, this does not seem to be the case.
+We include below, the approximate definition of the octant structure used in \textsc{lycrt} (it has been cleaned up a bit).
 \begin{lstlisting}
-smallest_octant_width * (1 << level)
+struct Cell {
+    double width;
+    double min_x[3];
+
+    long parent_ID;
+    long sub_cell_check;
+    long sub_cell_IDs[8];
+
+    LOCALVAL *U;
+    int HAS_U_ALLOCATED;
+};
+\end{lstlisting}
+For comparison, here is a similarly cleaned-up version of the octant structure used in the public \textsc{gizmo} codebase.
+\begin{lstlisting}
+struct Node {
+  MyFloat center[3];
+  MyFloat len;
+
+  union {
+    int suns[8];
+    struct {
+      MyFloat s[3];
+      MyFloat mass;
+      unsigned int bitflags;
+      int sibling;
+      int nextnode;
+      int father;
+    } d;
+  } u;
+};
 \end{lstlisting}
 
+These implementations have something in common; 
