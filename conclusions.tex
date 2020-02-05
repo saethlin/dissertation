@@ -5,10 +5,24 @@
 \label{sec:conclusions}
 
 
-\section{Scientific Future Directions}
+\section{The Case for Rad Hydro}
 
-One of the most fundamental problems in this project (and in most of this flavor) is that the simulations that we draw snapshots from are wrong.
-This is not a little-known fact; as mentioned earlier the maintainers of the code that 
+The most uncertain part of this project is the ionization state and temperature of the gas, and most unfortunately that is the most out-of-scope improvement that could be made to this work.
+The core problem is that the hydrodynamic simulations this work is based on do not include an accurate accounting for the effect of the UV background and the ionization of gas due to stars.
+There are approximations for both of these, but they are very coarse and not self-consistent.
+Specifically, the approxiamation for the cosmological UV background assumes that there is an ever-present UV field in the simulation, and thus ignores that the self-shielding effect of any neutral gas in the simulation against the cosmological UV background.
+The approximation for stars is that a star will ionize some mass of gas near it, which while it does not ignore self-shielding entirely does tend to ignore radiative transfer effects that may cause highly asymmetric structure in the ionization state of the gas.
+If there is one lesson from this work it is that radiative transfer rapidly becomes complex, so we are very wary of such an approximation.
+Unfortunately fixing these problems properly requires an on-the-fly treatment of the feedback loop between the heating of gas, resultant collisional ionization, radiative transfer of ionizing energy, radiative ionization, then re-calculation of the radiative transfer due to updated opacity of the gas.
+This is not computationally cheap, but may be critical for future more accurate Ly$\alpha$ studies.
+
+To be clear, the work we have done here in post-processing is not a panacea; this \emph{must} be done on-the-fly because all computations done in post-processing will not be self-consistent.
+In this work, we try to compute a more accurate ionization state at a timestep $t$ based on the physical conditions at $t$, but the ionization state will alter the evolution of the simulation.
+Therefore, the physical conditions we base our ionization state at time $t$ upon are incorrect, and we actually needed to do this more accurate calculation at timestep $t-1$ and so on.
+
+\section{Ly$\alpha$ Photon Tracking}
+
+
 
 \section{Software Future Directions}
 
@@ -16,19 +30,106 @@ It's generally accepted that most code in the world is vastly slower than it cou
 But software in astronomy is somewhat of an extreme case, for a number of reasons.
 With the growth of data in the field (and especially in this project) a number of strategies that were technically sub-optimal but not a serious issue are heading towards that.
 In this project there are two specific examples: Numerical tables stored in text files, and eager initialization of large data structures.
-Storing arrays in text files is a very attractive solution for data interchange; unlike all other formats if documentation is lost entirely at least the data itself can be recovered (if not the semantics thereof).
+Storing data in a text format is a very attractive solution for data interchange; unlike all other formats if documentation is lost entirely at least the data itself can be recovered (if not the semantics thereof).
 But text files are rather slow to read, and the common tools for reading and writing them are embarrassingly slow. To be clear, we are referring to \lstinline{fprintf} and \lstinline{fscanf} and in the Python world, \lstinline{numpy.savetxt} and \lstinline{numpy.loadtxt}.
 A disappointing (but not large in an absolute sense) amount of time in this project was spent waiting for text files to save or load.
 There are partial solutions to this problem; reading and writing of text formats can be made much faster.
-For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files.
-We very strongly advocate for HDF5 everywhere as an actual solution to this problem of scaling (that is, pipelines often become dominated by parsing of input files in awkard formats such as text as datasets grow).
-HDF5 by default stores data in a binary format, can efficiently load single datasets at a time, and supports transparent compression.
+For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files (though as with code, reading is the more common operation).
 
+The HDF5 format is a much better solution to rapidly reading data from files.
+It's fast enough, supports transparent compression, and allows adding metadata to files and datasets within a file.
+This could even be used to associate units with data.
 
-\subsection{Octrees}
+\section{Better Octrees}
 
-Note that we can store the width of an octant in a single byte by just storing the level, then get the width via
+Much of this work involves octrees, which are a rather common data structure in simulations in general.
+While we use them as an adaptive grid, they're often also used as a way to look up nearest neighbors in a particle simulation.
+Navigating an octree does not dominate the runtime of \textsc{colt}, but it does dominate the runtime of \textsc{lycrt}, and it can dominate the runtime of some other codes like \textsc{gizmo} when additional self-gravitating particles are added.
+For this reason, one might naively expect that there exists a highly-polished implementation of an octree that is used ubiquitously, or at least that the data structure is well-studied enough that the most optimal implementation strategies are well-established.
+Unfortunately, this does not seem to be the case.
+We include below, the approximate definition of the octant structure used in \textsc{lycrt} (it has been cleaned up a bit).
 \begin{lstlisting}
-smallest_octant_width * (1 << level)
+struct Cell {
+    double min_x[3];
+    double width;
+
+    long parent_ID;
+    long sub_cell_check;
+    long sub_cell_IDs[8];
+
+    LOCALVAL *U;
+};
 \end{lstlisting}
+For comparison, here is a similarly cleaned-up version of the octant structure used in the public \textsc{gizmo} codebase (similarly cleaned up).
+\begin{lstlisting}
+struct Cell {
+  MyFloat center[3];
+  MyFloat len;
+
+  union {
+    int suns[8];
+    struct {
+      int father;
+      MyFloat s[3];
+      MyFloat mass;
+    } d;
+  } u;
+};
+\end{lstlisting}
+These two implementations both contain the same basic ingredients; the location of the octant, its size, some information required to navigate the tree structure, and the actual data that the octree carries(gas properties or a mass-only particle).
+Observe that \emph{in principle} an octree domain could be any rectangular prism, and in that case we would position for each octant, and there would be three side lengths.
+But in both these implementations, the implementors make the simplification that octants are cubic and therefore only one side length is required.
+There is opportunity for further simplification.
+
+In an octree, each level down has dimensions that are half that of the parent level in the tree.
+That is, given an octree with $n$ levels where the root of the tree is at level $n-1$ and the most-refined cells are at level $0$, the side length $L$ is given by $L(i+1) = 2L(i)$.
+In simpler terms, for every step up the tree the side length doubles.
+Therefore, we can compute the side length of any octant as $L(i) = 2^{i} L(n)$.
+This level numbering scheme is cumbersome to use when building an octree because the level number of any cell depends on how deep the tree is refined, but the more obvious scheme wherein the root is level $0$ could be used when building the tree, then the scheme could be inverted once the number of levels in the tree is known.
+
+The benefit to this level numbering is that we can store the side length of an octant with a single byte.
+In a single byte, we can store numbers up to $255$ which may not seem like an enormous amount of refining power, but because this is an exponent just one byte lets us represent octree divisions that cover $10^{76}$.
+We could even steal the most significant byte for some other use and still have $10^{38}$ left to work with, which is probably sufficient for most applications.
+And even if $76$ orders of magnitude does not suffice for some application, stealing another byte for the octree level permits representing more resolution than can be stored in a 64-bit IEEE floating point.
+
+The greatest benefit to this approach is not just in reducing the in-memory size of data structures, it is in permitting a much more memory-dense octree implementation.
+The primary limiter to the runtime of programs on a modern CPU is the latency of memory access, and compacting data structures in memory can provide order-of-magnitude runtime improvements when a program needs to walk over the data structure (which is the whole reason octrees exist, to be walked).
+But this approach, while an improvement in memory size carries a downside in that if we are given a coordinate in space, to find out if it belongs to a tree we need additional operations.
+We need to reconstitude the width of an octant to compare it to an absolute position:
+\begin{lstlisting}
+double width(Ocatant* oct) {
+    return Tree.minimum_octant_width * (1 << oct->level);
+}
+\end{lstlisting}
+
+At first this seems quite unfortunate, but there is another symmetry observation about octrees that saves us.
+The finest octree refinement level can serve as our base not only for side length, but also for the spatial coordinates of an octree, particularly if we store the coordinates of one corner as does {\sc lycrt}.
+For the octrees used in this work, the position of the octree cells could just barely be stored in a 16-bit integer, but in general it would probably be responsible to use at least 32 bits for this.
+At first, this change may also seem like yet more work to convert the coordinates of an octant into floating-point to compare to something outside.
+However, if we consider the operation which is common to {\sc lycrt} which is ``Given this location in space, which cell does it belong to'', we could convert that coordinate in space into our integer octree coordinates, then search our now-compacted octree using only integer operations.
+We propose this octant structure:
+\begin{lstlisting}
+struct Cell {
+    uint8_t level;
+    uint32_t position[3];
+    bool has_children;
+    union {
+        long child_IDs[3];
+        GasProperties gas;
+    } contents;
+};
+\end{lstlisting}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
