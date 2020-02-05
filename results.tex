@@ -269,4 +269,30 @@ These two properties are part of an equilibrium, and in removing the stars from 
 
 \section{Line-Of-Sight Dependence}
 
+Often in this work we will plot or discuss the Ly$\alpha$ luminosity of a halo for a median line of sight.
+This deserves explanation on two accounts; the choice of median and the importance of line of sight in general.
+
+We choose the median because in almost all discussion of the Ly$\alpha$ luminosity of a halo, we are trying to make some connection to either the range of observed luminosities as in Figure~\ref{fig:luminosity_redshift}, or we want a single value to simplify our data visualization.
+The median of the distribution is notionally the most likely value to observe if the object is randomly placed on the sky, wheras the mean luminosity may be strongly biased by lines of sight with particularly high escape fractions, and therefore particularly high observed Ly$\alpha$ luminosity.
+
+Such lines of sight can arise from an ionized region embedded asymmetrically in a cloud of neutral hydrogen.
+In the limit where an ionization front breaks through the cloud of neutral hydrogen, this geometry comes to resemble a laser cavity.
+A large amount of Ly$\alpha$ is emitted within the ionized region but when a photon scatters off material near the interface, a random step in the direction of greater optical depth is more likely to be short than a random step in the direction of lower optical depth which is away from the neutral hydrogen.
+Because of this interaction an interface between ionized and neutral hydrogen is almost reflective to Ly$\alpha$.
+From basic intiution, it does not seem like a cloud of gas would be asymmetric in brightness by more than an order of magnitude, but it is not far from the truth to think of these systems as composed of large semi-reflective surfaces.
+Of course the system is more complex than this thought experiment because all the gas in the system will emit in Ly$\alpha$, to varying degrees.
+
+We are able to calculate Ly$\alpha$ escape fraction over many lines of sight because we can compute it using only the direction and position of Ly$\alpha$ photons when they exit the simulation domain.
+To compute the escape fraction over some arbitrary line of sight, we select photons that escape approximately towards that direction, weight them according to the angle between their direction and the desired line of sight, and compute the sum of their escaping weights over the sum of their emitted weights.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=0.85\textheight,keepaspectratio]{figures/los.pdf}
+    \caption{
+        We plot the escape fraction from each of our halos over redshift, and in the shaded regions around the central dark line show the 1-$\sigma$, 2-$\sigma$, and 3-$\sigma$ extent of the distribution as well as the min and max in the palest color.
+        These escape fractions were calculated at each redshift over 3072 evenly-spaced angles.
+    }
+    \label{fig:los}
+\end{figure}
+
 
