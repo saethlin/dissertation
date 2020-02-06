@@ -1,17 +1,65 @@
 \chapter{Lyman-\texorpdfstring{$\alpha$}{a} Histories of Massive Halos}
 
-\section{The formation of Ly\texorpdfstring{$\alpha$}{a} blobs}
-\label{sec:formation_of_labs}
+\section{A Morphological Introduction}
+
+In Figures \ref{fig:rogues1}, \ref{fig:rogues2}, \ref{fig:rogues4}, and \ref{fig:rogues8} we present surface brightness images for nearly half of all the snapshots that were used in this work.
+From just a bye-eye analysis of these images, we can notice a few trends, some of which will become relevant later on in this work.
+There is definitely some redshift evolution of these objects, but there appears to be a different behavior between halos A1 and A2 as compared to A4 and A8.
+In halos A1 and A2, the physical extent of the Ly$\alpha$ surface brightness does not seem to evolve much with redshift, whereas in A4 and A8 there seems to be monotonic growth over redshift.
+Additionally, while halos A4 and A8 become brighter and more extended around $z=2$, halo A2 appears to be more compact at low redshift, possibly indicating some evolution out of a blob phase of galaxy evolution.
+In this work we only analyze snapshots up to $z=2$, so we are unable to comment in detail on the appearance of these objects at low redshift, but do note that LABs have been detected at low redshift \citep{Barger2012,Prescott2013} so it would not be particularly surprising for a halo to still be in a blob-like phase at $z=2$, even though most have been observed at $z\sim3$.
+
+We also present Figures \ref{fig:A8stars} and \ref{fig:A8gas} to provide some insight into the distribution of stars and gas that correlate to our largest and brightest halo.
+The primary insight from these figures is that while Ly$\alpha$ approximately tracks the presence of gas, it is much more spatially dispersed.
+Additionally, by visualizing directly the presence of gas and stars we can see that these massive halos undergo numerous mergers over thier formation history.
+It is unclear whether one can connect mergers to the formation of Ly$\alpha$ blobs; it appears that these merger events serve to disrupt what might be a smaller and possibly disky structure in the central galaxy.
+But we do not really have the necessary tools test this theory that major mergers are required to produce the spatially extended Ly$\alpha$ surface brightness, since it is the nature of these high-mass galaxies that they undergo a large number of mergers.
+That is, while one could construct an isolated high-mass halo or galaxy that system would be non-physical so it is unclear what insight could be derived from its behavior.
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/grid_plot.pdf}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A1.png}
     \caption{
-        Ly$\alpha$ surface brightness with our AGN model (top row), Ly$\alpha$ surface brightness without our AGN model (second row), gas surface density (third row), and stellar surface density (bottom row) at four redshifts for MassiveFIRE halo A4.
-        All images are 75$\times$75 physical kpc across, corresponding to 11.7, 10.5, 9.5, and 8.7 arcseconds across, respectively.
-        Each row shares the same color scale.}
-  \label{fig:grid_plot}
+        Ly$\alpha$ surface brightness images of of halo A1 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues1}
 \end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A2.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A2 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues2}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A4.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A4 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues4}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A8.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A8 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues8}
+\end{figure*}
+
+\section{The formation of Ly\texorpdfstring{$\alpha$}{a} blobs}
+\label{sec:formation_of_labs}
+
+% Rogues gallery with gas and stars?
 
 First we need to establish that our simulations actually form Ly$\alpha$ blobs.
 As mentioned in \S~\ref{sec:blob_definition}, there is neither a formal definition for a LAB, nor does there appear to be any consensus in the literature on an informal definition.
