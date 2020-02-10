@@ -6,7 +6,6 @@
 
 
 \section{The Case for Rad Hydro}
-
 The most uncertain part of this project is the ionization state and temperature of the gas, and most unfortunately that is the most out-of-scope improvement that could be made to this work.
 The core problem is that the hydrodynamic simulations this work is based on do not include an accurate accounting for the effect of the UV background and the ionization of gas due to stars.
 There are approximations for both of these, but they are very coarse and not self-consistent.
@@ -21,13 +20,16 @@ In this work, we try to compute a more accurate ionization state at a timestep $
 Therefore, the physical conditions we base our ionization state at time $t$ upon are incorrect, and we actually needed to do this more accurate calculation at timestep $t-1$ and so on.
 
 \section{Ly$\alpha$ Photon Tracking}
-
 The widely-recognized advantage of simulations in astronomy is that we can conduct experiments, wheras in observations one must make do with whatever is present or visible on the sky.
 There is another massive advantage though; in a simulation we can extract information which in observations is not just difficult but impossible to obtain.
 
+\section{Verification of Analytical Prescriptions}
+
+\section{Efficiency of Numerical Approximations}
+
+\section{Why doesn't recombination luminosity grow with AGN present?}
 
 \section{Convergence in Radiative Transfer Simulations}
-
 A few places in this work we have commented that our simulations run with {\sc colt} were run with $10^{7}$ MCRT photon packets.
 This is a magic number, which we chose because it is a reasonable compromise between runtime (2,000 CPU-hours per snapshot) and the reliability of our contours shown in Figure~\ref{fig:area_plot}.
 We do not have hard criteria for the convergence of the ionization state when we run {\sc lycrt} either, which since it is evolving the state of the gas has multiple parameters that can be used to adjust convergence (number of iterations, number of photons emitted from stars per iteration, number of UV background photons per iteration).
