@@ -16,6 +16,55 @@ For most of this section, we will transform all of the black hole particles in t
 Sometimes this means there is a very impactful AGN in a satellite galaxy, not the central massive galaxy that the cosmological simulation is oriented around.
 In what follows, we investigate the impact of AGN on the total Ly$\alpha$ luminosity, as well as the overall spatial extent of the blob and the blob morphology.
 
+\section{Large-Scale Morphological Changes}
+We include Figure \ref{fig:agn_roguesA1}, \ref{fig:agn_roguesA2}, \ref{fig:agn_rogues_A4}, and \ref{fig:agn_roguesA8} to orient the reader as to the visual effects of AGN on our model.
+These figures contain half as many snapshots since we provide an exact side-by-side comparison of the halo with and without the AGN.
+There is a remarkable consistency in terms of what changes; with the AGN present in the ionization state calculation the blobs appear smaller.
+We also see some detail in them which was previously obscured; particularly at higher redshift there are bright regions which seem to have no counterpart in the images without AGN.
+The trend in size is not exactly that these objects become smaller with AGN; looking closely one can see that there is more area occupied by the brighest regions.
+That is, the overall change is to alter the distribution of surface brightness across the blob; the escape of Ly$\alpha$ has become more concentrated.
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A1.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A1 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues1}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A2.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A2 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues2}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A8.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A8 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues8}
+\end{figure*}
+
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A4.png}
+    \caption{
+        Ly$\alpha$ surface brightness images of of halo A4 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
+    }
+  \label{fig:rogues4}
+\end{figure*}
+
+
 \section{Impact of AGN on Luminosity and Escape Fraction}
 In Figure~\ref{fig:agn_recombination_collision} we plot the escaping and intrinsic luminosity due to recombinations and collisions with our approximation for the effects of AGN.
 In all cases, we see an increase in emission due to recombinations, and a decrease in emission due to collisional excitation.
@@ -29,31 +78,10 @@ At high redshift, the gas which is ionized by the AGN and thus accounts for the 
 Over time, neutral gas accumulates around the AGN and the ionizing luminosity is increasingly insufficient to ionize large pathways through scattering gas, and thus the Ly$\alpha$ is scattered through more dust and partly absorbed.
 
 This story contrasts strongly with the behavior of the collisional emission in these halos.
-It is suppressed by the presence of an AGN, though the effect is not as significant as the enhancement of recombination emission.
+This source is suppressed by the presence of an AGN, though the effect is not as significant as the enhancement of recombination emission.
 There is also an effect on the escape fraction, but it is more complicated to interpret.
 The escape fraction of Ly$\alpha$ is linked to the opacity of the gas because both depend in $n_{\rm{HI}}$.
 Unlike the emission due to recombinations which is preferentially emitted in ionized regions, emission due to collisional excitations is preferentially emitted in neutral regions, where the local optical depth is high and thus such photons are more likely to be scatterd and absorbed before they escape the domain.
-
-% TODO Continue here
-
-In Figure~\ref{fig:agn_comparison}, we plot a comparison of the time evolution of the Ly$\alpha$ luminosity, escape fraction, and ionized gas fraction for models with and without an AGN for our fiducial galaxy.
-As is evident, there are significant differences in a model that includes AGN compared to one that does not.
-
-When we include a model for AGN (which drives increased ionization in the gas), there are substantial spikes in the luminosity owing to increased emission from recombinations.
-This escape fraction enhancement is so substantial than at some orientation angles we can see $f_{\rm esc} > 1$ due to particular geometries that cause Ly$\alpha$ to scatter into the line of sight more than it is absorbed.
-
-Taken together, the increase in the ionization state of the gas (bottom panel of Figure~\ref{fig:agn_comparison}) increases both the emission from recombinations, as well as the escape fraction of Ly$\alpha$ photons.
-These combined effects allow for significant boosting ($\sim$ factors of $10-50$) of the Ly$\alpha$ luminosity compared to a no-AGN model.
-
-
-
-Since Ly$\alpha$ escape is sightline-dependent we show in Figure~\ref{fig:f_esc} the variation of our fiducial LAB's luminosity and escape fraction over sightlines, with ionization due to AGN and without.
-The total luminosity can vary substantially due to the viewing angle of the galaxy when AGN are present.
-To demonstrate this explicitly, in the top panel of Figure~\ref{fig:f_esc}, we plot the maximum relative variation between sightlines to show how different a single physical object may appear to an observer who can only view the object from one line of sight.
-This huge variation when AGN are present is caused by the distinct non-uniformity of CGM opacity; it's as if the AGN punches large ionization holes in the enclosing CGM through which Ly$\alpha$ readily escapes.
-It is important to note that the distribution of escape fractions is not normal, we sample 3072 sightlines to produce this plot which is sufficient to explore all the high-escape pathways out of a LAB.
-The top panel of Figure~\ref{fig:f_esc} shows how much variation is possible, and how much the presence of these high-escape sightlines varies over redshift, and the bottom plot shows how dispersed the typical sightlines are.
-Because of this sightline variation, an escape fraction (or luminosity) calculated along a single line of sight may not be particularly representative of the overall galaxy properties.
 
 \begin{figure}
     \centering
@@ -64,26 +92,23 @@ Because of this sightline variation, an escape fraction (or luminosity) calculat
     \label{fig:agn_recombination_collision}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_comparison.pdf}
-    \caption{
-        We compare the luminosity, escape fraction, and ionization state of the galaxy and halo with and without an AGN model.
-        The luminosity of a Ly$\alpha$ blob is sometimes substantially enhanced by the AGN model.
-        The simulation domain is always heavily ionized, but the presence of AGN also provides stochastic enhancements, though it does not well correlate with luminosity or escape.
-    }
-    \label{fig:agn_comparison}
-\end{figure}
+Previously in section \S~\ref{sec:los} that Ly$\alpha$ escape can have a strong line-of-sight dependence, and explained why that can be and what sorts of geometries can arise.
+With the presence of AGN in our model all these effects become more dramatic, as we show in Figure~\ref{fig:agn_los}.
+The most striking feature in this plot is the much greater dependence on line of sight with AGN (though we do also see a net increase in escape fraction this has been discussed previously).
+This huge variation when AGN are present is caused by the distinct non-uniformity of CGM opacity; it's as if the AGN punches large ionization holes in the enclosing CGM through which Ly$\alpha$ readily escapes.
+There are two features in these plots that deserve specifc explanation: At some redshifts the escape fraction range of the AGN model extends below the no-AGN model, and at some redshifts the median escape fraction with AGN passes below that of the no-AGN model.
+These are surprpsing for the same reason: the effect of the AGN is to ionize more gas, which reduces the opacity of the halo... So how could this sometimes cause less Ly$\alpha$ to escape?
+% TODO: Continue here
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_stats_by_los.pdf}
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_los.pdf}
     \caption{
-        Maximum fractional difference between lines of sight (top) and escape fraction (bottom) over redshift for a MassiveFIRE galaxy that forms a LAB, with and without AGN.
-        The solid lines on the bottom plot show the median escape fraction over all lines of sight and the shaded region around them show the 1-$\sigma$ variation in that quantity over various lines of sight.
-}
-    \label{fig:f_esc}
+        A single snapshot, seen from 12 equally spaced lines of sight.
+    }
+    \label{fig:agn_los}
 \end{figure}
+
 
 \begin{figure}
     \centering
@@ -95,6 +120,7 @@ Because of this sightline variation, an escape fraction (or luminosity) calculat
 \end{figure}
 
 
+% TODO: Update to Gini coefficient discussion
 \section{The impact of AGN on the spatial extent and concentration of Ly\texorpdfstring{$\alpha$}{a} in blobs}
 
 As in the overall Ly$\alpha$ luminosity, the AGN can also impact the spatial extent of Ly$\alpha$ emission in massive halos.
