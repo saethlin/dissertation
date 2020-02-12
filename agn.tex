@@ -17,7 +17,7 @@ Sometimes this means there is a very impactful AGN in a satellite galaxy, not th
 In what follows, we investigate the impact of AGN on the total Ly$\alpha$ luminosity, as well as the overall spatial extent of the blob and the blob morphology.
 
 \section{Large-Scale Morphological Changes}
-We include Figure \ref{fig:agn_roguesA1}, \ref{fig:agn_roguesA2}, \ref{fig:agn_rogues_A4}, and \ref{fig:agn_roguesA8} to orient the reader as to the visual effects of AGN on our model.
+We include Figure \ref{fig:agn_rogues1}, \ref{fig:agn_rogues2}, \ref{fig:agn_rogues_4}, and \ref{fig:agn_rogues8} to orient the reader as to the visual effects of AGN on our model.
 These figures contain half as many snapshots since we provide an exact side-by-side comparison of the halo with and without the AGN.
 There is a remarkable consistency in terms of what changes; with the AGN present in the ionization state calculation the blobs appear smaller.
 We also see some detail in them which was previously obscured; particularly at higher redshift there are bright regions which seem to have no counterpart in the images without AGN.
@@ -31,7 +31,7 @@ That is, the overall change is to alter the distribution of surface brightness a
         Ly$\alpha$ surface brightness images of of halo A1 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
-  \label{fig:rogues1}
+  \label{fig:agn_rogues1}
 \end{figure*}
 
 \begin{figure*}
@@ -41,7 +41,7 @@ That is, the overall change is to alter the distribution of surface brightness a
         Ly$\alpha$ surface brightness images of of halo A2 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
-  \label{fig:rogues2}
+  \label{fig:agn_rogues2}
 \end{figure*}
 
 \begin{figure*}
@@ -51,7 +51,7 @@ That is, the overall change is to alter the distribution of surface brightness a
         Ly$\alpha$ surface brightness images of of halo A8 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
-  \label{fig:rogues8}
+  \label{fig:agn_rogues8}
 \end{figure*}
 
 \begin{figure*}
@@ -61,7 +61,7 @@ That is, the overall change is to alter the distribution of surface brightness a
         Ly$\alpha$ surface brightness images of of halo A4 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
-  \label{fig:rogues4}
+  \label{fig:agn_rogues4}
 \end{figure*}
 
 
@@ -83,6 +83,13 @@ There is also an effect on the escape fraction, but it is more complicated to in
 The escape fraction of Ly$\alpha$ is linked to the opacity of the gas because both depend in $n_{\rm{HI}}$.
 Unlike the emission due to recombinations which is preferentially emitted in ionized regions, emission due to collisional excitations is preferentially emitted in neutral regions, where the local optical depth is high and thus such photons are more likely to be scatterd and absorbed before they escape the domain.
 
+There is one more question raised by Figure~\ref{fig:agn_recombination_collision} we would like to answer: Why doesn't the recombination luminosity grow over redshift?
+We know that the mass of all AGN in the simulation grow, and since their luminosities in our simulation are tied only to the mass, their ionizing output grows proportionally, but we can see from this figure that the Ly$\alpha$ luminosity that this drives does not grow.
+A precise explanation of this is worth much more study, but for now we can offer a few explanations.
+It is possible that as the mass of the black hole grows, the system becomes more radially asymmetric (possibly because it is settling into a disk) which would reduce the covering fraction of the black hole, and more of the ionizing flux would not go into ionizing the surrounding gas.
+It is also possible that in this scenario the luminosity of the halo is not particularly sensitive to the ionizing luminosity of the AGN, which would be possible if the AGN has ionized essentially all of the gas except for a few small pockets of very self-shielded gas.
+This explanation is supported by the dramatic drop in luminosity due to recombinations, and some of the results in \S~\ref{sec:ionization_extremes}.
+
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_recombination_collision.pdf}
@@ -97,8 +104,31 @@ With the presence of AGN in our model all these effects become more dramatic, as
 The most striking feature in this plot is the much greater dependence on line of sight with AGN (though we do also see a net increase in escape fraction this has been discussed previously).
 This huge variation when AGN are present is caused by the distinct non-uniformity of CGM opacity; it's as if the AGN punches large ionization holes in the enclosing CGM through which Ly$\alpha$ readily escapes.
 There are two features in these plots that deserve specifc explanation: At some redshifts the escape fraction range of the AGN model extends below the no-AGN model, and at some redshifts the median escape fraction with AGN passes below that of the no-AGN model.
-These are surprpsing for the same reason: the effect of the AGN is to ionize more gas, which reduces the opacity of the halo... So how could this sometimes cause less Ly$\alpha$ to escape?
-% TODO: Continue here
+These are surprising for the same reason: the effect of the AGN is to ionize more gas, which reduces the opacity of the halo... So how could this sometimes cause less Ly$\alpha$ to escape?
+
+For the first case, where some lines of sight see a lower escape fraction, we present an example scenario in Figure~\ref{fig:scattering_diagram}, where the star represents a source of Ly$\alpha$, the color of the box represents the ionization state of the gas, and the light gray circle represents a dense region of neutral gas.
+In the no-agn case, Ly$\alpha$ emitted in the direction of the observer towards this dense region of gas, but scatters off it.
+However this Ly$\alpha$ does not (or does not all) escape traveling away from the observer.
+Since it is passing through gas which is only partly ionized, there is a probability that it will be scattered back towards the observer and enter the dense region, and eventually escape in the direction of the observer.
+In the right panel, when an AGN is present, the gas around this dense region is fully ionized and thus Ly$\alpha$ which scatters off the dense region will never be seen by the observer.
+But more importantly since the Ly$\alpha$ which scatters off this has no neutral hydrogen between it and the edge of the simulation domain the net escape fraction is elevated, even though an observer looking towards the source from the bottom of the page sees much less Ly$\alpha$ escape towards their line of sight.
+
+In the second scenario, where the median escape fraction with AGN on dips below the escape fraction without AGN the explanation, the previous explanation does not apply.
+In that scenario we needed to invoke a small and dense self-shielded parcel of gas along the particular line(s) of sight with low escape fraction, but in this scenario we see a decreased escape fraction along at least half of all lines of sight.
+The explanation we offer for this scenario is unfortunately more subtle.
+Recall that the escape fraction is the ratio of escaping Ly$\alpha$ to emitted Ly$\alpha$, so while we mostly focus on the escape process it is sufficient to alter the amount of emitted Ly$\alpha$ if doing so does not alter as much the amount of Ly$\alpha$ that escapes.
+Alternatively, we can view an escape fraction as a luminosity-weighted integral of the escape fraction of all positions in the simulation.
+Thus because of the weighting if the luminosity is disproportionately increased in cells which have low escape fractions (that is, low escape fractions out of the entire simulation, not to neighboring cells), we can decrease the escape fraction of the simulation as a whole, even though the luminosity along that line of sight may increase.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{figures/scattering_diagram.png}
+    \caption{
+        A schematic of a scenario in which one line of sight (observer at the bottom of the page) may see a lower escape fraction with an AGN and thus a greater ionization fraction.
+    }
+    \label{fig:scattering_diagram}
+\end{figure}
 
 \begin{figure}
     \centering
@@ -108,6 +138,10 @@ These are surprpsing for the same reason: the effect of the AGN is to ionize mor
     }
     \label{fig:agn_los}
 \end{figure}
+
+
+
+% TODO: Continue here
 
 
 \begin{figure}
