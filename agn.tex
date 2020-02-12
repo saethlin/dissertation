@@ -120,7 +120,6 @@ Recall that the escape fraction is the ratio of escaping Ly$\alpha$ to emitted L
 Alternatively, we can view an escape fraction as a luminosity-weighted integral of the escape fraction of all positions in the simulation.
 Thus because of the weighting if the luminosity is disproportionately increased in cells which have low escape fractions (that is, low escape fractions out of the entire simulation, not to neighboring cells), we can decrease the escape fraction of the simulation as a whole, even though the luminosity along that line of sight may increase.
 
-
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{figures/scattering_diagram.png}
@@ -134,35 +133,50 @@ Thus because of the weighting if the luminosity is disproportionately increased 
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_los.pdf}
     \caption{
-        A single snapshot, seen from 12 equally spaced lines of sight.
+         We plot the escape fraction from each of our halos over redshift, and in the shaded regions around the central dark line show the 1-$\sigma$, 2-$\sigma$, and 3-$\sigma$ extent of the distribution as well as the min and max in the palest color.
+        These escape fractions were calculated at each redshift over 3072 evenly-spaced angles.
     }
     \label{fig:agn_los}
 \end{figure}
 
-
-
-% TODO: Continue here
-
+To visually explain what sorts of geometries lead to this order-of-magnitude variation in escape fraction we include Figure~\ref{fig:many_los} and \ref{fig:agn_many_los}, which show 12 equally spaces lines of sight for a single snapshot.
+From these surface brightness images, we can see that there is a very bright region around which there is an asymmetric distribution of neutral gas.
+When the dark gas is mostly between the observer and the bright gas we see a lower escape fraction, as expected.
+However, when the AGN are included in the model (Figure~\ref{fig:agn_many_los}) we see along two lines of sight that the escape fraction exceeds 1.
+In these cases, since there is optically thick gas on the opposite side of a bright source there is Ly$\alpha$ which is scattered back into the line of sight (it is effectively reflected) instead of escaping in a direction away from the line of sight.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/many_los.pdf}
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/many_los.png}
     \caption{
-        A single snapshot, seen from 12 equally spaced lines of sight.
+        A single snapshot from halo A8 at redshift $z=2.4$, seen from 12 equally spaced lines of sight.
+        The surface brightness is scaled between $2\times10^{-15}$ and $10^{-19}$ $\rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$, to enhance the line-of-sight contrast.
+        Compare to Figure~\ref{fig:many_los}, which includes our model for AGN.
     }
     \label{fig:many_los}
 \end{figure}
 
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_many_los.png}
+    \caption{
+        A single snapshot from halo A8 at redshift $z=2.4$, seen from 12 equally spaced lines of sight.
+        We have selected this snapshot because it has the greatest variance in escape fraction with line of sight.
+        The surface brightness is scaled between $2\times10^{-15}$ and $10^{-19}$ $\rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$, to enhance the line-of-sight contrast.
+        Compare to Figure~\ref{fig:many_los}, which does not include our model for AGN.
+    }
+    \label{fig:agn_many_los}
+\end{figure}
 
-% TODO: Update to Gini coefficient discussion
+
 \section{The impact of AGN on the spatial extent and concentration of Ly\texorpdfstring{$\alpha$}{a} in blobs}
 
 As in the overall Ly$\alpha$ luminosity, the AGN can also impact the spatial extent of Ly$\alpha$ emission in massive halos.
 This takes two forms: (1) the total area enclosed within a surface brightness contour and (2) the concentration of Ly$\alpha$ light in the system.
 We explore these in turn.
 
-Previously, in Figure~\ref{fig:area_plot}, we examined the size of our model LABs as a function of observation sensitivity (solid lines) in a fiducial model that did not have AGN on.
-We now turn to the dashed lines in the same figure where we have included AGN.
+Previously, in Figure~\ref{fig:area_plot}, we examined the size of our model LABs as a function of observation sensitivity (solid lines) for example snapshots that did not have AGN on.
+Now in Figure~\ref{fig:agn_area_plot} we include dashed lines for example snapshots with the AGN in our model.
 
 We see an enhancement of blob size at high surface brightness cutoffs, which indicates that there are regions that have been substantially enhanced in brightness, but at the same time we see a decrease in blob size at much lower cutoffs.
 We interpret this effect as a complex interaction of the gas ionization state with escape pathways.
@@ -170,28 +184,23 @@ As gas becomes more ionized it provides a pathway along which Ly$\alpha$ is like
 However, the presence of a low-opacity pathway out of the blob decreases the probability that a photon will be scattered out into the extended blob structure before it escapes.
 
 The presence of these small pathways out of blob may be useful to detect the presence of AGN in a blob.
-We quantify the concentration of light via a metric analogous to $M_{\rm 20}$ \citep{Lotz2004}, where we compute the fraction of pixels in our surface brightness images containing half the total flux, shown for all our snapshots in Figure~\ref{fig:skewness}.
+We quantify the concentration of light by computing the Gini coefficient $G$ of a surface brightness image which is composed of $n$ pixels $p_{0}..p_{n}$ of each blob, which we present in Figure~\ref{fig:skewness}.
+\begin{equation}
+    \label{eq:gini}
+    G = \frac{2\sum_{i=1}^{n}i p_{i}}{n\sum_{i=1}^{n}p_{i}} - \frac{n+1}{n}
+\end{equation}
 The primary signature of the AGN's effect is to cause the luminosity to be concentrated in a much smaller area.
 While this may seem contradictory to the increase in total luminosity and area enclosed, note that this is a {\it relative} concentration.
 That is, while the diffuse emission is still significant, the central emission in the ionized bubble surrounding the AGN dominates when compared to this diffuse halo emission such that the overall concentration decreases dramatically for the AGN-on model.
-This metric becomes more effective for identifying AGN with higher-resolution observations (Figure~\ref{fig:MUSE}); the bright patches of our surface brightness images are significantly smaller than the spatial resolution of current telescopes.
-
-\begin{figure}
-    \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/141.pdf}
-    \caption{
-        Example surface brightness image of a LAB where the luminosity is concentrated, which indicates the presence of an AGN, but the luminosity is not in a connected region.
-    }
-    \label{fig:agn_on_example}
-\end{figure}
+This metric becomes more effective for identifying AGN with higher-resolution observations (Figure~\ref{fig:MUSE}) since the bright patches of our surface brightness images are significantly smaller than the spatial resolution of current telescopes, but current technologies should be sufficient.
 
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/skew_distribution.pdf}
     \caption{
-        We propose a metric for determining the presence of an AGN in an observed LAB: The fraction of all flux that is concentrated within a small fraction of the total area of the blob.
-    In this figure since we are making a suggestion for an observable metric we have computed this metric on simulated surface brightness images after convolving to the resolution of MUSE.
-    For the purpose of this demonstration we plot the fraction of pixels containing 50\% total flux but one could choose another threshold and find similar results.
+        In our surface brightness images with AGN, the escaping luminosity is much more spatially concentrated.
+        We quantify this trend by computing the Gini coefficient for a number of halos with and without AGN, after convolving to the resolution of MUSE.
+        By selecting a Gini coefficient threshold around 0.93, one could reliably distinguish between blobs that contain and do not contain AGN.
     }
     \label{fig:skewness}
 \end{figure}
