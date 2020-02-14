@@ -1,28 +1,61 @@
 \chapter{Methods}
 \label{sec:methods}
 
-Our overall goal is to extract Ly$\alpha$ observables from cosmological zoom-in simulations of massive galaxies in evolution in post-processing.
-To do this, we construct a pipeline in which we smooth the particle data from snapshots onto an octree grid on which we perform ionizing radiative transfer, to determine the ionization state of the gas in the halo.
-Then we use Ly$\alpha$ Monte-Carlo radiative transfer (MCRT) in order to compute the escape fraction from the simulation domain, as well as surface brightness images, moment maps, and spectra of the Ly$\alpha$ line.
-In what follows, we go into substantially more detail about each of these numerical techniques.
+Our overall goal is to extract Ly$\alpha$ observables from
+cosmological zoom-in simulations of massive galaxies in evolution in
+post-processing.  To do this, we construct a pipeline in which we
+smooth the particle data from snapshots onto an octree grid on which
+we perform ionizing radiative transfer, to determine the ionization
+state of the gas in the halo.  Then we use Ly$\alpha$ Monte-Carlo
+radiative transfer (MCRT) in order to compute the escape fraction from
+the simulation domain, as well as surface brightness images, moment
+maps, and spectra of the Ly$\alpha$ line.  In what follows, we go into
+substantially more detail about each of these numerical techniques.
 
 \section{Cosmological Hydrodynamic Zoom Galaxy Formation Simulations}
 
-The galaxy formation simulations studied here are a part of the MassiveFIRE suite of cosmological zoom-in hydrodynamic galaxy formation simulations \citep{Feldmann2016, Feldmann2017}, which itself is a part of the Feedback in Realistic Environments (FIRE) project.
+The galaxy formation simulations studied here are a part of the
+MassiveFIRE suite of cosmological zoom-in hydrodynamic galaxy
+formation simulations \citep{Feldmann2016, Feldmann2017}, which itself
+is a part of the Feedback in Realistic Environments (FIRE) project.
 In particular, these simulations employ the FIRE-2 suite of physics.
-These physics modules are fully described in \citet{Hopkins2018}, and we point the reader to this work, summarizing the salient details.
+These physics modules are fully described in \citet{Hopkins2018}, and
+we point the reader to this work, summarizing the salient details.  \red{lets beef up the FIRE methods a bit.  can take from this paper: \url{https://ui.adsabs.harvard.edu/abs/2017gefb.confE..13A/abstract}}
 
-The initial conditions for the MassiveFIRE simulations are generated with the {\sc music} initial conditions generator for a $(100/h \ {\rm Mpc})^3$ box.
-We first run an initial low-resolution simulation, from which we selected particular halos for re-simulation at much higher resolution.
-For these halos, the region encompassing the high-resolution particles was selected with a convex hull filter selecting all particles within $3$ virial radii of the halo at $z=2.$
-These particles were then split to obtain higher mass resolution, and the entire simulation was re-run with a final mass resolution of the high-resolution particles of $m_{\rm DM} = 1.7 \times 10^5 M_\odot$ and $m_{\rm baryon} = 3.3 \times 10^4 M_\odot$ for dark matter and baryons, respectively.
 
-The simulations themselves are run with {\sc gizmo} \citep{Hopkins2015} with the hydrodynamics run in Meshless Finite Mass (MFM) mode.
-These simulations include star formation in dense and self-gravitating gas \citep{Hopkins2013}, and stellar feedback channels that include radiation pressure, photoionization, photoelectric heating, O-star and Asymptotic Giant Branch (AGB) driven stellar winds, and Type I and II Supernovae.
-Supermassive black holes are included in the simulations, but followed passively, meaning that feedback from an active galactic nuclei (AGN) is not included.
-This said, black holes accreted following the torque-limited accretion model of \citet{Anglesalcazar2017a,Anglesalcazar2017b}.
-In this paper, we examine $3$ massive halos, whose physical properties are described at $z=2$ and $z=5$ in Tables~\ref{table:sims2} and ~\ref{table:sims5} respectively.
-These halos have the same initial conditions as those monikered "A1", "A2" and "A4" from \citet{Feldmann2016}, though are different from the original Feldmann et al. halos in that they are run with FIRE-2 physics (the original halos presented in Feldmann et al. are run with FIRE-1 physics).
+
+The initial conditions for the MassiveFIRE simulations are generated
+with the {\sc music} initial conditions generator for a $(100/h \ {\rm
+  Mpc})^3$ box.  We first run an initial low-resolution simulation,
+from which we selected particular halos for re-simulation at much
+higher resolution.  For these halos, the region encompassing the
+high-resolution particles was selected with a convex hull filter
+selecting all particles within $3$ virial radii of the halo at $z=2.$
+These particles were then split to obtain higher mass resolution, and
+the entire simulation was re-run with a final mass resolution of the
+high-resolution particles of $m_{\rm DM} = 1.7 \times 10^5 M_\odot$
+and $m_{\rm baryon} = 3.3 \times 10^4 M_\odot$ for dark matter and
+baryons, respectively.
+
+The simulations themselves are run with {\sc gizmo}
+\citep{Hopkins2015} with the hydrodynamics run in Meshless Finite Mass
+(MFM) mode.  These simulations include star formation in dense and
+self-gravitating gas \citep{Hopkins2013}, and stellar feedback
+channels that include radiation pressure, photoionization,
+photoelectric heating, O-star and Asymptotic Giant Branch (AGB) driven
+stellar winds, and Type I and II Supernovae.  Supermassive black holes
+are included in the simulations, but followed passively, meaning that
+feedback from an active galactic nuclei (AGN) is not included.  This
+said, black holes accreted following the torque-limited accretion
+model of \citet{Anglesalcazar2017a,Anglesalcazar2017b}.  In this
+paper, we examine $3$ massive halos \red{don't we examine 4 halos?},
+  whose physical properties are described at $z=2$ and $z=5$ in
+  Tables~\ref{table:sims2} and ~\ref{table:sims5} respectively \red{the caption here describes a box but we never say what that actually means.  also, how are galaxies defined?}.  These
+  halos have the same initial conditions as those monikered "A1", "A2"
+  and "A4" from \citet{Feldmann2016}, though are different from the
+  original Feldmann et al. halos in that they are run with FIRE-2
+  physics (the original halos presented in Feldmann et al. are run
+  with FIRE-1 physics). \red{if we're going to say this, we should probably say in a few sentences what the salient differences are between FIRE-1 and FIRE-2 are.   i think there's either a table with this information in it in the hopkins fire2 paper, or could summarize from the abstract.  or just cut this text wholesale.}
 
 \begin{table*}
 \caption{Properties for our 3 model halos at $z=5$, within our $150 \times 150\ \rm kpc$ box}
@@ -76,7 +109,7 @@ Since we want to do this from first principles as much as is reasonably possible
 
 \noindent where $h$ is Planck's constant, $\nu_{\alpha}$ is the rest-frame frequency of Lyman-$\alpha$, $P_B(T)$ is the Ly$\alpha$ conversion probability per recombination event and $\alpha_B(T)$ is the case-B recombination coefficient \citep{Cantalupo2005, Dijkstra2014, Hui1997}, $T$ is the temperature of the gas, $n_{e}$ is the electron number density, and $n_{\HII}$ is the ionized hydrogen number density.
 
-For emission due to collisions,
+For emission due to collisions, \red{the Ly$\alpha$ luminosity is},
 \begin{equation}
 \label{eq:j_col}
     L_{\rm Ly \alpha}^{\rm col} = h\nu_{\alpha} \int C_{1s2p}(T)\,n_e\,n_\HI\,\mathrm{d}V
@@ -86,8 +119,8 @@ For emission due to collisions,
 
 From these equations, we can see that there are two quantities that we need to know accurately: The gas temperature and ionization state.
 The simulations we have snapshots from do contain mechanisms to calculate both of these, but in both cases there are reasons to doubt the on-the-fly calculations.
-This is not to say that the on-the-fly calculations have been done carelessly; these systems are extremely complex and an accurate calculation of almost anything requires an iterative solver.
-These cosmological simulations are operating on a much tighter time budget than the work in this project, and so we can afford some luxury.
+This is not to say that the on-the-fly calculations have been done carelessly; these systems are extremely complex and an accurate calculation of almost anything requires an iterative solver. \red{can you elaborate on what needs to be iterated on to get the temperatures and ionization state? }
+These cosmological simulations are operating on a much tighter time budget than the work in this project, and so we can afford some luxury. \red{not sure what this last sentence means.}
 
 Therefore, our first step in post-processing is to compute a more accurate ionization state of the gas, by doing ionizing UV radiative transfer.
 All the radiative transfer in this work is done on an octree, even though the snapshot data is all from SPH simulations.
@@ -154,7 +187,7 @@ We start by computing the opacity in the octree cell that the photon currently r
     6.0^{-18} E^{3} \rho n_{\rm{HI}} + 0.4 \kappa m_{p} \rho z
 \end{equation}
 
-We then draw a random optical depth which the photon shall traverse until it scatters, and use the known opacity of the cell to convert that optical depth to a distance.
+\red{whee $E$ is...$\rho$ is...also the above isn't actually an equation. its a statement.  what does it equal?} We then draw a random optical depth which the photon shall traverse until it scatters, and use the known opacity of the cell to convert that optical depth to a distance.
 If travelling this distance along the photon's current direction would place the photon outside of the current grid cell, we find the cell it will cross into and repeat the conversion to distance based on the remaining optical depth.
 Once we have exhausted the randomly chosen optical depth, another random number is drawn to determine if the photon is scattered or absorbed by dust.
 When photons are scattered, we re-draw a random direction, and modify its energy to be just above the hydrogen ionization energy.
@@ -207,7 +240,7 @@ and the frequency of the photon, but in this area it is typical to express frequ
     x \equiv \frac{\nu - \nu_{0}}{\Delta\nu_{\rm{D}}}
 \end{equation}
 
-The exact formulation of this $H(a, x)$ is the convlution of a Lorentzian and Maxwellian distribution and is therefore highly impractical to be evaluating constantly to do our optical depth calculations.
+The exact formulation of this $H(a, x)$ is the convolution of a Lorentzian and Maxwellian distribution and is therefore highly impractical to be evaluating constantly to do our optical depth calculations.
 Therefore, there is some history of approximations for this function which all use some critera to split the distribution into a core and a wing component, and apply different approximations in each regime.
 In this work we use a continued fraction expansion centered around $0$, $\infty$, and on the interval $3 < x^{2} < 25$.
 This provides better than $1\%$ error in the value of $H(a, x)$ across the range of frequencies and temperatures that we encounter in the simulations, while being efficient enough that it is not a major contributor to the runtime of MCRT simulations.
