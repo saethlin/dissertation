@@ -1,9 +1,58 @@
 \chapter{Conclusions and Future Directions}
 \label{sec:discussion}
-
-\section{Conclusions}
 \label{sec:conclusions}
 
+We have combined high-resolution cosmological zoom simulations of massive galaxy evolution at high-redshift with $3$D Monte Carlo Lyman-$\alpha$ radiative transfer simulations to develop a model for the origin of Lyman-$\alpha$ blobs at high-redshift ($z=2-5$).
+Our work considers the physics of ionization radiative transfer, cooling emission, recombination, and the impact of AGN within a cosmological context of galaxy evolution.
+Our main conclusions from this work follow:
+\begin{itemize}
+
+    \item When adopting a notional luminosity-based definition for LAB formation, we find that all of our model massive galaxies go through a LAB phase at some point between $z=5-2$ (Figure~\ref{fig:luminosity_redshift}, Figure~\ref{fig:agn_comparison}, Figure~\ref{fig:MUSE}, Figure~\ref{fig:grid_plot}).  These LABs have extended morphologies in agreement with observations.
+
+    \item The escape fraction of Lyman-$\alpha$ photons from these objects are highly orientation-dependent, which complicate our observational understanding of the connection between Lyman-$\alpha$ blobs and massive galaxy evolution. Variations in the escape fraction with respect to line of sight can produce very large variations in an observed Ly$\alpha$ luminosity (Figure~\ref{fig:los_variation}).
+    
+    \item The formation of LABs in our model is independent of the inclusion of AGN: star formation alone is enough to drive LAB formation in massive galaxies. This said, the presence of an AGN can significantly alter the Lyman-$\alpha$ luminosity and spatial extent (Figure~\ref{fig:agn_comparison}, Figure~\ref{fig:area_plot}).
+    
+    \item The presence of an AGN in an LAB may be detectable by measuring the spatial concentration of Ly$\alpha$ luminosity (Figure~\ref{fig:area_plot}, Figure~\ref{fig:skewness}).
+    
+    \item The observed luminosity of LABs does not scale particularly well with any individual physical property.  The reason is that the intrinsic luminosity is dependent on the temperature and ionization state of the gas, which can vary strongly with the small scale geometry of the gas distribution.  Similarly, the observed luminosity folds in the escape fraction which is a strong function of the star-gas-dust geometry, as well as the small scale clumping  (Figure~\ref{fig:luminosity_vs_temperature}).
+    
+\end{itemize}
+
+
+\section{Comparison To Previous Models}
+In the work presented here, we deliberately argued that our simulations reproduce Ly$\alpha$ blobs, but if we were so motivated we could use the results of our radiative transfer calculations to construct a solid argument that these objects are not definitely the same class of object as observed blobs.
+Such an argument would focus on surface brightness profiles, and the impact of AGN on the spatial extent of the Ly$\alpha$ surface brightness in our images.
+We are not seriously proposing that the previous work was arguing in poor faith, but instead that this area of research is sufficiently ambiguious that given even our modestly-sized dataset there is sufficient data to argue for whichever outcome is most convenient for the original aims of the project.
+In this and many other works we set out to learn about Ly$\alpha$ blobs so the first task in this and all similar works is to argue that we have the objects we want to study.
+Therefore, when we look to the literature of Ly$\alpha$ blob simulations and see that every other paper also reproduces blobs, there is call for suspicion.
+We can't know from a literature search if methodologies that fail to reproduce blobs have been pursued, and only rarely to authors specifically offer evidence that their work is not sufficient to form blobs.
+Therefore, we are left in an awkward position when comparing to other works because it is hard to tell if there are many ways to form a blob, or if all the ways to not form a blob have gone missing.
+All that said, we will attempt to compare this work to previous attempts at studying the origin of Ly$\alpha$ in blobs.
+
+In the broadest sense, this methodology used in this work was intended to be more grounded and thorough than other research on Lyman-$\alpha$ blobs.
+Our primary improvements over other works are that we account for emission due to recombinations and collisional excitations, we compute rates for both those processes based on first principles, and we do Ly$\alpha$ Monte-Carlo radiative transfer on a high(er)-resolution simulation.
+To put this in the context of previous work, in the paragraphs below we comment on differences between previous works and our methodology.
+
+Some of the previous work on LAB formation has been focused on emission from cooling gas, that is, collisionally excited neutral hydrogen.
+\citet{Fardal2001} simulate only cooling emission and find luminosities of about the correct order of magnitude to be blobs, but would need to invoke yet-unquantified radiative transfer effects to explain the size.
+\citet{Haiman2000} find that cooling emission is sufficient to reproduce the blobs mentioned in \citet{Steidel2000} (but their model is a simple analytical one).
+\citet{Faucher-Giguere2010} also limit their model to cooling emission, but note that to reproduce the luminosities observed they need to model cooling emission from regions which should be experiencing star formation.
+They do perform radiative transfer, and are able to reproduce the spatial extend of LAHs and the characteristic line profile of Ly$\alpha$ nebulae.
+\citet{Rosdahl2012} account for emission from recombinations in an indirect manner; they treat it as a source of cooling, but are thus unable to discuss luminosity driven by recombinations.
+\citet{Goerdt2010} also neglect emission from HII recombinations in their work.
+
+By contrast, \citet{Cantalupo2005} and \citet{Gronke2017} omit cooling emission from their model, but include emission from recombinations.
+We think this approach may be deeply problematic, since it appears to dominate for the no-AGN case, but \citet{Gronke2017} explicitly model AGN so we do not think this choice may be signifcant to their results.
+\citet{Kollmeier2010} model emission due to the cosmological UV background and the presence of a quasar (which they term fluorescence, inconsistently with us). \green{I'm not sure if this paper is targeted at LABs or even reproduces them, they say their surface brightness peaks at $2\times10^{-19}$ erg/s.}
+
+Some papers in the literature account for both emission from cooling and recombinations \citep{Cen2013, Furlanetto2005, Geach2016, Smailagi2016}.
+However, in all these papers the Ly$\alpha$ luminosity from recombinations is determined only by star formation rates, as opposed to our work where we use the age of star particles to inform stellar population synthesis and compute the ionization state of our gas.
+\citet{Geach2016} account for the contribution of ionization from stars by locally modifying the ionization state of the gas based on the local star formation rate.
+
+Some of the previous attempts at LAB modeling do not include Ly$\alpha$ radiative transfer effects \citep{Fardal2001, Furlanetto2005, Goerdt2010, Smailagi2016, Rosdahl2012}.
+For the existing work that does include RT, it is often restricted due to low spatial resolution \citep{Cen2013} or discuss only a single line of sight \citep{Cantalupo2005}.
+In this paper we demonstrate that there are strong line-of-sight variations, which can only be reproduced with reasonably accurate RT calculations.
 
 \section{The Case for Rad Hydro}
 The most uncertain part of this project is the ionization state and temperature of the gas, and most unfortunately that is the most out-of-scope improvement that could be made to this work.
@@ -22,14 +71,58 @@ Therefore, the physical conditions we base our ionization state at time $t$ upon
 \section{Ly$\alpha$ Photon Tracking}
 The widely-recognized advantage of simulations in astronomy is that we can conduct experiments, wheras in observations one must make do with whatever is present or visible on the sky.
 There is another massive advantage though; in a simulation we can extract information which in observations is not just difficult but impossible to obtain.
+The simplest exercise of this capability is to visualize exactly where the escaping flux originates from (which we do in \ref{sec:experiments}), but so much more work can be done in this area.
+When we compute the escape fraction of a halo in recombinations or collisions, we do this by attributing each photon packet proportionally to the escape of each source based on the relative luminosities of the gas it originates in.
+The same process could be done in an analysis of the origins of the escaping flux.
+With sufficient changes to the ionization state calculation, one could even do the same process with our AGN-on simulations and attribute escaping flux to the presence of the AGN and correlate that to the originating gas properties or location.
+
+We need not even limit ourselves to tracking photons once they escape; one could even modify {\sc colt} to extract information about the Ly$\alpha$ radiation flow through the gas in the simulation.
+Note that this proposition is distinct from Ly$\alpha$ radiation pressure calculations that are being pursued using the methods presented in \citet{Smith2018}; while those focus in the effect that Ly$\alpha$ has on the gas, we would be interested in what gas cells are responsible (or disproportionately responsible) for the Ly$\alpha$ escape fraction or direction of radiation flow through the simulation.
+This presents some computational challenges; the naive approach will not work because we cannot record the effect of every cell on every photon because that would rapidly grow the memory usage of the simulation, so we present a few less-precise alternatives.
+Each octant in the simulation could record the luminosity-weighted direction of Ly$\alpha$ flow through it, by incrementing only two values at each scattering, and from this one could plot a Ly$\alpha$ radiation flow field, and thus exactly quantify the resonant scattering interactions we explored previously in this work.
+Specifically, one could answer definitively if the effect of AGN in this model is to create low-opacity pathways through the simulation through which Ly$\alpha$ that would escape along a different direction is scattered into and thus out of the halo.
+
 
 \section{Verification of Analytical Prescriptions}
+Some previous Ly$\alpha$ papers use approximations for the luminosity of a simulation or the escape fraction based on a number of other factors.
+Since we have a more detailed simulation, we could check whether the outputs of our simulation agree with theirs since we have both the same inputs they used to predict the luminosity and the escape fraction and our more precise values for those quantities.
+Most notably \citet{Cen2013} use the star formation rate to compute the luminosity of the gas based on a relation that originates with a much older stellar population synthesis model and an approximation for conversion of ionizing radiation to Ly$\alpha$ that is suspiciously simple.
+We could verify this approximation on a case-by-case basis or over the simulation overall, and if we find a discrepancy all our simulations could be re-run using this approximation, to determine if this approximation is the cause of the discrepancy in our results.
+
+Additionally, a number of papers avoid doing Ly$\alpha$ radiative transfer, and since this is the most computationaly expensive part of this work it would be very valuable to future work if one could implement and possibly validate an approximation.
 
 
 \section{Efficiency of Numerical Approximations}
+In an number of places in {\sc colt} we rely on numerical approximations of analytical functions, some of which originate some time ago.
+The throughput of {\sc colt} is limited in cases where we produce only one surface brightness image by the throughput of the accept/reject algorithm that produces a scattering direction.
+If the throughput of radiative transfer simulations is a limiting factor in resesarch progress (which we believe it is), we should revisit the implementations used, and possibly apply some modern tooling to these algorithms.
+Specifically, the throughput of the simulation is primarily bottlenecked by triganometric functions, which are used in approximations of integrals.
+It is an open question whether we could replace these with faster but less accurate approximations; the generic math function implementations provided by a standard library are required to provide a level of precision that probably we do not require for these simulations.
+
+Additionally, the ratio of compile time (less than a minute) to CPU time runnning ($\sim1,000$ hours per snapshot) makes this progject a prime candidate for a superoptimizer.
+Wheras the optimizer part of a normal compiler has to balance time spent compiling and efficiency of the generated code and therefore uses a large number of heuristics, a superoptimizer attempts to discover the exactly optimal sequence of instructions to accomplish a task.
+The particular superoptimizer that may be applicable to this work is {\sc stoke} \citep{stoke}, which could be used to derive new and much faster approximations for all the approximations used in this work.
 
 
-\section{Image-oriented Optimizations}
+\section{Image-oriented Optimizations/How much does gas velocity matter, anyway?}
+In {\sc colt} the creation of surface brightness images is produced by next event estimation which is a per-line-of-sight process done at each scattering event.
+This next event estimation is done by walking the MCRT photon packet along each line of sight we want to generate surface brightness images along, and as it passes through each octant the intensity is reduced by the optical depth of the path length, and the frequency of the photon packet is doppler shifted according to the difference in the velocity of the gas in each octant.
+If we only generate one surface brightness image, the scattering event calculation dominates.
+If we generate surface brightness images along 12 lines of sight, approximately equal time is spent in the next event estimation and scattering code.
+{\sc colt} has another mode wherein it generates 360 surface brightness images that can be stiched together into a video which shows a view from all lines of sight around the $z$ axis; in this mode the runtime is entirely dominated by the doppler shift calculation between octants.
+Perhaps more importantly, we have used nearly as much CPU time in this mode to generate a handful of videos as we have on running all the other radiative transfer calculations in this project.
+Nearly all of this CPU time is spent doppler-shifting the photon packet as it moves from cell to cell; this calculation is technically required as the opacity of the Ly$\alpha$ line is dependent on the relative velocity of the gas in the cell, but we do not have any proof or demonstration if this doppler shift significantly alters the outcome of the next event estimation.
+Testing this would not be particularly difficult, we could render a number of surface brightness images with the doppler shifting code removed from the simulation.
+
+If the doppler shift is required, we could look for other ways to shortcut the next event estimation code.
+At startup, {\sc colt} uses a fast estimation of the probability of a photon directly escaping the simulation from each octant.
+We may be able to use this information or a slightly more detailed version to abort the next event estimation more quickly; currently the next event estimation only stops once the photon packet has done all the doppler shifting and has been sufficiently attenuated.
+The consequence of this is that next event estimation for lines of sight that do not make it out of the simulation are maximally computationally expensive.
+We should be able to do better, possibly by recording some information about the range of $a\tau$ values visible from each octant.
+
+Alternatively, it may be possible to produce approximate surface brightness images along many lines of sight by recording approximate luminosity distributions in each cell during the normal Ly$\alpha$ scattering calculations, then projecting from every cell onto the surface brightness images at once.
+In this scheme, the calculation time for the surface brightness images would not scale with the product of the number of Ly$\alpha$ scatterings and the depth of those scatterings, and instead just scale with the number of cells in the simulation.
+The issue with this is (as ever) whether it is possible to balance the space usage of the additional luminosity distribution in each cell with the time savings in rendering all the surface brightness images.
 
 
 \section{Convergence in Radiative Transfer Simulations}
@@ -49,7 +142,16 @@ As the simulation runs, the surface brightness of dimmer regions becomes brighte
 Therefore, it is possible that though we have run the code a few times and gotten results that are similar, that surface brightness profiles (or some equivalent) that we compute are too steep, and systematically so because we do not have (or have an incorrect) metric for convergence.
 
 But lastly and perhaps most importantly, what we want is a setting that can be toggled on the simulation or in the code that simply says ``run however long it takes to get a converged result''.
-% TODO: Continue here
+The problem with this is that we need to very clearly define what number we want to be converged, and what tolerance is acceptable.
+We can see nods to this requirement in various literature; for example \citet{Smith2014} justify their core-skipping methodology and approximation of the Hjerting-Voigt function on the basis that they are better than 0.1\% and 1\% respectively.
+In this framework, we could consider a few metrics for convergence that a user of a codebase may wish to tune.
+The simplest and fastest-converging metric is the total escape fraction; the only problem with this is that most of this work has been a demonstration that the mean escape fraction is much less interesting than other properties of Ly$\alpha$ escape.
+We could also place requirements on the median escape fraction; while this would provide a good metric for how accurate this blob is for a typical observation of it much of the interesting work we have presented here requires more complex metrics.
+To ensure convergence of many of the the plots presented here, we would need to constrain the convergence of the $1$, $2$, and $3\sigma$ escape fraction values.
+The danger with requiring constraint on the $3\sigma$ values of any distribution is that they will be unconverged for much longer (because they are sensitive to a small number of samples), so perhaps such a scheme would have to consider a reasonable usage of compute time.
+In a very similar vein, we would like to also constrain the convergence of our surface brightness images.
+However, we already know that the brighter pixels converge first (and our existing luminosity boosting does relatively little to address this) so the choice of at what surface brightness level we require some particular tolerance is absolutely critical.
+For this project at least, none of our surface brightness images (even the ones with $10^{9}$ photon packets which ran for $\sim25,600$ CPU-hours) are entirely converged and therefore we suggest that future work should try to pin their surface brightness convergence to the best currently achieved by observations, or likely capability in the upcoming few years.
 
 \section{Software Future Directions}
 
@@ -61,7 +163,7 @@ Storing data in a text format is a very attractive solution for data interchange
 But text files are rather slow to read, and the common tools for reading and writing them are embarrassingly slow. To be clear, we are referring to \lstinline{fprintf} and \lstinline{fscanf} and in the Python world, \lstinline{numpy.savetxt} and \lstinline{numpy.loadtxt}.
 A disappointing (but not large in an absolute sense) amount of time in this project was spent waiting for text files to save or load.
 There are partial solutions to this problem; reading and writing of text formats can be made much faster.
-For example \href{https://github.com/saethlin/loadtxt}[loadtxt] can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files (though as with code, reading is the more common operation).
+For example \lstinline{loadtxt} (available at \lstinline{https://github.com/saethlin/loadtxt}) can load text files much faster than tools in \lstinline{numpy}, and a similar approach could be taken using Ulf Adams's ryu algorithm for saving text files (though as with code, reading is the more common operation).
 
 The HDF5 format is a much better solution to rapidly reading data from files.
 It's fast enough, supports transparent compression, and allows adding metadata to files and datasets within a file.

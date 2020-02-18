@@ -144,37 +144,36 @@ We provide discussion in \S~\ref{sec:discussion}, and conclude in \S~\ref{sec:co
 
 
 \section{Opening Remarks}
-If there is one thing to take away from this work, it is that Lyman-$\alpha$ Blobs (LABs) are complex systems that defy simple explanation.
-At every turn, LABs are more complex and surprising than one would expect based on all the current galaxy formation theory.
-In the accompanying paper (citation needed) we have presented as simple and coherent a story as possible, but in this longer format I will attempt to be more clear about how complex this work is.
+We are currently getting a publication through peer review which contains mostly the same results as are presented in this dissertation, but in that work we have attempted to tell a simple and coherent story.
+In this dissertation we will try to elaborate as much as possible where things get complicated, and where our understanding fails us, propose future work on this topic.
+% TODO: Cite the accompanying paper?
 
 It also needs to be said that additional complication is added to this work by the currently-prevailing attitudes in this field about sharing data and code.
-At the time of writing, I am not aware of any publicly-available codebase for Ly$\alpha$ radiative transfer.
+At the time of writing, we were not aware of any publicly-available codebase for Ly$\alpha$ radiative transfer.
 This is particularly problematic for two reasons.
 Firstly, anyone seeking to do such work must affiliate themselves with the owner of a closed-source codebase or invest a substantial amount time and effort in writing then debugging such a codebase.
-I am eternally grateful for Aaron Smith for sharing and assisting in modifications to the Ly$\alpha$ MCRT codebase he wrote initially just for his own PhD work.
+We are eternally grateful for Aaron Smith for sharing and assisting in modifications to the Ly$\alpha$ MCRT codebase he wrote initially just for his own PhD work.
 Without his generosity, this project could not have been completed in 3 short years, especially not by me, a student whose primary expertise at the time was on exoplanet radial velocity measurements.
-I tried to write a Ly$\alpha$ MCRT code from scratch.
-It did not go well.
-Secondly, and perhaps more importantly I cannot compare my results and methodology in-depth to the work of other scientists who have come to conflicting conclusions.
-I can only guess as to why.
+We tried to write a Ly$\alpha$ MCRT code from scratch, and it did not go well.
+Secondly, and perhaps more importantly we cannot compare our results and methodology in-depth to the work of other scientists who have come to conflicting conclusions.
+We can only guess as to why.
 Is it because the parts of our methodologies that we have shared differ?
 Is it because of something we (and reviewers) thought not important enough to include in a paper?
 Is it perhaps because one or both of our codebases contain bugs?
 The prevailing attitude towards testing in astronomy is not good, and this is particularly problematic in this field.
-In the absence of rigorous tests, we ask ``Does the output of my code make sense?''
+In the absence of rigorous tests, we ask ``Does the output of this code make sense?''
 But in a field with such extraordinary complexity where most things are nonlinear and a factor of 2 can be hard to notice, it is all too easy to explain away behavior that is in error.
-I have certainly done this.
-The field needs to do better as a whole, and therefore we (Aaron and I) are releasing the Ly$\alpha$ MCRT code that he originally authored and we both maintained for the past years.
-Of course I do not expect astronomers to descend on the codebase and make it beautiful and well-tested.
-But it is my sincere hope that we can save some wasted effort of code-writing and with more eyes can gradually fix any bugs that remain.
+We have certainly done this, multiple times.
+The field needs to do better as a whole, and therefore we are releasing the Ly$\alpha$ MCRT code that he originally authored and we both maintained for the past years.
+Of course we do not expect astronomers to descend on the codebase and make it beautiful and well-tested, but it is our sincere hope that we can save some wasted effort of code-writing and with more eyes can gradually fix any bugs that remain.
 
 The situation with data is much harder.
 The entirety of this work is analysis of 4 objects.
-I wish that it could be more; one of the questions I've gotten from astronomers repeatedly is something like ``What can you tell us about the occurrence rate of these objects?''
-One way to answer this question would be push many more cosmological zoom simulations through the pipeline I've built.
-Unfortunately, I do not know where to get such zooms, and even if I did, the sheer size of these presents a serious problem.
+we wish that it could be more; one of the questions we've gotten from astronomers repeatedly is something like ``What can you tell us about the occurrence rate of these objects?''
+One way to answer this question would be push many more cosmological zoom simulations through the pipeline we've built for this project.
+Unfortunately, we do not know where to get such zooms, and even if we did, the sheer size of these presents a serious problem.
 The input data to this project is 20 TB.
-I would love to push through 100 or so simulations, but the disk space required for that is quite spectacular (the compute time is also substantial if this work were simply scaled up, but we have ways to deal with that).
-But even in the presence of a way to move and store that much data, I would need to actually get it which is not really possible in a field with a prevailing closed-source, closed-data mindset.
-I wish I had solutions, but I don't and unfortunately all I can do is ask people to share and hope that the ways I have to give people credit for their work help those that care to properly estimate the impact my collaborators and the authors of open-source projects have had on this work.
+We would love to push through 100 or so simulations, but the disk space and compute time for naively scaling up this project in such a manner would begin to rival the large cosmological simulations.
+This could be done, but the scale that this project has remained at is comfortably within the scope of everyday data management and thus no time in this project was budgeted for solving big data and big compute problems; if the project were scaled up significantly that may have to change.
+But even in the presence of a way to move and store that much data, we would need to actually get it which is not really possible in a field with a prevailing closed-source, closed-data mindset.
+We would like to offer up solutions to all these problems; but unfortunately cannot in this project, and so this short section is just an attempt to raise some awareness of the non-science problems we have faced.
