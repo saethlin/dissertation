@@ -7,11 +7,11 @@ Our work considers the physics of ionization radiative transfer, cooling emissio
 Our main conclusions from this work follow:
 \begin{itemize}
 
-    \item When adopting a notional luminosity-based definition for LAB formation, we find that all of our model massive galaxies go through a LAB phase at some point between $z=5-2$ (Figure~\ref{fig:luminosity_redshift}, Figure~\ref{fig:agn_comparison}, Figure~\ref{fig:MUSE}, Figure~\ref{fig:grid_plot}).  These LABs have extended morphologies in agreement with observations.
+    \item When adopting a notional luminosity-based definition for LAB formation, we find that all of our model massive galaxies go through a LAB phase at some point between $z=5-2$ (Figure~\ref{fig:luminosity_redshift}, Figure~\ref{fig:agn_recombination_collision}, Figure~\ref{fig:MUSE}, Figure~\ref{fig:rogues1}, Figure~\ref{fig:rogues2}, Figure~\ref{fig:rogues4}, Figure~\ref{fig:rogues8}).  These LABs have extended morphologies in agreement with observations.
 
-    \item The escape fraction of Lyman-$\alpha$ photons from these objects are highly orientation-dependent, which complicate our observational understanding of the connection between Lyman-$\alpha$ blobs and massive galaxy evolution. Variations in the escape fraction with respect to line of sight can produce very large variations in an observed Ly$\alpha$ luminosity (Figure~\ref{fig:los_variation}).
+    \item The escape fraction of Lyman-$\alpha$ photons from these objects are highly orientation-dependent, which complicate our observational understanding of the connection between Lyman-$\alpha$ blobs and massive galaxy evolution. Variations in the escape fraction with respect to line of sight can produce very large variations in an observed Ly$\alpha$ luminosity (Figure~\ref{fig:los}, Figure~\ref{fig:agn_los}).
     
-    \item The formation of LABs in our model is independent of the inclusion of AGN: star formation alone is enough to drive LAB formation in massive galaxies. This said, the presence of an AGN can significantly alter the Lyman-$\alpha$ luminosity and spatial extent (Figure~\ref{fig:agn_comparison}, Figure~\ref{fig:area_plot}).
+    \item The formation of LABs in our model is independent of the inclusion of AGN: star formation alone is enough to drive LAB formation in massive galaxies. This said, the presence of an AGN can significantly alter the Lyman-$\alpha$ luminosity and spatial extent (Figure~\ref{fig:agn_rogues1}, FIgure~\ref{fig:agn_rogues2}, Figure~\ref{fig:agn_rogues4}, Figure~\ref{fig:agn_rogues8}, Figure~\ref{fig:area_plot}, Figure~\ref{fig:agn_area_plot}).
     
     \item The presence of an AGN in an LAB may be detectable by measuring the spatial concentration of Ly$\alpha$ luminosity (Figure~\ref{fig:area_plot}, Figure~\ref{fig:skewness}).
     
@@ -44,7 +44,6 @@ They do perform radiative transfer, and are able to reproduce the spatial extend
 
 By contrast, \citet{Cantalupo2005} and \citet{Gronke2017} omit cooling emission from their model, but include emission from recombinations.
 We think this approach may be deeply problematic, since it appears to dominate for the no-AGN case, but \citet{Gronke2017} explicitly model AGN so we do not think this choice may be signifcant to their results.
-\citet{Kollmeier2010} model emission due to the cosmological UV background and the presence of a quasar (which they term fluorescence, inconsistently with us). \green{I'm not sure if this paper is targeted at LABs or even reproduces them, they say their surface brightness peaks at $2\times10^{-19}$ erg/s.}
 
 Some papers in the literature account for both emission from cooling and recombinations \citep{Cen2013, Furlanetto2005, Geach2016, Smailagi2016}.
 However, in all these papers the Ly$\alpha$ luminosity from recombinations is determined only by star formation rates, as opposed to our work where we use the age of star particles to inform stellar population synthesis and compute the ionization state of our gas.
@@ -68,7 +67,7 @@ To be clear, the work we have done here in post-processing is not a panacea; thi
 In this work, we try to compute a more accurate ionization state at a timestep $t$ based on the physical conditions at $t$, but the ionization state will alter the evolution of the simulation.
 Therefore, the physical conditions we base our ionization state at time $t$ upon are incorrect, and we actually needed to do this more accurate calculation at timestep $t-1$ and so on.
 
-\section{Ly$\alpha$ Photon Tracking}
+\section{Ly\texorpdfstring{$\alpha$}{a} Photon Tracking}
 The widely-recognized advantage of simulations in astronomy is that we can conduct experiments, wheras in observations one must make do with whatever is present or visible on the sky.
 There is another massive advantage though; in a simulation we can extract information which in observations is not just difficult but impossible to obtain.
 The simplest exercise of this capability is to visualize exactly where the escaping flux originates from (which we do in \ref{sec:experiments}), but so much more work can be done in this area.
@@ -143,7 +142,7 @@ Therefore, it is possible that though we have run the code a few times and gotte
 
 But lastly and perhaps most importantly, what we want is a setting that can be toggled on the simulation or in the code that simply says ``run however long it takes to get a converged result''.
 The problem with this is that we need to very clearly define what number we want to be converged, and what tolerance is acceptable.
-We can see nods to this requirement in various literature; for example \citet{Smith2014} justify their core-skipping methodology and approximation of the Hjerting-Voigt function on the basis that they are better than 0.1\% and 1\% respectively.
+We can see nods to this requirement in various literature; for example \citet{Smith2015} justify their core-skipping methodology and approximation of the Hjerting-Voigt function on the basis that they are better than 0.1\% and 1\% respectively.
 In this framework, we could consider a few metrics for convergence that a user of a codebase may wish to tune.
 The simplest and fastest-converging metric is the total escape fraction; the only problem with this is that most of this work has been a demonstration that the mean escape fraction is much less interesting than other properties of Ly$\alpha$ escape.
 We could also place requirements on the median escape fraction; while this would provide a good metric for how accurate this blob is for a typical observation of it much of the interesting work we have presented here requires more complex metrics.

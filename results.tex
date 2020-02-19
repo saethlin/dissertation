@@ -155,7 +155,7 @@ We will spend the next few sections unpacking Figures~\ref{fig:luminosity_redshi
 \label{sec:origins}
 
 In this section, we conduct a series of numerical experiments in order to characterize the driving sources of Ly$\alpha$ radiation from our model blobs.
-We investigate the relative contributions of emission from gas cooling and recombinations (Figure~\ref{fig:recombination_collision}, Figure~\ref{fig:agn_recombination_collision}), the impact of the ionizing UV background (Figure~\ref{fig:uvb_morphology}), and the presence of AGN (Figure~\ref{fig:agn_comparison}).
+We investigate the relative contributions of emission from gas cooling and recombinations (Figure~\ref{fig:recombination_collision}, Figure~\ref{fig:agn_recombination_collision}) and the variation in escape with line of sight (Figure~\ref{fig:los}).
 In summary we find that our model LABs can be powered by a combination of recombination in star-forming galaxies, as well as cooling from accretion (which we define as emission from collisionally excited neutral hydrogen).
 When we include a model for the influence of AGN, this also contributes significantly to the blob's luminosity.
 As we will show, the relative contribution to the total Ly$\alpha$ power from each emission source can vary strongly over short timescales as well as over cosmic time, reflecting the diverse physical conditions that occur during massive galaxy evolution.
@@ -234,6 +234,7 @@ Cooler, recombining gas gas typically lies at high densities with efficient cool
 
 
 \section{Ly\texorpdfstring{$\alpha$}{a} Emission from Cosmological Simulations of Massive Galaxy Evolution}
+\label{sec:evolution}
 
 Now that we have built insight into the physics of Ly$\alpha$ emission from collisional excitation and recombination in an idealized experiment, we turn to our galaxy evolution simulations to understand the dominant sources of Ly$\alpha$ luminosity in our model LABs.
 
@@ -246,7 +247,7 @@ Integrating over our redshift of interest ($2 \leq z \leq 5$) we find $\frac{\in
 Note, we will \S~\ref{sec:agn} discuss the impact of including an AGN in these models; when we include AGN recombination from emissions dominates and the above ratio becomes $0.03$.
 
 It is tempting to ask whether the dominant power source (recombinations vs collisions) correlated with an obvious physical property of the galaxy?
-Across our three galaxies, we do not discover any strong trends (plots of this non-result can be found in Appendix~\ref{app:correlations}).
+Across our three galaxies, we do not discover any strong trends (plots of this non-result can be found in \S~\ref{sec:correlations}).
 The reason for this is complex; Ly$\alpha$ emission and escape is complex and we elaborate on this in the following sections.
 
 As we demonstrated in Figure~\ref{fig:luminosity_vs_temperature}, the relative contribution of recombinations and collisions is a complex function of both the gas temperature and incident radiation field on a given parcel of gas.
@@ -365,3 +366,23 @@ To compute the escape fraction over some arbitrary line of sight, we select phot
     }
     \label{fig:los}
 \end{figure}
+
+\section{Physical Origin of Escaping Ly\texorpdfstring{$\alpha$}{a}}
+\label{sec:correlations}
+
+In previous sections we noted that there are no strong trends between halo physical properties and whether emission from recombinations or emission from collisional excitations dominate, and here we include Figure~\ref{fig:appendix_correlations} to illustrate that explicitly.
+
+As we have discussed prevoiusly in this work, the {\it escaping} Ly$\alpha$ luminosity, and variations in this escape fraction can be sufficient to confound simplistic reasoning about the powering source of blobs.
+Increasing the intrinsic emission of Ly$\alpha$ is not sufficient to drive observed (that is, escaping) luminosity of the halo if the escape fraction of that increased luminosity decreases or is stochastic.
+For example, a growing population of neutral hydrogen will augment the collisional component of Ly$\alpha$, but with that increased emission comes more Ly$\alpha$ optical depth, and thus more potential for the emitted Ly$\alpha$ to be absorbed by dust, depending on the geometry of the system.
+Further complicating this issue of physical property correlations is that the escape fraction of emission from collisionally excited hydrogen and recombinations differ, often differ by more than a factor of 2.
+\begin{figure*}
+    \centering
+    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/appendix_correlations.pdf}
+    \caption{
+        We plot the fraction of escaping Ly$\alpha$ due to emission from collisionally excited hydrogen and recombinations as a function of various physical properties of the galaxy that one might expect to predict which source dominates the luminosity.
+        The left column is for the mode where we do not account for AGN, and on the right we account for ionization due to AGN.
+        Note the difference in the horizontal axis limits.
+    }
+    \label{fig:appendix_correlations}
+\end{figure*}
