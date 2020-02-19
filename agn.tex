@@ -17,7 +17,7 @@ Sometimes this means there is a very impactful AGN in a satellite galaxy, not th
 In what follows, we investigate the impact of AGN on the total Ly$\alpha$ luminosity, as well as the overall spatial extent of the blob and the blob morphology.
 
 \section{Large-Scale Morphological Changes}
-We include Figure \ref{fig:agn_rogues1}, \ref{fig:agn_rogues2}, \ref{fig:agn_rogues_4}, and \ref{fig:agn_rogues8} to orient the reader as to the visual effects of AGN on our model.
+We include Figure \ref{fig:agn_rogues1}, \ref{fig:agn_rogues2}, \ref{fig:agn_rogues4}, and \ref{fig:agn_rogues8} to orient the reader as to the visual effects of AGN on our model.
 These figures contain half as many snapshots since we provide an exact side-by-side comparison of the halo with and without the AGN.
 There is a remarkable consistency in terms of what changes; with the AGN present in the ionization state calculation the blobs appear smaller.
 We also see some detail in them which was previously obscured; particularly at higher redshift there are bright regions which seem to have no counterpart in the images without AGN.
@@ -26,7 +26,7 @@ That is, the overall change is to alter the distribution of surface brightness a
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A1.png}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A1.png}
     \caption{
         Ly$\alpha$ surface brightness images of of halo A1 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
@@ -36,7 +36,7 @@ That is, the overall change is to alter the distribution of surface brightness a
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A2.png}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A2.png}
     \caption{
         Ly$\alpha$ surface brightness images of of halo A2 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
@@ -46,7 +46,7 @@ That is, the overall change is to alter the distribution of surface brightness a
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A8.png}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A8.png}
     \caption{
         Ly$\alpha$ surface brightness images of of halo A8 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
@@ -56,7 +56,7 @@ That is, the overall change is to alter the distribution of surface brightness a
 
 \begin{figure*}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A4.png}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A4.png}
     \caption{
         Ly$\alpha$ surface brightness images of of halo A4 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
@@ -66,6 +66,7 @@ That is, the overall change is to alter the distribution of surface brightness a
 
 
 \section{Impact of AGN on Luminosity and Escape Fraction}
+\label{sec:agn_blob_luminosity}
 In Figure~\ref{fig:agn_recombination_collision} we plot the escaping and intrinsic luminosity due to recombinations and collisions with our approximation for the effects of AGN.
 In all cases, we see an increase in emission due to recombinations, and a decrease in emission due to collisional excitation.
 Unlike many other observations in this section; this is unsurprising: A gas that experiences a more intense UV field is more ionized and thus favors emission by recombinations (\S~\ref{sec:physicalconcepts}).
@@ -196,7 +197,7 @@ This metric becomes more effective for identifying AGN with higher-resolution ob
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/skew_distribution.pdf}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/skew_distribution.pdf}
     \caption{
         In our surface brightness images with AGN, the escaping luminosity is much more spatially concentrated.
         We quantify this trend by computing the Gini coefficient for a number of halos with and without AGN, after convolving to the resolution of MUSE.
@@ -205,4 +206,28 @@ This metric becomes more effective for identifying AGN with higher-resolution ob
     \label{fig:skewness}
 \end{figure}
 
+
 \section{Impact of AGN model}
+
+In the preceeding sections, we have referred to a particular AGN model wherin we derive the ionizing luminosity of each black hole particle from their masses assuming an Eddington accretion rate with efficiency of $0.1$ and a \citet*{Hopkins2007} template.
+All these assumptions can be adjusted individually; we could use a different AGN template (such as \citet{Nenkova2008}), we could derive luminosities from the black hole particle accretion rates instead of their masses, we could assume a different efficiency, and we could ignore the black hole particles provided entirely, substituting masses compute from the relation derived by \citet{Magorrian1998}.
+All of these changes would amount only to altering the luminosity of the super-massive star particles we feed into our ionization state calculation, so we pursue all of these by investigating whether the luminosity of a halo is related to the efficiency parameter, which we vary over the range $[0.01, 1.0]$.
+This gives us an order of magnitude variation in either direction from our best-guess model and so should encompass any relevant trends in this parameter; we plot the results of this experiment in Figure~\ref{fig:eddington_grid}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/skew_distribution.pdf}
+    \caption{
+        We vary the black hole efficiency in our AGN model by an order of magnitude; from our best-guess value of $0.1$ down to $0.01$ and up to $1.0$.
+        There is no simple correlation between the AGN luminosity in our model and Ly$\alpha$ luminosity.
+    }
+    \label{fig:eddington_grid}
+\end{figure}
+
+As with every other aspect of this work, the relation we find defies simple explanation.
+From a naive perspective, one would expect the luminosity of the blob to increase, possibly linearly, with the luminosity of the AGN but it does not.
+This scenario is qualitatively similar to the trend we discussed in \S~\ref{sec:agn_blob_luminosity}, but in this case the covering fraction argument does not hold, and thus we left with two possibilities here.
+The first is that the progressive ionization is very inhomogenous, which causes what looks like random changes in the blob's luminosity as smaller-scale RT effects dominate.
+The luminosity may increase when a new large-scale pathway is opened out of the blob, or it may decrease if the geometry shifts into a configuration which more efficiently traps Ly$\alpha$.
+The alternative explanation is that this behavior is numerical, not physical in nature.
+We can confirm that the luminosity values at any particular $f_{\rm{Eddington}}$ are stable from run to run which should rule out Monte-Carlo noise, but we do not fully understand the convergence of the ionization state calculation, so it is hard to predict if whatever unconvergence is left coupled with how self-inconsistent this system has been made could be responsible for this fluctuation of Ly$\alpha$ luminosity.
