@@ -10,7 +10,7 @@ Ideally, we would ask some question along the lines of "What is the impact of th
 However, we cannot address this question in such a direct manner because the impact of this phenomenon is imprinted on the temperature of the gas during the hydrodynamical simulations we rely on as inputs.
 
 Instead, in this section we present an experiment wherein we increase the intensity of our post-processing non-heating treatment of the UV background to gain some intuition for the impact of this phenomenon on the formation of Ly$\alpha$ blobs.
-We increase the intensity of the UV background from a best-guess value in \citet{Faucher-Giguere2009} up to a non-physical increase of 5 orders of magnitude (Figures~\ref{fig:big_uv_000} and \ref{fig:big_uv_005}), and find that this provides only a small enhanement to the luminosity of the blob and if anything makes it less like a blob by decreasing its spatial extent.
+We increase the intensity of the UV background from a best-guess value in \citet{Faucher-Giguere2009} up to a non-physical increase of 5 orders of magnitude (Figures~\ref{fig:big_uv_000} and \ref{fig:big_uv_005}), and find that this provides only a small enhancement to the luminosity of the blob and if anything makes it less like a blob by decreasing its spatial extent.
 Our interpretation of this slight increase in luminosity and decrease in spatial extent is that the primary effect of the UV background increase is to ionize extended neutral gas which resonantly scatters the Ly$\alpha$ to greater spatial extents, permitting Ly$\alpha$ to escape the blob with less scattering.
 Therefore we rule out the UV background as a driver of LAB formation and declare enhancements in the UV background uninteresting, since we increase it to a nonphysical value and still only see a marginal effect (recall that we cannot really remove the UV background because the heating it causes is accounted for in the gas temperature).
 
@@ -71,7 +71,7 @@ Future work on this should instead follow methodologies used in Markov Chain Mon
     \includegraphics[width=\textwidth,keepaspectratio]{figures/run_to_run.pdf}
     \caption{
         For a sample halo, we plot the relative 1-$\sigma$ uncertainty computed across 300 runs of {\sc colt}.
-        Note that this uncertainty is much greater than what is estimatedin Figure~\ref{fig:on_the_fly}.
+        Note that this uncertainty is much greater than what is estimated in Figure~\ref{fig:on_the_fly}.
     }
   \label{fig:run_to_run}
 \end{figure*}
@@ -79,10 +79,10 @@ Future work on this should instead follow methodologies used in Markov Chain Mon
 
 \section{Ionization State Extremes}
 \label{sec:ionization_extremes}
-In this work we have made somewhat of a big deal out of the ionization state of the gas because it is related to Ly$\alpha$ luminsity, escape fraction, and also determines which of the two physical mechanisms (recombination and collisional excitation) dominates.
+In this work we have made somewhat of a big deal out of the ionization state of the gas because it is related to Ly$\alpha$ luminosity, escape fraction, and also determines which of the two physical mechanisms (recombination and collisional excitation) dominates.
 For most of our work we endeavor to recreate the physical conditions that exist in nature, but of course we can write a little bit of code and adjust the physical conditions in a simulation to whatever we desire.
 
-In this section we use this ability to get some handle on how bright a blob could be due to recombinations or collisional excitations if the ioniation state of the gas were tuned such that those mechanisms were as dominant as possible.
+In this section we use this ability to get some handle on how bright a blob could be due to recombinations or collisional excitations if the ionization state of the gas were tuned such that those mechanisms were as dominant as possible.
 In the case of recombinations, we consider a scenario where all gas in the simulation is fully ionized.
 This is nonphysical because there is dense cool gas in the simulation which would rapidly recombine then stay recombined if this were the case, but of course we need not let that stop us.
 We present the results of this experiment in Figure~\ref{fig:rogues_fully_ionized}.
@@ -105,9 +105,9 @@ Additionally, the luminosity in this case is enhanced by about 2 orders of magni
 
 We also conduct another experiment in which we set the ionization state of all the gas to $0.5$, to maximize the emission due to collisional excitation.
 The results of this experiment are presented in Figure~\ref{fig:rogues_half_ionized}.
-In this experiment we must rescaled the surface brightness images to accomodate the increased luminosity of the gas, otherwise the entire surface brightness images would be clipped.
+In this experiment we must rescaled the surface brightness images to accommodate the increased luminosity of the gas, otherwise the entire surface brightness images would be clipped.
 Additionally, the luminosity in this case is enhanced by about 3 orders of magnitude; these halos have a luminosity of about $2\times10^{46}\ \rm{erg}\ \rm{s}^{-1}$.
-Naively one might expext these simulations to have a much lower escape fraction since we have taken a large amount of halo gas which was previously fully ionized and put in an ionization state where it is more likely to keep Ly$\alpha$ trapped.
+Naively one might expect these simulations to have a much lower escape fraction since we have taken a large amount of halo gas which was previously fully ionized and put in an ionization state where it is more likely to keep Ly$\alpha$ trapped.
 This is not the case; overall we see escape fractions which are approximately the same as the physically motivated case.
 Most likely, this is driven by the increased emission in the hot gas which can easily escape the simulation compensating for the increased absorption of gas emitted in the more dense regions of the simulation.
 
