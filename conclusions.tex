@@ -21,7 +21,7 @@ Our main conclusions from this work follow:
 
 
 \section{Comparison To Previous Models}
-In the work presented here, we deliberately argued that our simulations reproduce Ly$\alpha$ blobs, but if we were so motivated we could use the results of our radiative transfer calculations to construct a solid argument that these objects are not definitely the same class of object as observed blobs.
+\red{i would maybe rephrase this slightly to sound less...conniving :)    maybe more like 'in trying to understand whether or not massive galaxies can form blobs as a natrual part of their evolution, we find many successes and failures.   [and then summarize them].   i definitely get the sentiment that you're going for, but i guess i'm not sure hwo we would actually use our models to rpove that we can't form blobs (so, if you want to go down that route, maybe expand on that a bit more quantiatiavely). } In the work presented here, we deliberately argued that our simulations reproduce Ly$\alpha$ blobs, but if we were so motivated we could use the results of our radiative transfer calculations to construct a solid argument that these objects are not definitely the same class of object as observed blobs.
 Such an argument would focus on surface brightness profiles, and the impact of AGN on the spatial extent of the Ly$\alpha$ surface brightness in our images.
 We are not seriously proposing that the previous work was arguing in poor faith, but instead that this area of research is sufficiently ambiguious that given even our modestly-sized dataset there is sufficient data to argue for whichever outcome is most convenient for the original aims of the project.
 In this and many other works we set out to learn about Ly$\alpha$ blobs so the first task in this and all similar works is to argue that we have the objects we want to study.
@@ -31,7 +31,7 @@ Therefore, we are left in an awkward position when comparing to other works beca
 All that said, we will attempt to compare this work to previous attempts at studying the origin of Ly$\alpha$ in blobs.
 
 In the broadest sense, this methodology used in this work was intended to be more grounded and thorough than other research on Lyman-$\alpha$ blobs.
-Our primary improvements over other works are that we account for emission due to recombinations and collisional excitations, we compute rates for both those processes based on first principles, and we do Ly$\alpha$ Monte-Carlo radiative transfer on a high(er)-resolution simulation.
+Our primary improvements over other works are that we account for emission due to recombinations and collisional excitations, we compute rates for both those processes based on first principles, and we do Ly$\alpha$ Monte-Carlo radiative transfer on  high(er)-resolution simulations. \red{what about the inclusion of AGN?  what about the ionization RT? maybe build this up a bit and discuss how this is the first work to include {\it all} of XYZ physical processes that we think might be important.}
 To put this in the context of previous work, in the paragraphs below we comment on differences between previous works and our methodology.
 
 Some of the previous work on LAB formation has been focused on emission from cooling gas, that is, collisionally excited neutral hydrogen.
@@ -53,13 +53,13 @@ Some of the previous attempts at LAB modeling do not include Ly$\alpha$ radiativ
 For the existing work that does include RT, it is often restricted due to low spatial resolution \citep{Cen2013} or discuss only a single line of sight \citep{Cantalupo2005}.
 In this paper we demonstrate that there are strong line-of-sight variations, which can only be reproduced with reasonably accurate RT calculations.
 
-\section{The Case for Rad Hydro}
+\section{The Case for Radiation-Hydrodynamics}
 The most uncertain part of this project is the ionization state and temperature of the gas, and most unfortunately that is the most out-of-scope improvement that could be made to this work.
 The core problem is that the hydrodynamic simulations this work is based on do not include an accurate accounting for the effect of the UV background and the ionization of gas due to stars.
 There are approximations for both of these, but they are very coarse and not self-consistent.
-Specifically, the approxiamation for the cosmological UV background assumes that there is an ever-present UV field in the simulation, and thus ignores that the self-shielding effect of any neutral gas in the simulation against the cosmological UV background.
+Specifically, the approximation for the cosmological UV background assumes that there is an ever-present UV field in the simulation, and thus ignores that the self-shielding effect of any neutral gas in the simulation against the cosmological UV background.
 The approximation for stars is that a star will ionize some mass of gas near it, which while it does not ignore self-shielding entirely does tend to ignore radiative transfer effects that may cause highly asymmetric structure in the ionization state of the gas.
-If there is one lesson from this work it is that radiative transfer rapidly becomes complex, so we are very wary of such an approximation.
+If there is one lesson from this work it is that radiative transfer rapidly becomes complex, so we are very wary of such an approximation. \red{we should talk about the temperature dependence of Lya and how this can all impact this.}
 Unfortunately fixing these problems properly requires an on-the-fly treatment of the feedback loop between the heating of gas, resultant collisional ionization, radiative transfer of ionizing energy, radiative ionization, then re-calculation of the radiative transfer due to updated opacity of the gas.
 This is not computationally cheap, but may be critical for future more accurate Ly$\alpha$ studies.
 
@@ -83,9 +83,11 @@ Specifically, one could answer definitively if the effect of AGN in this model i
 
 
 \section{Verification of Analytical Prescriptions}
+\red{i feel like this section could either be beefed up, or maybe it should be axed.  it kind of doesn't add a lot as its currently written.}
 Some previous Ly$\alpha$ papers use approximations for the luminosity of a simulation or the escape fraction based on a number of other factors.
 Since we have a more detailed simulation, we could check whether the outputs of our simulation agree with theirs since we have both the same inputs they used to predict the luminosity and the escape fraction and our more precise values for those quantities.
 Most notably \citet{Cen2013} use the star formation rate to compute the luminosity of the gas based on a relation that originates with a much older stellar population synthesis model and an approximation for conversion of ionizing radiation to Ly$\alpha$ that is suspiciously simple.
+The rate of case-B recombinations (eq. \ref{eq:j_rec}) is a function of the temperature, density, and ionization state of the gas but this relation they rely on smooths over all those factors.
 We could verify this approximation on a case-by-case basis or over the simulation overall, and if we find a discrepancy all our simulations could be re-run using this approximation, to determine if this approximation is the cause of the discrepancy in our results.
 
 Additionally, a number of papers avoid doing Ly$\alpha$ radiative transfer, and since this is the most computationaly expensive part of this work it would be very valuable to future work if one could implement and possibly validate an approximation.
@@ -105,17 +107,17 @@ The particular superoptimizer that may be applicable to this work is {\sc stoke}
 
 \section{Image-oriented Optimizations/How much does gas velocity matter, anyway?}
 In {\sc colt} the creation of surface brightness images is produced by next event estimation which is a per-line-of-sight process done at each scattering event.
-This next event estimation is done by walking the MCRT photon packet along each line of sight we want to generate surface brightness images along, and as it passes through each octant the intensity is reduced by the optical depth of the path length, and the frequency of the photon packet is doppler shifted according to the difference in the velocity of the gas in each octant.
+This next event estimation is done by walking the MCRT photon packet along each line of sight we want to generate surface brightness images along, and as it passes through each octant the intensity is reduced by the optical depth of the path length, and the frequency of the photon packet is Doppler shifted according to the difference in the velocity of the gas in each octant.
 If we only generate one surface brightness image, the scattering event calculation dominates.
 If we generate surface brightness images along 12 lines of sight, approximately equal time is spent in the next event estimation and scattering code.
-{\sc colt} has another mode wherein it generates 360 surface brightness images that can be stiched together into a video which shows a view from all lines of sight around the $z$ axis; in this mode the runtime is entirely dominated by the doppler shift calculation between octants.
+{\sc colt} has another mode wherein it generates 360 surface brightness images that can be stiched together into a video which shows a view from all lines of sight around the $z$ axis; in this mode the runtime is entirely dominated by the Doppler shift calculation between octants.
 Perhaps more importantly, we have used nearly as much CPU time in this mode to generate a handful of videos as we have on running all the other radiative transfer calculations in this project.
-Nearly all of this CPU time is spent doppler-shifting the photon packet as it moves from cell to cell; this calculation is technically required as the opacity of the Ly$\alpha$ line is dependent on the relative velocity of the gas in the cell, but we do not have any proof or demonstration if this doppler shift significantly alters the outcome of the next event estimation.
-Testing this would not be particularly difficult, we could render a number of surface brightness images with the doppler shifting code removed from the simulation.
+Nearly all of this CPU time is spent Doppler-shifting the photon packet as it moves from cell to cell; this calculation is technically required as the opacity of the Ly$\alpha$ line is dependent on the relative velocity of the gas in the cell, but we do not have any proof or demonstration if this Doppler shift significantly alters the outcome of the next event estimation.
+Testing this would not be particularly difficult, we could render a number of surface brightness images with the Doppler shifting code removed from the simulation.
 
-If the doppler shift is required, we could look for other ways to shortcut the next event estimation code.
+If the Doppler shift is required, we could look for other ways to shortcut the next event estimation code.
 At startup, {\sc colt} uses a fast estimation of the probability of a photon directly escaping the simulation from each octant.
-We may be able to use this information or a slightly more detailed version to abort the next event estimation more quickly; currently the next event estimation only stops once the photon packet has done all the doppler shifting and has been sufficiently attenuated.
+We may be able to use this information or a slightly more detailed version to abort the next event estimation more quickly; currently the next event estimation only stops once the photon packet has done all the Doppler shifting and has been sufficiently attenuated.
 The consequence of this is that next event estimation for lines of sight that do not make it out of the simulation are maximally computationally expensive.
 We should be able to do better, possibly by recording some information about the range of $a\tau$ values visible from each octant.
 
@@ -125,10 +127,13 @@ The issue with this is (as ever) whether it is possible to balance the space usa
 
 
 \section{Convergence in Radiative Transfer Simulations}
-A few places in this work we have commented that our simulations run with {\sc colt} were run with $10^{7}$ MCRT photon packets.
-This is a magic number, which we chose because it is a reasonable compromise between runtime (2,000 CPU-hours per snapshot) and the reliability of our contours shown in Figure~\ref{fig:area_plot}.
-We do not have hard criteria for the convergence of the ionization state when we run {\sc lycrt} either, which since it is evolving the state of the gas has multiple parameters that can be used to adjust convergence (number of iterations, number of photons emitted from stars per iteration, number of UV background photons per iteration).
-The closest we get to rigor here is watching the total ionized mass of the simulation over iterations, then setting the number of iterations to a few after it looks like that number has stopped trending in any direction.
+To work out how many MCRT photons packets were required to produce usable surface brightness images, we ran simulations with varying numbers of photon packets until we found that the contours plotted in Figure~\ref{fig:area_plot} were converged to the surface brightness limit of observations; see Figure~\ref{fig:j_exp_profiles} for proof of convergence to most sensitive observations.
+This experiment is the origin of the $10^7$ number that has been quoted elsewhere in this work
+This $10^7$ number is a reasonable compromise between runtime (2,000 CPU-hours per snapshot) and the reliability of our contours which we rely on as evidence of LAB formation, but is fundamentally unsatisfying since it is so intimately tied to the science objectives of this research.
+We do not have precise, satisfying criteria for the convergence of the ionization state when we run {\sc lycrt} either, which since it is evolving the state of the gas has multiple parameters that can be used to adjust convergence (number of iterations, number of photons emitted from stars per iteration, number of UV background photons per iteration).
+In this project, we ran our Ly$\alpha$ radiative transfer at each iteration of the ionization solver, verifying that after just a few iterations, the run-to-run variation in the ionization state calculation disappears into the variance of the Ly$\alpha$ radiative transfer calculation.
+This provides us some assurance of correctness, but does not help in extending this work to other problem domains (what if we want to do this on larger, smaller, or very early/late universe simulations) and does not help us make responsible use of compute resources.
+That is, we know that our ionization state calculation is sufficient, but we do not know if all the work was necessary (and suspect it wasn't).
 
 These procedures we adopted are are fundamentally unsatisfying for multiple reasons.
 Most importantly, they are not necessarily reproducible.
@@ -168,7 +173,7 @@ The HDF5 format is a much better solution to rapidly reading data from files.
 It's fast enough, supports transparent compression, and allows adding metadata to files and datasets within a file.
 This could even be used to associate units with data, which is invaluable in a field where there are multiple reasonable units for any quantity.
 
-The one downside to the HDF5 format is that there is a single implementation, a C library which is produced by the HDF group, which is not without flaws.
+The one downside to the HDF5 format is that there is a single implementation, a C library which is produced by the HDF group, which is not without flaws. \red{There is a telling anecdote in the scientific progress of this thesis.}
 The original plan for this project included a study of the impact of subhalos on Ly$\alpha$ blob formation, but the halo finder that the research group uses (and this project relies upon) does not have information about subhalos because it relies on a simple 3d friends-of-friends implementation.
 The planned fix for this was to incorporate Amiga's Halo Finder (AHF), but at the time AHF did not support loading snapshots from HDF5 files.
 We attempted to add such support from AHF, but were stymied by problems with the HDF5 library.
