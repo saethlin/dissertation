@@ -5,7 +5,17 @@ Lyman-$\alpha$ "blobs" (LABs) are an enigmatic class of objects first discovered
 While there are no hard constraints on the definition of a blob, the majority of blobs have luminosities $L_{\rm{Ly}\alpha} > 10^{43}$ erg/s, and spatial extents that exceed $\sim50$ kpc in radius.
 We will discuss this definition in more detail shortly.
 
-Since their discovery, the dominant source of power in these objects has been under debate, and the question of what powers LABs is the focus of this dissertation.
+Observing Ly$\alpha$ blobs is an interesting subject in itself, and since observational signatures have motivated a large fraction of this work we include some explanation of that issue.
+The Ly$\alpha$ line's rest-frame wavelength is $\sim 1215.67 \AA$, and thus is mostly observed between $z=2$ and $z=5$, because within that range it is redshifted into the optical range where the atmosphere is transparent (see Table~\ref{table:labs}).
+
+Ly$\alpha$ is also useful at yet higher redshifts, because it is a bright line and can be used to identify galaxies at redshifts beyond $z=5$, but since it is a resonant line it is crucial to understand the mechanics of Ly$\alpha$ production and escape \citep{Ao2015}.
+In that context, it is crucial to establish solid understanding of Ly$\alpha$ using the brighest sources available, such as the Ly$\alpha$ blobs we exammine in this work.
+
+Additionally, the study of reionization is one of the largest open questions in extragalactic astronomy; it's not clear what (if anything) was the primary mechanism for production of ionizing radiation.
+Current debate centers around whether massive galaxies \citep{Naidu2019} or dwarf galaxies \citep{???} were the primary driver.
+This and associated work on formation of Ly$\alpha$ blobs could help provide better constraints on the role of massive galaxies in this process, and we believe our methodologies presented here may be directly applicable to work on lower-mass galaxies.
+
+Since their discovery, the dominant source of Ly$\alpha$ in these objects has been under debate, and the question of what powers LABs is the focus of this dissertation.
 At the most fundamental level, there are two mechansims for production of Ly$\alpha$ photons: Recombination of ionized hydrogen and collisional excitation of neutral hydrogen.
 From an astronomical perspective, the situation is much more complex.
 In the literature, emission due to recombinations is usually not discussed in a general sense.
@@ -143,9 +153,18 @@ We provide discussion in \S~\ref{sec:discussion}, and conclude in \S~\ref{sec:co
 
 
 \section{Opening Remarks}
+
+\subsection{Origin of This Project}
+Normally the introduction for a paper will include an explanation about how the niche work presented in the paper has broad impacts or addresses whatever is currently considered the biggest open problems in the field.
+These questions were not intrinsically interesting to me.
+Instead, we choise this project as a PhD dissertation because it was just barely within reach but most importantly, we find this project itself fundamentally interesting.
+When Desika first pitched project ideas in the fall of 2017, I was looking for a project that would be computationally demanding but when he mentioned that there were massive bright objects whose power source was unexplained, I was hooked.
+That is, while this project has its place in astronomy as a whole and we hope very much that others will find this work (both our conclusions and our methods) interesting and useful, this work was pursued out of a basic curiosity about the subject itself.
+
+
+\subsection{A Plea for Open Science}
 We are currently getting a publication through peer review which contains mostly the same results as are presented in this dissertation, but in that work we have attempted to tell a simple and coherent story.
-In this dissertation we will try to elaborate as much as possible where things get complicated, and where our understanding fails us, propose future work on this topic.
-% TODO: Cite the accompanying paper?
+In this dissertation we will try to elaborate as much as possible where things get complicated, and where our understanding still fails us, propose future work on this topic.
 
 It also needs to be said that additional complication is added to this work by the currently-prevailing attitudes in this field about sharing data and code.
 At the time of writing, we were not aware of any publicly-available codebase for Ly$\alpha$ radiative transfer.
