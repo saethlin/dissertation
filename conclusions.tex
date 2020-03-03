@@ -21,17 +21,23 @@ Our main conclusions from this work follow:
 
 
 \section{Comparison To Previous Models}
-\red{i would maybe rephrase this slightly to sound less...conniving :)    maybe more like 'in trying to understand whether or not massive galaxies can form blobs as a natrual part of their evolution, we find many successes and failures.   [and then summarize them].   i definitely get the sentiment that you're going for, but i guess i'm not sure hwo we would actually use our models to rpove that we can't form blobs (so, if you want to go down that route, maybe expand on that a bit more quantiatiavely). } In the work presented here, we deliberately argued that our simulations reproduce Ly$\alpha$ blobs, but if we were so motivated we could use the results of our radiative transfer calculations to construct a solid argument that these objects are not definitely the same class of object as observed blobs.
+In the work presented here, we deliberately argued that our simulations reproduce Ly$\alpha$ blobs, but if we were so motivated we could use the results of our radiative transfer calculations to construct a solid argument that these objects are not definitely the same class of object as observed blobs.
 Such an argument would focus on surface brightness profiles, and the impact of AGN on the spatial extent of the Ly$\alpha$ surface brightness in our images.
 We are not seriously proposing that the previous work was arguing in poor faith, but instead that this area of research is sufficiently ambiguious that given even our modestly-sized dataset there is sufficient data to argue for whichever outcome is most convenient for the original aims of the project.
 In this and many other works we set out to learn about Ly$\alpha$ blobs so the first task in this and all similar works is to argue that we have the objects we want to study.
 Therefore, when we look to the literature of Ly$\alpha$ blob simulations and see that every other paper also reproduces blobs, there is call for suspicion.
 We can't know from a literature search if methodologies that fail to reproduce blobs have been pursued, and only rarely to authors specifically offer evidence that their work is not sufficient to form blobs.
-Therefore, we are left in an awkward position when comparing to other works because it is hard to tell if there are many ways to form a blob, or if all the ways to not form a blob have gone missing.
+Therefore, we are left in an awkward position when comparing to other works because it is hard to tell if there are many ways to form a blob, or if all the ways to not form a blob have gone unreported (which is a known problem in other fields).
+Looking back, we could have re-cast this entire project as a study of Ly$\alpha$ emission and escape from massive galaxies, as opposed to a body of work specifically on Ly$\alpha$ blobs.
+We also could have attempted to present a strict and rigorous definition of a Ly$\alpha$ blob, but given the dispersion in physical properties of objects called blobs in the literature we would have almost certainly been presenting a definition that would redefine terminology used by other authors.
+Whether or not this should be done anyway for the sake of clarity is a question left to the reader.
+
 All that said, we will attempt to compare this work to previous attempts at studying the origin of Ly$\alpha$ in blobs.
 
 In the broadest sense, this methodology used in this work was intended to be more grounded and thorough than other research on Lyman-$\alpha$ blobs.
-Our primary improvements over other works are that we account for emission due to recombinations and collisional excitations, we compute rates for both those processes based on first principles, and we do Ly$\alpha$ Monte-Carlo radiative transfer on  high(er)-resolution simulations. \red{what about the inclusion of AGN?  what about the ionization RT? maybe build this up a bit and discuss how this is the first work to include {\it all} of XYZ physical processes that we think might be important.}
+Our primary improvements over other works are that we account for emission due to recombinations and collisional excitations, we compute rates for both those processes based on first principles, and we do Ly$\alpha$ Monte-Carlo radiative transfer on high(er)-resolution simulations.
+We also include a recalculation of the ionization state in post-processing and use this ionization state calculation to insert an approximation for the effects of AGN.
+That is to say, we account for all the fundamental physics that contribute to for Ly$\alpha$ emission and therefore can use those calculations to propogate our approximation of the effects of AGN into Ly$\alpha$ emission and escape.
 To put this in the context of previous work, in the paragraphs below we comment on differences between previous works and our methodology.
 
 Some of the previous work on LAB formation has been focused on emission from cooling gas, that is, collisionally excited neutral hydrogen.
@@ -59,9 +65,12 @@ The core problem is that the hydrodynamic simulations this work is based on do n
 There are approximations for both of these, but they are very coarse and not self-consistent.
 Specifically, the approximation for the cosmological UV background assumes that there is an ever-present UV field in the simulation, and thus ignores that the self-shielding effect of any neutral gas in the simulation against the cosmological UV background.
 The approximation for stars is that a star will ionize some mass of gas near it, which while it does not ignore self-shielding entirely does tend to ignore radiative transfer effects that may cause highly asymmetric structure in the ionization state of the gas.
-If there is one lesson from this work it is that radiative transfer rapidly becomes complex, so we are very wary of such an approximation. \red{we should talk about the temperature dependence of Lya and how this can all impact this.}
-Unfortunately fixing these problems properly requires an on-the-fly treatment of the feedback loop between the heating of gas, resultant collisional ionization, radiative transfer of ionizing energy, radiative ionization, then re-calculation of the radiative transfer due to updated opacity of the gas.
-This is not computationally cheap, but may be critical for future more accurate Ly$\alpha$ studies.
+If there is one lesson from this work it is that radiative transfer rapidly becomes complex, so we are very wary of such an approximation.
+The core of this problem is that the gas temperature and ionization state depend on each other, and both alter the Ly$\alpha$ emission rate equations.
+In the case of an HII region, computing the extent of the ionization front requires doing ionizing radiative transfer through the gas, which depends on the temperature of the gas, but the ionizing radiative transfer ought to produce some heating of the gas.
+That is, fixing these problems properly requires an on-the-fly treatment of the feedback loop between the heating of gas, resultant collisional ionization, radiative transfer of ionizing energy, radiative ionization, then re-calculation of the radiative transfer due to updated opacity of the gas.
+Additionally, Ly$\alpha$ luminosity has a duplicate dependence on gas temperature because temperature feeds into the ionization state directly and also because the gas temperature alters the rate coefficients for both of the emission mechanisms.
+Properly modeling this all is not computationally cheap, but may be critical for future more accurate Ly$\alpha$ studies.
 
 To be clear, the work we have done here in post-processing is not a panacea; this \emph{must} be done on-the-fly because all computations done in post-processing will not be self-consistent.
 In this work, we try to compute a more accurate ionization state at a timestep $t$ based on the physical conditions at $t$, but the ionization state will alter the evolution of the simulation.
@@ -83,7 +92,6 @@ Specifically, one could answer definitively if the effect of AGN in this model i
 
 
 \section{Verification of Analytical Prescriptions}
-\red{i feel like this section could either be beefed up, or maybe it should be axed.  it kind of doesn't add a lot as its currently written.}
 Some previous Ly$\alpha$ papers use approximations for the luminosity of a simulation or the escape fraction based on a number of other factors.
 Since we have a more detailed simulation, we could check whether the outputs of our simulation agree with theirs since we have both the same inputs they used to predict the luminosity and the escape fraction and our more precise values for those quantities.
 Most notably \citet{Cen2013} use the star formation rate to compute the luminosity of the gas based on a relation that originates with a much older stellar population synthesis model and an approximation for conversion of ionizing radiation to Ly$\alpha$ that is suspiciously simple.
@@ -173,7 +181,7 @@ The HDF5 format is a much better solution to rapidly reading data from files.
 It's fast enough, supports transparent compression, and allows adding metadata to files and datasets within a file.
 This could even be used to associate units with data, which is invaluable in a field where there are multiple reasonable units for any quantity.
 
-The one downside to the HDF5 format is that there is a single implementation, a C library which is produced by the HDF group, which is not without flaws. \red{There is a telling anecdote in the scientific progress of this thesis.}
+The one downside to the HDF5 format is that there is a single implementation, a C library which is produced by the HDF group, which is not without flaws.
 The original plan for this project included a study of the impact of subhalos on Ly$\alpha$ blob formation, but the halo finder that the research group uses (and this project relies upon) does not have information about subhalos because it relies on a simple 3d friends-of-friends implementation.
 The planned fix for this was to incorporate Amiga's Halo Finder (AHF), but at the time AHF did not support loading snapshots from HDF5 files.
 We attempted to add such support from AHF, but were stymied by problems with the HDF5 library.

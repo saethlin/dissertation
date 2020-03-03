@@ -3,20 +3,21 @@
 
 We now turn our attention to the influence of AGN on our modeled Ly$\alpha$ emission.
 Note that from the perspective if the hydrodynamic simulations, black holes are only implemented as sink particles without any feedback (\S~\ref{sec:methods}).
-That is, though the black hole particles in this simulation will accrete mass, there is no prescription for the flow of thermal and kinetic energy into the surrounding gas from the accretion, \red{well we care about the ionization right?  so i'm not 100\% sure this remainder of this sentence is true?} which is what makes black holes astrophysically interesting in this context.
+That is, though the black hole particles in this simulation will accrete mass, there is no prescription for the flow of thermal and kinetic energy into the surrounding gas from the accretion.
 This should be contrasted with our use of an ionizing radiative transfer code to recompute the ionization state in postprocessing due to stars and the UV background.
 In both cases this is not self-consistent, but in the previous cases there is already some approximation in the simulations for the energy contribution from these ionizing sources, wheras when we approximate an AGN, we are very self-inconsistent.
 But that need not stop us from performing a numerical experiment in postprocessing; it only means that one needs to be cautious in interpreting the results of such an experiment.
 
 Here, we treat AGN as an ionizing source when we compute the ionization state of the gas with {\sc lycrt}.
-In this model, the AGN SED is modeled by employing the \citet*{Hopkins2007} templates for unreddened quasars, with the luminosity being tied to the accretion rate via $L = \eta \dot{M_{\rm BH}} c^2$, \red{DEFINE MDOT please} where $\eta$ is an efficiency parameter with a fiducial value of $\eta = 0.1$. 
+In this model, the AGN SED is modeled by employing the \citet*{Hopkins2007} templates for unreddened quasars, with the luminosity being tied to the accretion rate via $L = \eta \dot{M_{\rm BH}} c^2$, where $\dot{M_{\rm BH}}$ is accretion rate of the sink particle and $\eta$ is an efficiency parameter with a fiducial value of $\eta = 0.1$.
 The impact of the chosen SED model is not particularly important in this work because we do not use it for the ionizing radiative transfer.
-The SED informs the rate of ionizing photon emission that is given to {\sc lycrt}, but the emission that is actually used to compute the ionization state follows the aforementioned power law.  \red{It would be really easy (i thnk?) to plot the BH SED alongside the stellar SED for some key snapshots...would it be worthwhile to show this?  i think it would add a lot, pedgagoically}
+The SED informs the rate of ionizing photon emission that is given to {\sc lycrt}, but the emission that is actually used to compute the ionization state follows the aforementioned power law.
 For most of this section, we will transform all of the black hole particles in the snapshots into sources for the ionization state calculation.
 Sometimes this means there is a very impactful AGN in a satellite galaxy, not the central massive galaxy that the cosmological simulation is oriented around.
 In what follows, we investigate the impact of AGN on the total Ly$\alpha$ luminosity, as well as the overall spatial extent of the blob and the blob morphology.
 
-\section{Large-Scale Morphological Changes}\red{i love this figure!  would it be possible to also include a figure showing a map of the ionization state for a model wtih stars only and stars and AGN?  if its difficult we shouldn't do it - just wondering if its easy.  also for 4-1 through 4-3 lets put column titles saying "no-AGN", "AGN" etc. please}We include Figure \ref{fig:agn_rogues1}, \ref{fig:agn_rogues2}, \ref{fig:agn_rogues4}, and \ref{fig:agn_rogues8} to orient the reader as to the visual effects of AGN on our model.
+\section{Large-Scale Morphological Changes}
+We include Figure \ref{fig:agn_rogues1}, \ref{fig:agn_rogues2}, \ref{fig:agn_rogues4}, and \ref{fig:agn_rogues8} to orient the reader as to the visual effects of AGN on our model.
 These figures contain half as many snapshots since we provide an exact side-by-side comparison of the halo with and without the AGN.
 There is a remarkable consistency in terms of what changes; with the AGN present in the ionization state calculation the blobs appear smaller.
 We also see some detail in them which was previously obscured; particularly at higher redshift there are bright regions which seem to have no counterpart in the images without AGN.
@@ -70,7 +71,7 @@ In Figure~\ref{fig:agn_recombination_collision} we plot the escaping and intrins
 In all cases, we see an increase in emission due to recombinations, and a decrease in emission due to collisional excitation.
 Unlike many other observations in this section; this is unsurprising: A gas that experiences a more intense UV field is more ionized and thus favors emission by recombinations (\S~\ref{sec:physicalconcepts}).
 
-\red{i'm not sure what you mean by pale and darker?   like in 3-12 or in the morphology plots?}As in Figure~\ref{fig:recombination_collision}, the distance between the pale and darker lines provides a visualization of the escape fraction along a median line of sight.
+As in Figure~\ref{fig:recombination_collision}, the distance between the emitted and escaped luminosities provides a visualization of the escape fraction along a median line of sight.
 In this case, there is a clear redshift evolution of the escape fraction due to recombinations.
 Towards $z=5$, the the escape fraction is very close to $1$, and as the halo evolves it decreases.
 This could be explained as a direct consequence of self-shielding and the growth of halo mass over time.
@@ -85,7 +86,7 @@ Unlike the emission due to recombinations which is preferentially emitted in ion
 
 There is one more question raised by Figure~\ref{fig:agn_recombination_collision} we would like to answer: Why doesn't the recombination luminosity grow over redshift?
 We know that the mass of all AGN in the simulation grow, and since their luminosities in our simulation are tied only to the mass, their ionizing output grows proportionally, but we can see from this figure that the Ly$\alpha$ luminosity that this drives does not grow.
-A precise explanation of this is \red{outside the scope of our current study}, but for now we can offer a few explanations.
+A precise explanation of this is outside the scope of our current study, but for now we can offer a few explanations.
 It is possible that as the mass of the black hole grows, the system becomes more radially asymmetric (possibly because it is settling into a disk) which would reduce the covering fraction of the black hole, and more of the ionizing flux would not go into ionizing the surrounding gas.
 It is also possible that in this scenario the luminosity of the halo is not particularly sensitive to the ionizing luminosity of the AGN, which would be possible if the AGN has ionized essentially all of the gas except for a few small pockets of very self-shielded gas.
 This explanation is supported by the dramatic drop in luminosity due to recombinations, and some of the results in \S~\ref{sec:ionization_extremes}.
@@ -105,7 +106,7 @@ The most striking feature in this plot is the much greater dependence on line of
 This huge variation when AGN are present is caused by the distinct non-uniformity of CGM opacity;  the AGN punches large ionization holes in the enclosing CGM through which Ly$\alpha$ readily escapes.
 
 
-\red{i love this section} There are two features in these plots that deserve specifc explanation: At some redshifts the escape fraction range of the AGN model extends below the no-AGN model, and at some redshifts the median escape fraction with AGN passes below that of the no-AGN model.
+There are two features in these plots that deserve specifc explanation: At some redshifts the escape fraction range of the AGN model extends below the no-AGN model, and at some redshifts the median escape fraction with AGN passes below that of the no-AGN model.
 These are surprising for the same reason: the effect of the AGN is to ionize more gas, which reduces the opacity of the halo... So how could this sometimes cause less Ly$\alpha$ to escape?
 
 For the first case, where some lines of sight see a lower escape fraction, we present an example scenario in Figure~\ref{fig:scattering_diagram}, where the star represents a source of Ly$\alpha$, the color of the box represents the ionization state of the gas, and the light gray circle represents a dense region of neutral gas.
@@ -224,11 +225,11 @@ This metric becomes more effective for identifying AGN with higher-resolution ob
 In the preceeding sections, we have referred to a particular AGN model wherin we derive the ionizing luminosity of each black hole particle from their masses assuming an Eddington accretion rate with efficiency of $0.1$ and a \citet*{Hopkins2007} template.
 All these assumptions can be adjusted individually; we could use a different AGN template (such as \citet{Nenkova2008}), we could derive luminosities from the black hole particle accretion rates instead of their masses, we could assume a different efficiency, and we could ignore the black hole particles provided entirely, substituting masses compute from the relation derived by \citet{Magorrian1998}.
 All of these changes would amount only to altering the luminosity of the super-massive star particles we feed into our ionization state calculation, so we pursue all of these by investigating whether the luminosity of a halo is related to the efficiency parameter, which we vary over the range $[0.01, 1.0]$.
-This gives us an order of magnitude variation in either direction from our best-guess model and so should encompass any relevant trends in this parameter; we plot the results of this experiment in Figure~\ref{fig:eddington_grid}. \red{i dont think this is the right figure?  or the caption of that figure is wrong anyways.   also need to spend some time in the text explaning what the figure actually is since its not explained here.}
+This gives us an order of magnitude variation in either direction from our best-guess model and so should encompass any relevant trends in this parameter; we plot the results of this experiment in Figure~\ref{fig:eddington_grid}.
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,keepaspectratio]{figures/skew_distribution.pdf}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/eddington_grid.pdf}
     \caption{
         We vary the black hole efficiency in our AGN model by an order of magnitude; from our best-guess value of $0.1$ down to $0.01$ and up to $1.0$.
         There is no simple correlation between the AGN luminosity in our model and Ly$\alpha$ luminosity.
