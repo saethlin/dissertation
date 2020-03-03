@@ -3,14 +3,15 @@
 
 \section{Impact of the UV Background}
 The original objective of this project included a study of the dominant physical sources of Ly$\alpha$ emission, which we assumed would be stars, cooling from accreting gas, and the cosmological UV background.
-As as apparent from the structure of this dissertation, the structure of the project has shifted since then, most notably to consider the underlying physical origin of Ly$\alpha$ as opposed to the astrophysical origins.
-But in the case of the UV background we have an explicit simulation of this, in the ionizing radiative transfer code that we use to compute the ionization state we can adjust the intensity of the UV background that is simulated.
+As as apparent from the \red{aforementioned text in} \sout{structure of} this dissertation, the structure of the project has shifted since then, most notably to consider the underlying physical origin of Ly$\alpha$ as opposed to the astrophysical origins \red{not really sure what this last sentence means}.
+
+\red{I get what everything after this means, but the transition from the first few sentences to here is awkward...i'm not really sure waht the sentences before this means, and how this gets to us wanting to understand the impact of the UV background.  If you can clarify that would be awesome.}But in the case of the UV background we have an explicit simulation of this, in the ionizing radiative transfer code that we use to compute the ionization state we can adjust the intensity of the UV background that is simulated.
 Elsewhere in this work we use our best estimate of a physical value for intensity of this radiation, but since it is an input to the model we can adjust it.
 Ideally, we would ask some question along the lines of "What is the impact of the UV background on the formation of Ly$\alpha$ blobs?" and could answer this question by turning off the UV background and observing an impact on the Ly$\alpha$ luminosity and escape fraction.
 However, we cannot address this question in such a direct manner because the impact of this phenomenon is imprinted on the temperature of the gas during the hydrodynamical simulations we rely on as inputs.
 
 Instead, in this section we present an experiment wherein we increase the intensity of our post-processing non-heating treatment of the UV background to gain some intuition for the impact of this phenomenon on the formation of Ly$\alpha$ blobs.
-We increase the intensity of the UV background from a best-guess value in \citet{Faucher-Giguere2009} up to a non-physical increase of 5 orders of magnitude (Figures~\ref{fig:big_uv_000} and \ref{fig:big_uv_005}), and find that this provides only a small enhancement to the luminosity of the blob and if anything makes it less like a blob by decreasing its spatial extent.
+We increase the intensity of the UV background from a best-guess value \red{what is the "best-guess" value?} in \citet{Faucher-Giguere2009} up to a non-physical increase of 5 orders of magnitude (Figures~\ref{fig:big_uv_000} and \ref{fig:big_uv_005}), and find that this provides only a small enhancement to the luminosity of the blob and if anything makes it less like a blob by decreasing its spatial extent.
 Our interpretation of this slight increase in luminosity and decrease in spatial extent is that the primary effect of the UV background increase is to ionize extended neutral gas which resonantly scatters the Ly$\alpha$ to greater spatial extents, permitting Ly$\alpha$ to escape the blob with less scattering.
 Therefore we rule out the UV background as a driver of LAB formation and declare enhancements in the UV background uninteresting, since we increase it to a nonphysical value and still only see a marginal effect (recall that we cannot really remove the UV background because the heating it causes is accounted for in the gas temperature).
 
@@ -19,7 +20,7 @@ Therefore we rule out the UV background as a driver of LAB formation and declare
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/big_uvb_000.pdf}
     \caption{
-        A surface brightness image of a sample halo, with our best-guess UV background from \citet{Faucher-Giguere2009}.
+        A surface brightness image of a sample halo, with our best-guess \red{not sure what "best-guess" is - please clarify} UV background from \citet{Faucher-Giguere2009}.
     }
   \label{fig:big_uv_000}
 \end{figure*}
@@ -38,7 +39,7 @@ Therefore we rule out the UV background as a driver of LAB formation and declare
 \section{MCRT Convergence}
 Sometimes radiative transfer work is referred to as simulations but we try to avoid that term in this work.
 Instead, we find it much better to call all our RT codebases solvers because they do not involve a time domain, and because each execution of the program proceeds through a numerical process which proceeds towards a consistent result through a different pathway.
-Ideally, we'd like to know if our simulation is converged.
+Ideally, we'd like to know if our simulation \red{did you just say we won't call the RT simulations? am i misunderstanding your usage of the word in this sentence?}is converged.
 But answering that question is very complex as we will discuss later, so in this section we present some preliminary work on a metric for the convergence of surface brightness images.
 
 Ideally, we should have an on-the-fly metric that measures how uncertain a particular value in the simulation is.
@@ -53,7 +54,7 @@ We plot this metric for one of our surface brightness images in Figure~\ref{fig:
 To check how accurate this is, we run {\sc colt} 300 times with the same inputs and plot the per-pixel variance in Figure~\ref{fig:run_to_run}, which should match with Figure~\ref{fig:on_the_fly}.
 As we can see, this simple on-the-fly uncertainty estimate vastly underestimates the variation in a pixel between executions of the code.
 
-The reason this simplistic metric is wrong is beyond the scope of this work.
+The reason this simplistic metric is wrong is beyond the scope of this work \red{can we give a 1 sentence explanation as to whats going on, or at least why its outsdie the scope of this work?  right now the reader has no idea why its outside the scope}.
 Instead, our purpose here is to present these results because they cost many CPU-hours and we have verified that using a naive approach to on-the-fly assessment of MCRT convergence results in an incorrect metric.
 Future work on this should instead follow methodologies used in Markov Chain Monte-Carlo (MCMC) techniques, and in particular we suggest the Gelman-Rubin diagnostic may be a much better indicator of convergence (Aaron Smith, private communication).
 
