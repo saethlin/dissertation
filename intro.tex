@@ -12,21 +12,21 @@ Ly$\alpha$ is also useful at yet higher redshifts, because it is a bright line a
 In that context, it is crucial to establish solid understanding of Ly$\alpha$ using the brightest sources available, such as the Ly$\alpha$ blobs we examine in this work.
 
 Additionally, the study of reionization is one of the largest open questions in extragalactic astronomy; it's not clear what (if anything) was the primary mechanism for production of ionizing radiation.
-Current debate centers around whether massive galaxies \citep{Naidu2019} or dwarf galaxies \citep{Finkelstein2019} were the primary driver.
-This and associated work on formation of Ly$\alpha$ blobs could help provide better constraints on the role of massive galaxies in this process, and we believe our methodologies presented here may be directly applicable to work on lower-mass galaxies.
+\red{The} current debate centers around whether massive galaxies \citep{Naidu2019} or dwarf galaxies \citep{Finkelstein2019} were the primary driver.
+This and associated work on formation of Ly$\alpha$ blobs could help provide better constraints on the role of massive galaxies in this process, and we believe our methodologies presented here may be directly applicable to work on lower-mass galaxies.  \red{z=5 is toward the end of reionization.  but where i think you're going wtih this (which could be a slight rephrase) is -- Lya is a key diagnostic of epoch of reionization galaxies.  However, the physics of Lya production, scattering, and escape are complicated, and it is unknown how this resonant line behaves in low luminosity galaxies at the epoch of reionization.   Lya blobs provide an anchor in understanding how the line behaves in massive systems, and can therefore provide insight into studies probing the physics of reionization. }
 
 Since their discovery, the dominant source of Ly$\alpha$ in these objects has been under debate, and the question of what powers LABs is the focus of this dissertation.
 At the most fundamental level, there are two mechanisms for production of Ly$\alpha$ photons: Recombination of ionized hydrogen and collisional excitation of neutral hydrogen.
 From an astronomical perspective, the situation is much more complex.
 In the literature, emission due to recombinations is usually not discussed in a general sense.
-Instead, Ly$\alpha$ emission from HII regions surrounding star-forming regions (because it's actually produced by short-lived massive stars) if often discussed \citep[e.g.][]{Geach2016}.
+Instead, Ly$\alpha$ emission from HII regions surrounding \red{massive stars is what is often discussed}\sout{star-forming regions (because it's actually produced by short-lived massive stars) if often discussed} \citep[e.g.][]{Geach2016}.
 Recombinations from gas that is ionized from a different UV field such as the cosmological UV background or a nearby AGN are often handled separately \citep{Kollmeier2010,Gronke2017}.
-This mechanism is often called fluorescence.
-Many papers model only one of these recombination drivers, and often do not model the recombination itself but compute a Ly$\alpha$ luminosity based on a mechanism that ionizes hydrogen \citep[e.g.][]{Cen2013}.
+\red{(This variant of recombination is called "fluorescence")}\sout{This mechanism is often called fluorescence.}
+Many papers model only one of these recombination drivers, and often do not model the recombination itself but compute a Ly$\alpha$ luminosity based on a mechanism that ionizes hydrogen \red{can you be more specific about what you mean here?} \citep[e.g.][]{Cen2013}.
 
 The other physical mechanism for producing Ly$\alpha$ is collisional excitation of neutral hydrogen by free electrons.
-This mechanism is often called ``cooling flows'' or ``cooling streams'' because in some simulations large filamentary structures of infalling material have been observed.
-But again, it is not necessary to invoke these structures to produce Ly$\alpha$; one only need neutral hydrogen and free electrons at a favorable temperature.
+This mechanism is often called ``cooling flows'' or ``cooling streams'' because in some simulations \red{these can be associated with filamentary accretion onto galaxies.} \sout{large filamentary structures of infalling material have been observed.}
+But again, it is not necessary to invoke these structures to produce Ly$\alpha$; one only need neutral hydrogen and free electrons at a favorable temperature. \red{i'm not sure what this last sentence means}
 
 Claims of LABs powered by cooling flows are often observationally justified by the detection of LABs without any observable AGN.
 For example, \citet{Smith2007} observed a blob at $z=2.83$ for which they are able to rule out AGN based on non-detections of highly ionized lines.
@@ -41,15 +41,15 @@ Indeed, the heavily-studied LAB-1 appears to be powered by a hidden quasar \cite
 \citet{Geach2009} report x-ray observations of LABs, finding an AGN fraction of $17^{+12}_{-7}\%$, but with all (5 of 29) detections they find heavy obscuration and suggest that there may be heavily obscured AGN in many LABs.
 
 The tendency of LABs to appear in over-dense environments \citep{Matsuda2009,Matsuda2011,Prescott2008} suggests that the power source may relate to elevated star formation rates typically associated with the formation of massive galaxies \citep[e.g.][]{Matsuda2007,Kubo2013,Hine2016,Alexander2016}.
-However, care should be taken in assessing the role of star formation in powering LABs, since the signature of elevated star formation and AGN activity can be identical \citep{Webb2009}.
+However, care should be taken in assessing the role of star formation in powering LABs, since the signature of elevated star formation and AGN activity can be \red{correlated} \sout{identical} \citep{Webb2009}.
 
-LABs may also be powered indirectly by AGN or star formation through galaxy-scale winds \citep{Wilman2005}.
+LABs may also be powered indirectly by AGN or star formation through galaxy-scale winds \red{how do the winds drive labs? can we say half a sentence to help the reader make the connection?  [i think claude-andre talked about this in his last email]}\citep{Wilman2005}.
 Based on detections of bubbles in LAB1, \citet{Matsuda2004} deduce an SFR $\sim 600M_{\odot}\ \rm{yr}^{-1}$, which is in agreement with submillimeter observations \citep{Chapman2001}.
-\citep{Matsuda2007} also argue for the possibility of extended starbursts or winds on the basis of correlated submillimeter and Ly$\alpha$ emission in LAB1.
+\citet{Matsuda2007} also argue for the possibility of extended starbursts or winds on the basis of correlated submillimeter and Ly$\alpha$ emission in LAB1.
 Additionally, \citet{Ohyama2003} interpret the double-peaked Ly$\alpha$ spectrum, particularly the decrease in the velocity separation of the two peaks with distance from the center of LAB1 as evidence for wind-driven Ly$\alpha$.
 
 As is evident, the last two decades of observations have brought little consensus on the dominant source(s) of emission in Ly$\alpha$ blobs, or even whether a single physical process dominates.
-Indeed, some authors think that LABs may be powered by a variety of mechanisms \citet{Scarlata2009,Webb2009,Nilsson2006,Prescott2009,Ao2015}.
+Indeed, some authors think that LABs may be powered by a variety of mechanisms \citep{Scarlata2009,Webb2009,Nilsson2006,Prescott2009,Ao2015}.
 Additionally, the escape of Ly$\alpha$ from high-redshift galaxies has not been well-studied in connection with LABs, though it is deeply coupled to the emission thereof \citep{Smith2019}.
 This leaves these massive objects largely unexplained in spite of their relevance to massive galaxy formation and reionization, as we do not understand what if anything the Ly$\alpha$ traces.
 
@@ -93,12 +93,12 @@ Other authors have studied the effect of fluorescence from an external ionizing 
 These authors find that an external ionizing radiation field can produce extended Ly$\alpha$ emission, but not quite at the surface brightnesses to produce a blob on its own.
 
 Missing, to date, is a comprehensive model that considers all of these physical processes simultaneously.
-This project is an attempt to provide just that.
+This \red{thesis} \sout{project} is an attempt to provide just that.
 We present a model for the formation and evolution of Ly$\alpha$ blobs by combining high-resolution cosmological zoom-in simulations (from the MassiveFIRE series of simulations) with ionization radiative transfer and Ly$\alpha$ radiative transfer.
 We consider the necessary underlying physics to model Ly$\alpha$ production from ionized gas surrounding massive stars, collisional excitation (cooling), and fluorescence induced by other ionizing radiation fields (including AGN).
 In \S~\ref{sec:methods}, we detail our numerical methodology; in \S~\ref{sec:evolution}, we describe the evolution of the Ly$\alpha$ luminosity from massive galaxies at high-redshift.
 We follow this in \S~\ref{sec:origins} with an investigation into the dominant power sources of Ly$\alpha$ photons in massive galaxies and investigate the role of AGN in \S~\ref{sec:agn}.
-We provide discussion in \S~\ref{sec:discussion}, and conclude in \S~\ref{sec:conclusions}.
+We provide discussion in \S~\ref{sec:discussion}, and conclude in \S~\ref{sec:conclusions} \red{these sections are the same}.
 
     \begin{table*}
     \caption{An overview of Ly$\alpha$ properties for a sample of known LABs which we compare to our simulations}
