@@ -95,7 +95,7 @@ Such an iterative solver requires more compute time than is easy to justify doin
 Therefore, our first step in post-processing is to compute a more accurate ionization state of the gas, by doing ionizing UV radiative transfer.
 All the radiative transfer in this work is done on an octree, even though the snapshot data is all from SPH simulations.
 We use an octree because the implementation is much simpler, and most likely much faster than attempting radiative transfer on an SPH field; in an octree we can track which cell a Monte Carlo is within and simply look up the gas properties in the tree.
-When we deposit the SPH data onto the octree we can impose refinement or stopping critera; in our case we can set a maximum number of particles in a cell and a minimum cell size.
+When we deposit the SPH data onto the octree we can impose refinement or stopping criteria; in our case we can set a maximum number of particles in a cell and a minimum cell size.
 Unless otherwise specified, in this work we set the maximum number of particles to 1 (that is, keep refining until there is only one particle per octree cell) and the minimum cell size to $0.01\ \rm{kpc}$.
 
 In some sense, this conversion from SPH particles to an octree is necessarily lossy, since we cannot convert from an octree structure back to the SPH representation.
@@ -128,7 +128,7 @@ We \emph{could} sub-divide the space more, in a process often called over-refini
    \label{fig:octree_resolution}
 \end{figure}
 
-The deposition of the SPH data and subsequent calculation of the ionization state is done by {\sc lycrt} (LYman-Continuum Radiative Transfer) \citep{Ma2015}.
+The deposition of the SPH data and subsequent calculation of the ionization state is done by {\sc lycrt} (Lyman-Continuum Radiative Transfer) \citep{Ma2015}.
 {\sc lycrt} is a Monte-Carlo radiative transfer code that iteratively computes the gas ionization state by emitting rays from both stars and a uniform UV background.
 These rays are subject to scattering by HI along with dust scattering and absorption, using the dust opacity formulation from \citet{Li2001}, and the passage of these rays through octree cells is used to compute the ionizing UV field.
 We assume a redshift-dependent UV background with intensity as described in \citet{Faucher-Giguere2009}.
@@ -161,7 +161,7 @@ We start by computing the opacity $\kappa$ in the octree cell that the photon cu
 
 where $E$ is the energy of the photon, $\rho$ is the density of the gas, $n_{\rm{HI}}$ is the number density of neutral hydrogen, $\kappa_{\rm{dust}}$ is energy-dependent dust opacity from \citet{Weingartner2001}.
 We then draw a random optical depth which the photon shall traverse until it scatters, and use the known opacity of the cell to convert that optical depth to a distance.
-If travelling this distance along the photon's current direction would place the photon outside of the current grid cell, we find the cell it will cross into and repeat the conversion to distance based on the remaining optical depth.
+If traveling this distance along the photon's current direction would place the photon outside of the current grid cell, we find the cell it will cross into and repeat the conversion to distance based on the remaining optical depth.
 Once we have exhausted the randomly chosen optical depth, another random number is drawn to determine if the photon is scattered or absorbed by dust.
 When photons are scattered, we re-draw a random direction, and modify its energy to be just above the hydrogen ionization energy.
 This process ends when a photon escapes from the simulation or is absorbed by dust.
@@ -214,7 +214,7 @@ and the frequency of the photon, but in this area it is typical to express frequ
 \end{equation}
 
 The exact formulation of this $H(a, x)$ is the convolution of a Lorentzian and Maxwellian distribution and is therefore highly impractical to be evaluating constantly to do our optical depth calculations.
-Therefore, there is some history of approximations for this function which all use some critera to split the distribution into a core and a wing component, and apply different approximations in each regime.
+Therefore, there is some history of approximations for this function which all use some criteria to split the distribution into a core and a wing component, and apply different approximations in each regime.
 In this work we use a continued fraction expansion centered around $0$, $\infty$, and on the interval $3 < x^{2} < 25$.
 This provides better than $1\%$ error in the value of $H(a, x)$ across the range of frequencies and temperatures that we encounter in the simulations, while being efficient enough that it is not a major contributor to the runtime of MCRT simulations.
 
@@ -249,7 +249,7 @@ The formulation of this optimization currently present in \textsc{colt} is worth
 
 \subsection{Dust Absorption}
 Following \citet{Laursen2009}, we assume SMC-like dust properties with an effective cross-section per hydrogen atom of $3.95\times10^{-22}\ \rm{cm}^{2}$, and fiducial albedo of 0.32.
-The SMC may not be a particularly good model for the much older galaxies that this work studies, but it is the most simliar in metallicity of the galaxies for which we have good dust parameters.
+The SMC may not be a particularly good model for the much older galaxies that this work studies, but it is the most similar in metallicity of the galaxies for which we have good dust parameters.
 In contrast with previous works such as \citet{Laursen2007} and previous uses of \textsc{COLT} such as \citet{Smith2015}, we now treat dust absorption as a continuous process, such that each photon packet has a weight that is attenuated according to the traversed dust optical depth.
 
 In a naive implementation of continuous dust absorption, every photon must eventually escape the simulation domain.
@@ -258,7 +258,7 @@ If one is investigating bulk properties of a system such as escape fraction it i
 In this work we are also interested in studying surface brightness images which span a few orders of magnitude and so we have chosen a much more conservative value for this discard threshold of $e^{32}$.
 
 This change to the dust absorption mechanism also offers an opportunity to do some interesting additional work.
-Specifically, it opens up the possiblity to study which octree cells in the simulation domain absorb energy from photons, or alternatively in which cells a photon is substantially absorbed.
+Specifically, it opens up the possibility to study which octree cells in the simulation domain absorb energy from photons, or alternatively in which cells a photon is substantially absorbed.
 In the usual scheme wherein we draw a random number at each scattering to determine if the photon is absorbed, for our usual number of photons $(10^{7})$ is within a factor of 2 of the typical number of octree cells in a $z=2$ snapshot.
 Therefore, in the normal scheme if we are to simply record cells that absorb a photon, we have rather poor statistics over most of the simulation.
 But with a continuous absorption domain we could record in each cell how much energy it absorbs due to dust from the Ly$\alpha$ that passes through it, without significantly increasing the memory consumption of the simulation.
@@ -267,7 +267,7 @@ The amount of memory required to store each photon's entire path through the sim
 \subsection{Luminosity Boosting}
 Recall that in these simulations, to emit a Ly$\alpha$ photon packet we draw from the cumulative distribution of octree cell luminosities.
 This need not necessarily be the case, for photon packets.
-It must be the case for the Ly$\alpha$ energy budget, but luminosity boosting is a mechansim that can let us decouple the Monte-Carlo sampling from the luminosity distribution in a simulation.
+It must be the case for the Ly$\alpha$ energy budget, but luminosity boosting is a mechanism that can let us decouple the Monte-Carlo sampling from the luminosity distribution in a simulation.
 And most importantly, we are interested in manipulating the sampling strategy because it is a way to control and hopefully improve the convergence of some aspect of these simulations.
 
 The particular scheme we have introduced uses an input parameter $j_{\rm exp}$ such that the probability of a cell $i$ emitting a photon packet is:

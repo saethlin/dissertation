@@ -23,7 +23,7 @@ Our main conclusions from this work follow:
 \section{Comparison To Previous Models}
 In the work presented here, we deliberately argued that our simulations reproduce Ly$\alpha$ blobs, but if we were so motivated we could use the results of our radiative transfer calculations to construct a solid argument that these objects are not definitely the same class of object as observed blobs.
 Such an argument would focus on surface brightness profiles, and the impact of AGN on the spatial extent of the Ly$\alpha$ surface brightness in our images.
-We are not seriously proposing that the previous work was arguing in poor faith, but instead that this area of research is sufficiently ambiguious that given even our modestly-sized dataset there is sufficient data to argue for whichever outcome is most convenient for the original aims of the project.
+We are not seriously proposing that the previous work was arguing in poor faith, but instead that this area of research is sufficiently ambiguous that given even our modestly-sized dataset there is sufficient data to argue for whichever outcome is most convenient for the original aims of the project.
 In this and many other works we set out to learn about Ly$\alpha$ blobs so the first task in this and all similar works is to argue that we have the objects we want to study.
 Therefore, when we look to the literature of Ly$\alpha$ blob simulations and see that every other paper also reproduces blobs, there is call for suspicion.
 We can't know from a literature search if methodologies that fail to reproduce blobs have been pursued, and only rarely do authors specifically offer evidence that their work is not sufficient to form blobs.
@@ -37,7 +37,7 @@ All that said, we will attempt to compare this work to previous attempts at stud
 In the broadest sense, this methodology used in this work was intended to be more grounded and thorough than other research on Lyman-$\alpha$ blobs.
 Our primary improvements over other works are that we account for emission due to recombinations and collisional excitations, we compute rates for both those processes based on first principles, and we do Ly$\alpha$ Monte-Carlo radiative transfer on high(er)-resolution simulations.
 We also include a recalculation of the ionization state in post-processing and use this ionization state calculation to insert an approximation for the effects of AGN.
-That is to say, we account for all the fundamental physics that contribute to for Ly$\alpha$ emission and therefore can use those calculations to propogate our approximation of the effects of AGN into Ly$\alpha$ emission and escape.
+That is to say, we account for all the fundamental physics that contribute to for Ly$\alpha$ emission and therefore can use those calculations to propagate our approximation of the effects of AGN into Ly$\alpha$ emission and escape.
 To put this in the context of previous work, in the paragraphs below we comment on differences between previous works and our methodology.
 
 Some of the previous work on LAB formation has been focused on emission from cooling gas, that is, collisionally excited neutral hydrogen.
@@ -49,7 +49,7 @@ They do perform radiative transfer, and are able to reproduce the spatial extend
 \citet{Goerdt2010} also neglect emission from HII recombinations in their work.
 
 By contrast, \citet{Cantalupo2005} and \citet{Gronke2017} omit cooling emission from their model, but include emission from recombinations.
-We think this approach may be deeply problematic, since it appears to dominate for the no-AGN case, but \citet{Gronke2017} explicitly model AGN so we do not think this choice may be signifcant to their results.
+We think this approach may be deeply problematic, since it appears to dominate for the no-AGN case, but \citet{Gronke2017} explicitly model AGN so we do not think this choice may be significant to their results.
 
 Some papers in the literature account for both emission from cooling and recombinations \citep{Cen2013, Furlanetto2005, Geach2016, Smailagi2016}.
 However, in all these papers the Ly$\alpha$ luminosity from recombinations is determined only by star formation rates, as opposed to our work where we use the age of star particles to inform stellar population synthesis and compute the ionization state of our gas.
@@ -77,7 +77,7 @@ In this work, we try to compute a more accurate ionization state at a timestep $
 Therefore, the physical conditions we base our ionization state at time $t$ upon are incorrect, and we actually needed to do this more accurate calculation at timestep $t-1$ and so on.
 
 \section{Ly\texorpdfstring{$\alpha$}{a} Photon Tracking}
-The widely-recognized advantage of simulations in astronomy is that we can conduct experiments, wheras in observations one must make do with whatever is present or visible on the sky.
+The widely-recognized advantage of simulations in astronomy is that we can conduct experiments, whereas in observations one must make do with whatever is present or visible on the sky.
 There is another massive advantage though; in a simulation we can extract information which in observations is not just difficult but impossible to obtain.
 The simplest exercise of this capability is to visualize exactly where the escaping flux originates from (which we do in \ref{sec:experiments}), but so much more work can be done in this area.
 When we compute the escape fraction of a halo in recombinations or collisions, we do this by attributing each photon packet proportionally to the escape of each source based on the relative luminosities of the gas it originates in.
@@ -98,18 +98,18 @@ Most notably \citet{Cen2013} use the star formation rate to compute the luminosi
 The rate of case-B recombinations (eq. \ref{eq:j_rec}) is a function of the temperature, density, and ionization state of the gas but this relation they rely on smooths over all those factors.
 We could verify this approximation on a case-by-case basis or over the simulation overall, and if we find a discrepancy all our simulations could be re-run using this approximation, to determine if this approximation is the cause of the discrepancy in our results.
 
-Additionally, a number of papers avoid doing Ly$\alpha$ radiative transfer, and since this is the most computationaly expensive part of this work it would be very valuable to future work if one could implement and possibly validate an approximation.
+Additionally, a number of papers avoid doing Ly$\alpha$ radiative transfer, and since this is the most computationally expensive part of this work it would be very valuable to future work if one could implement and possibly validate an approximation.
 
 
 \section{Efficiency of Numerical Approximations}
 In an number of places in {\sc colt} we rely on numerical approximations of analytical functions, some of which originate some time ago.
 The throughput of {\sc colt} is limited in cases where we produce only one surface brightness image by the throughput of the accept/reject algorithm that produces a scattering direction.
-If the throughput of radiative transfer simulations is a limiting factor in resesarch progress (which we believe it is), we should revisit the implementations used, and possibly apply some modern tooling to these algorithms.
-Specifically, the throughput of the simulation is primarily bottlenecked by triganometric functions, which are used in approximations of integrals.
+If the throughput of radiative transfer simulations is a limiting factor in research progress (which we believe it is), we should revisit the implementations used, and possibly apply some modern tooling to these algorithms.
+Specifically, the throughput of the simulation is primarily bottlenecked by trigonometric functions, which are used in approximations of integrals.
 It is an open question whether we could replace these with faster but less accurate approximations; the generic math function implementations provided by a standard library are required to provide a level of precision that probably we do not require for these simulations.
 
-Additionally, the ratio of compile time (less than a minute) to CPU time runnning ($\sim1,000$ hours per snapshot) makes this progject a prime candidate for a superoptimizer.
-Wheras the optimizer part of a normal compiler has to balance time spent compiling and efficiency of the generated code and therefore uses a large number of heuristics, a superoptimizer attempts to discover the exactly optimal sequence of instructions to accomplish a task.
+Additionally, the ratio of compile time (less than a minute) to CPU time running ($\sim1,000$ hours per snapshot) makes this project a prime candidate for a superoptimizer.
+Whereas the optimizer part of a normal compiler has to balance time spent compiling and efficiency of the generated code and therefore uses a large number of heuristics, a superoptimizer attempts to discover the exactly optimal sequence of instructions to accomplish a task.
 The particular superoptimizer that may be applicable to this work is {\sc stoke} \citep{stoke}, which could be used to derive new and much faster approximations for all the approximations used in this work.
 
 
@@ -118,7 +118,7 @@ In {\sc colt} the creation of surface brightness images is produced by next even
 This next event estimation is done by walking the MCRT photon packet along each line of sight we want to generate surface brightness images along, and as it passes through each octant the intensity is reduced by the optical depth of the path length, and the frequency of the photon packet is Doppler shifted according to the difference in the velocity of the gas in each octant.
 If we only generate one surface brightness image, the scattering event calculation dominates.
 If we generate surface brightness images along 12 lines of sight, approximately equal time is spent in the next event estimation and scattering code.
-{\sc colt} has another mode wherein it generates 360 surface brightness images that can be stiched together into a video which shows a view from all lines of sight around the $z$ axis; in this mode the runtime is entirely dominated by the Doppler shift calculation between octants.
+{\sc colt} has another mode wherein it generates 360 surface brightness images that can be stitched together into a video which shows a view from all lines of sight around the $z$ axis; in this mode the runtime is entirely dominated by the Doppler shift calculation between octants.
 Perhaps more importantly, we have used nearly as much CPU time in this mode to generate a handful of videos as we have on running all the other radiative transfer calculations in this project.
 Nearly all of this CPU time is spent Doppler-shifting the photon packet as it moves from cell to cell; this calculation is technically required as the opacity of the Ly$\alpha$ line is dependent on the relative velocity of the gas in the cell, but we do not have any proof or demonstration if this Doppler shift significantly alters the outcome of the next event estimation.
 Testing this would not be particularly difficult, we could render a number of surface brightness images with the Doppler shifting code removed from the simulation.
@@ -145,10 +145,10 @@ That is, we know that our ionization state calculation is sufficient, but we do 
 
 These procedures we adopted are are fundamentally unsatisfying for multiple reasons.
 Most importantly, they are not necessarily reproducible.
-In general, astronomy has a problem with the reproducability of our analysis and magic numbers like this certainly aren't helping.
+In general, astronomy has a problem with the repeatability of our analysis and magic numbers like this certainly aren't helping.
 Additionally, we do not have any guarantee that these outputs are {\emph actually} converged.
 It's very unlikely that the results presented in this paper are meaningfully incorrect due to convergence issues, because all the code used here has been re-run for a variety of reasons and the plots do not seem to shift at all.
-But even that is a claim of reproducability, not convergence.
+But even that is a claim of repeatability, not convergence.
 We also know from experience running these simulations that the intensity plotted in our Ly$\alpha$ surface brightness images does not converge uniformly.
 As the simulation runs, the surface brightness of dimmer regions becomes brighter, and sometimes in a manner that is visually obvious.
 Therefore, it is possible that though we have run the code a few times and gotten results that are similar, that surface brightness profiles (or some equivalent) that we compute are too steep, and systematically so because we do not have (or have an incorrect) metric for convergence.
@@ -186,11 +186,11 @@ The original plan for this project included a study of the impact of subhalos on
 The planned fix for this was to incorporate Amiga's Halo Finder (AHF), but at the time AHF did not support loading snapshots from HDF5 files.
 We attempted to add such support from AHF, but were stymied by problems with the HDF5 library.
 The interface in AHF for adding input file support is rather complex and involves a lot of type erasure through \lstinline{void*}, so we tried to build and test the additions with the sanitizers.
-The sanitizers are a set of compiler flags supported by clang and gcc (sometimes) which add a large number of runtime checks to a program to look for things like integer overflow, out-of-bounds array acceses, invalid pointer dereferences, use of uninitialized memory, and data races.
-Unfortunately we were unable to test our additions to AHF with memory sanitizer, because it detected a use of uninitialized memory in the intiializaion code for the HDF5 library.
+The sanitizers are a set of compiler flags supported by clang and gcc (sometimes) which add a large number of runtime checks to a program to look for things like integer overflow, out-of-bounds array accesses, invalid pointer dereferences, use of uninitialized memory, and data races.
+Unfortunately we were unable to test our additions to AHF with memory sanitizer, because it detected a use of uninitialized memory in the initialization code for the HDF5 library.
 While two of the sanitizers (undefined behavior sanitizer and thread sanitizer) are able to continue execution of the program even if it is invalid by producing a sensible default, memory sanitizer is not.
 This problem (or problems) with the HDF5 library are more widespread than just this effort, it effectively means that since there is a bug in the HDF5 library we are unable to use a very high-quality tool to automatically discover similar bugs in any software that uses the HDF5 library.
-Ideally, in this project we could have patched the HDF5 library but that codebase is very hard to approach because the format it is dealing with has some idiosyncracies, and because the HDF5 library makes very heavy use of unhygienic macros.
+Ideally, in this project we could have patched the HDF5 library but that codebase is very hard to approach because the format it is dealing with has some idiosyncrasies, and because the HDF5 library makes very heavy use of unhygienic macros.
 
 \section{Better Octrees}
 
@@ -230,7 +230,7 @@ struct Cell {
 \end{lstlisting}
 These two implementations both contain the same basic ingredients; the location of the octant, its size, some information required to navigate the tree structure, and the actual data that the octree carries(gas properties or a mass-only particle).
 Observe that \emph{in principle} an octree domain could be any rectangular prism, and in that case we would position for each octant, and there would be three side lengths.
-But in both these implementations, the implementors make the simplification that octants are cubic and therefore only one side length is required.
+But in both these implementations, the implementer make the simplification that octants are cubic and therefore only one side length is required.
 There is opportunity for further simplification.
 
 In an octree, each level down has dimensions that are half that of the parent level in the tree.
@@ -247,7 +247,7 @@ And even if $76$ orders of magnitude does not suffice for some application, stea
 The greatest benefit to this approach is not just in reducing the in-memory size of data structures, it is in permitting a much more memory-dense octree implementation.
 The primary limiter to the runtime of programs on a modern CPU is the latency of memory access, and compacting data structures in memory can provide order-of-magnitude runtime improvements when a program needs to walk over the data structure (which is the whole reason octrees exist, to be walked).
 But this approach, while an improvement in memory size carries a downside in that if we are given a coordinate in space, to find out if it belongs to a tree we need additional operations.
-We need to reconstitude the width of an octant to compare it to an absolute position:
+We need to reconstitute the width of an octant to compare it to an absolute position:
 \begin{lstlisting}
 double width(Ocatant* oct) {
     return Tree.minimum_octant_width * (1 << oct->level);

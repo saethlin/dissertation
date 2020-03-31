@@ -21,7 +21,7 @@ We include Figure \ref{fig:agn_rogues1}, \ref{fig:agn_rogues2}, \ref{fig:agn_rog
 These figures contain half as many snapshots since we provide an exact side-by-side comparison of the halo with and without the AGN.
 There is a remarkable consistency in terms of what changes; with the AGN present in the ionization state calculation the blobs appear smaller.
 We also see some detail in them which was previously obscured; particularly at higher redshift there are bright regions which seem to have no counterpart in the images without AGN.
-The trend in size is not exactly that these objects become smaller with AGN; looking closely one can see that there is more area occupied by the brighest regions.
+The trend in size is not exactly that these objects become smaller with AGN; looking closely one can see that there is more area occupied by the brightest regions.
 That is, the overall change is to alter the distribution of surface brightness across the blob; the escape of Ly$\alpha$ has become more concentrated.
 
 \begin{figure*}
@@ -82,7 +82,7 @@ This story contrasts strongly with the behavior of the collisional emission in t
 This source is suppressed by the presence of an AGN, though the effect is not as significant as the enhancement of recombination emission.
 There is also an effect on the escape fraction, but it is more complicated to interpret.
 The escape fraction of Ly$\alpha$ is linked to the opacity of the gas because both depend in $n_{\rm{HI}}$.
-Unlike the emission due to recombinations which is preferentially emitted in ionized regions, emission due to collisional excitations is preferentially emitted in neutral regions, where the local optical depth is high and thus such photons are more likely to be scatterd and absorbed before they escape the domain.
+Unlike the emission due to recombinations which is preferentially emitted in ionized regions, emission due to collisional excitations is preferentially emitted in neutral regions, where the local optical depth is high and thus such photons are more likely to be scattered and absorbed before they escape the domain.
 
 There is one more question raised by Figure~\ref{fig:agn_recombination_collision} we would like to answer: Why doesn't the recombination luminosity grow over redshift?
 We know that the mass of each AGN in the simulation grows, and since their luminosities in our simulation are tied only to the mass, their ionizing output grows proportionally, but we can see from this figure that the Ly$\alpha$ luminosity that this drives does not grow.
@@ -110,7 +110,7 @@ There are two features in these plots that deserve specific explanation: At some
 These are surprising for the same reason: the effect of the AGN is to ionize more gas, which reduces the opacity of the halo... So how could this sometimes cause less Ly$\alpha$ to escape?
 
 For the first case, where some lines of sight see a lower escape fraction, we present an example scenario in Figure~\ref{fig:scattering_diagram}, where the star represents a source of Ly$\alpha$, the color of the box represents the ionization state of the gas, and the light gray circle represents a dense region of neutral gas.
-In the no-agn case, Ly$\alpha$ emitted in the direction of the observer towards this dense region of gas, but scatters off it.
+In the no-AGN case, Ly$\alpha$ emitted in the direction of the observer towards this dense region of gas, but scatters off it.
 However this Ly$\alpha$ does not (or does not all) escape traveling away from the observer.
 Since it is passing through gas which is only partly ionized, there is a probability that it will be scattered back towards the observer and enter the dense region, and eventually escape in the direction of the observer.
 In the right panel, when an AGN is present, the gas around this dense region is fully ionized and thus Ly$\alpha$ which scatters off the dense region will never be seen by the observer.
@@ -222,7 +222,7 @@ This metric becomes more effective for identifying AGN with higher-resolution ob
 
 \section{Impact of AGN model}
 
-In the preceeding sections, we have referred to a particular AGN model wherin we derive the ionizing luminosity of each black hole particle from their masses assuming an Eddington accretion rate with efficiency of $0.1$ and a \citet*{Hopkins2007} template.
+In the preceding sections, we have referred to a particular AGN model wherein we derive the ionizing luminosity of each black hole particle from their masses assuming an Eddington accretion rate with efficiency of $0.1$ and a \citet*{Hopkins2007} template.
 All these assumptions can be adjusted individually; we could use a different AGN template (such as \citet{Nenkova2008}), we could derive luminosities from the black hole particle accretion rates instead of their masses, we could assume a different efficiency, and we could ignore the black hole particles provided entirely, substituting masses compute from the relation derived by \citet{Magorrian1998}.
 All of these changes would amount only to altering the luminosity of the super-massive star particles we feed into our ionization state calculation, so we pursue all of these by investigating whether the luminosity of a halo is related to the efficiency parameter, which we vary over the range $[0.01, 1.0]$.
 This gives us an order of magnitude variation in either direction from our best-guess model and so should encompass any relevant trends in this parameter; we plot the results of this experiment in Figure~\ref{fig:eddington_grid}.
@@ -243,4 +243,4 @@ This scenario is qualitatively similar to the trend we discussed in \S~\ref{sec:
 The first is that the progressive ionization is very inhomogenous, which causes what looks like random changes in the blob's luminosity as smaller-scale RT effects dominate.
 The luminosity may increase when a new large-scale pathway is opened out of the blob, or it may decrease if the geometry shifts into a configuration which more efficiently traps Ly$\alpha$.
 The alternative explanation is that this behavior is numerical, not physical in nature.
-We can confirm that the luminosity values at any particular $f_{\rm{Eddington}}$ are stable from run to run which should rule out Monte-Carlo noise, but we do not fully understand the convergence of the ionization state calculation, so it is hard to predict if whatever unconvergence is left coupled with how self-inconsistent this system has been made could be responsible for this fluctuation of Ly$\alpha$ luminosity.
+We can confirm that the luminosity values at any particular $f_{\rm{Eddington}}$ are stable from run to run which should rule out Monte-Carlo noise, but we do not fully understand the convergence of the ionization state calculation, so it is hard to predict if whatever non-convergence is left coupled with how self-inconsistent this system has been made could be responsible for this fluctuation of Ly$\alpha$ luminosity.
