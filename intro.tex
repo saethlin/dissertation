@@ -20,7 +20,7 @@ Since their discovery, the dominant source of Ly$\alpha$ in these objects has be
 At the most fundamental level, there are two mechanisms for production of Ly$\alpha$ photons: Recombination of ionized hydrogen and collisional excitation of neutral hydrogen.
 From an astronomical perspective, the situation is much more complex.
 In the literature, emission due to recombinations is usually not discussed in a general sense.
-Instead, Ly$\alpha$ emission from HII regions surrounding massive stars if often discussed \citep[e.g.][]{Geach2016}.
+Instead, Ly$\alpha$ emission from HII regions surrounding massive stars is often discussed \citep[e.g.][]{Geach2016}.
 Recombinations from gas that is ionized from a different UV field such as the cosmological UV background or a nearby AGN are often handled separately \citep{Kollmeier2010,Gronke2017}.
 This variant of recombination is called ``fluorescence."
 Many papers model only one of these recombination drivers, and often do not model the recombination itself but compute a Ly$\alpha$ luminosity based on a mechanism that ionizes hydrogen, such as converting a star fromation rate to a Ly$\alpha$ luminosity \citep[e.g.][]{Cen2013}.
@@ -55,6 +55,7 @@ Indeed, some authors think that LABs may be powered by a variety of mechanisms \
 Additionally, the escape of Ly$\alpha$ from high-redshift galaxies has not been well-studied in connection with LABs, though it is deeply coupled to the emission thereof \citep{Smith2019}.
 This leaves these massive objects largely unexplained in spite of their relevance to massive galaxy formation and reionization, as we do not understand what if anything the Ly$\alpha$ traces.
 
+\iffalse
 \begin{figure*}
     \centering
     \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/matsuda2011blobs.png}
@@ -63,6 +64,7 @@ This leaves these massive objects largely unexplained in spite of their relevanc
     }
   \label{fig:matsuda2011blobs}
 \end{figure*}
+\fi
 
 \section{The Definition of a Ly\texorpdfstring{$\alpha$}{a} Blob}
 \label{sec:blob_definition}
@@ -82,9 +84,7 @@ This said, we will explore the impact of modifying these on our results.
 
 \section{Theoretical Efforts to Date}
 
-The source of Lyman-alpha emission from these objects is unclear, though there has been much theoretical work on them.
-
-\citet{Furlanetto2005, Laursen2007, Cen2013, Geach2016, Gronke2017} have studied the contribution of star formation on the formation of LABs, and all conclude this source of Ly$\alpha$ can (or in the case of \citet{Cen2013} \emph{must}) power blobs.
+The source of Lyman-alpha emission from these objects is unclear, though there has been much theoretical work on them. \citet{Furlanetto2005, Laursen2007, Cen2013, Geach2016, Gronke2017} have studied the contribution of star formation on the formation of LABs, and all conclude this source of Ly$\alpha$ can (or in the case of \citet{Cen2013} \emph{must}) power blobs.
 Additionally, \citet{Cen2013} are able to reproduce an observed LAB luminosity-size relation.
 This said, some of the previous work on the contribution of star formation relies on a simplified SFR-$L_{Ly\alpha}$ conversion based on the expected luminosity from case-B recombination.
 
@@ -102,57 +102,57 @@ In \S~\ref{sec:methods}, we detail our numerical methodology; in \S~\ref{sec:evo
 We follow this in \S~\ref{sec:origins} with an investigation into the dominant power sources of Ly$\alpha$ photons in massive galaxies and investigate the role of AGN in \S~\ref{sec:agn}.
 We provide some closing discussion in \S~\ref{sec:discussion}.
 
-    \begin{table*}
-    \caption{An overview of Ly$\alpha$ properties for a sample of known LABs which we compare to our simulations}
-    \centering
-    \begin{tabular}{ | l | c | c | c | c | }
-    \hline
-        Publication & $z$ & $L_{\rm{Ly}\alpha}\ (\rm{erg}\ \rm{s}^{-1})$ & $\Sigma_{\rm{lim}}\ (\rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2})$ & LAB size \\
-    \hline
+\begin{table*}
+\caption{An overview of Ly$\alpha$ properties for a sample of known LABs which we compare our simulations to.}
+\centering
+\begin{tabular}{ | l | c | c | c | c | }
+\hline
+     & & $L_{\text{Ly}\alpha}$ & $\Sigma_\text{lim}$ & Area \\
+    Publication & $z$ & $(\text{erg\ s}^{-1})$ & $(\text{erg\ s}^{-1}\,\text{cm}^{-2}\,\text{arcsec}^{-2})$ & (arcsec$^{2}$) \\
+\hline
 
-    \citet{Matsuda2004} & 3.1 & $1.1\times10^{44} - 5.8\times10^{42}$ & $2.2\times10^{-18}$ & 222 - 16 arcsec$^2$\\
-    \hline
+\citet{Matsuda2004} & 3.1 & $0.9 - 11.\times10^{43}$ & $2.2\times10^{-18}$ & 16--222\\
+\hline
 
-    \citet{Nilsson2006} & 3.16 &  $10^{43}$ & $3.7\times10^{-18}$ & 60 kpc diameter \\
-    \hline
+\citet{Nilsson2006} & 3.16 & $1.0 \times 10^{43}$ & $3.7\times10^{-18}$ & 47 \\
+\hline
 
-    \citet{Smith2007} & 2.83 & $2.1\times10^{44}$ & Unclear & 12 arcsec diameter \\
-    \hline
+\citet{Smith2007} & 2.83 & $21.\times10^{43}$ & -- & 110\\
+\hline
 
-    \citet{Ouchi2009} & 6.595 & $3.9\times10^{43}$ & $1.63\times10^{-18}$ & 3 arcseconds major axis \\
-    \hline
+\citet{Ouchi2009} & 6.595 & $3.9\times10^{43}$ & $1.63\times10^{-18}$ & 7 \\
+\hline
 
-    \citet{Yang2009} & 2.3 & $1.6-5.3\times10^{43}$ & $2.47\times10^{-18}$ & 25 arcsec$^{2}$\\
-    \hline
+\citet{Yang2009} & 2.3 & $1.6 - 5.3\times10^{43}$ & $2.47\times10^{-18}$ & 25 \\
+\hline
 
-    \citet{Matsuda2011} & 3.09 & 20.4 - 0.8 $\times10^{43}$ & $1.4\times10^{-18}$ & 28-181 arcsec$^{2}$\\
-    \hline
+\citet{Matsuda2011} & 3.09 & $0.8-20.4 \times10^{43}$ & $1.4\times10^{-18}$ & 28--181\\
+\hline
 
-    \citet{Steidel2011} & 2.65 & $6.57\times10^{43}$ & $\sim10^{-18}$ & 3 arcsec radius \\
-    \hline
+\citet{Steidel2011} & 2.65 & $6.57\times10^{43}$ & $\sim10^{-18}$ & 30 \\
+\hline
 
-    \citet{Barger2012} & 0.977 & $10^{42.86}$ & Unclear & 500 arcsec$^{2}$ \\
-    \hline
+\citet{Barger2012} & 0.977 & $.72\times10^{43}$ & -- & 500 \\
+\hline
 
-    \citet{Prescott2013} & 1.7-2.7 & $1.9\times10^{43}-2.6\times10^{42}$ & $9.33\times10^{-19}$ & 5.9-104 arcsec$^{2}$ \\
-    \hline
+\citet{Prescott2013} & 1.7--2.7 & $.26 - 1.9\times10^{43}$ & $0.933\times10^{-18}$ & 5.9--104 \\
+\hline
 
-    \citet{Caminha2016} & 3.118 & $1.9\times10^{42}$ & Unclear & 33 kpc \\
-    \hline
+\citet{Caminha2016} & 3.118 & $.19\times10^{43}$ & -- & 14 \\
+\hline
 
-    \citet{Badescu2017} & 2.3 & $0.9-1.3\times10^{43}$ & $2.1\times10^{-18}$ & 10-12 arcsec$^{2}$ \\ 
-    \hline
+\citet{Badescu2017} & 2.3 & $0.9-1.3\times10^{43}$ & $2.1\times10^{-18}$ & 10--12 \\
+\hline
 
-    \citet{North2017} & 3.08 & $2.2\times10^{43}$ & $7.5\times10^{-18}$ & 3-4 arcseconds across\\
-    \hline
+\citet{North2017} & 3.08 & $2.2\times10^{43}$ & $7.5\times10^{-18}$ & 7--12\\
+\hline
 
-    \citet{Shibuya2017} & 5.7-6.6 & $1.26\times10^{43} - 7.94\times10^{43}$ & $1.0 - 2.1\times10^{-17}$ & 2-3 arcsec$^{2}$\\
-    \hline
+\citet{Shibuya2017} & 5.7--6.6 & $1.26 - 7.94\times10^{43}$ & $10.$--$21.\times10^{-18}$ & 2--3\\
+\hline
 
-    \end{tabular}
-    \label{table:labs}
-    \end{table*}
-
+\end{tabular}
+\label{table:labs}
+\end{table*}
 
 \section{Opening Remarks}
 
@@ -192,7 +192,7 @@ The entirety of this work is analysis of 4 objects.
 we wish that it could be more; one of the questions we've gotten from astronomers repeatedly is something like ``What can you tell us about the occurrence rate of these objects?''
 One way to answer this question would be push many more cosmological zoom simulations through the pipeline we've built for this project.
 Unfortunately, the computational expense of running these zooms is significant.
-There have been a few stage of this project where research progress was limited by the availability of compute resources, which would only be excacerbated if we were competing with ourselves for compute.
+There have been a few stage of this project where research progress was limited by the availability of compute resources, which would only be excacerbated if we were competing with ourselves for CPU time on HiPerGator.
 Therefore, while we would love to push through 100 or so simulations, but the disk space and compute time for naively scaling up this project in such a manner would begin to rival the large cosmological simulations.
 This could be done, but the scale that this project has remained at is comfortably within the scope of everyday data management and thus no time in this project was budgeted for solving big data and big compute problems; if the project were scaled up significantly that may have to change.
 But even in the presence of a way to move and store that much data, we would need to actually get it which is not really possible in a field with a prevailing closed-source, closed-data mindset.

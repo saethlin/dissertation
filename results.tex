@@ -4,7 +4,7 @@
 
 % TODO: Put color bars in the rogues plots?
 In Figures \ref{fig:rogues1}, \ref{fig:rogues2}, \ref{fig:rogues4}, and \ref{fig:rogues8} we present surface brightness images for nearly half of all the snapshots that were used in this work.
-From just a bye-eye analysis of these images, we can notice a few trends, some of which will become relevant later on in this work.
+From just a by-eye analysis of these images, we can notice a few trends, some of which will become relevant later on in this work.
 There is definitely some redshift evolution of these objects, but there appears to be a different behavior between halos A1 and A2 as compared to A4 and A8.
 In halos A1 and A2, the physical extent of the Ly$\alpha$ surface brightness does not seem to evolve much with redshift, whereas in A4 and A8 there seems to be monotonic growth over redshift.
 Additionally, while halos A4 and A8 become brighter and more extended around $z=2$, halo A2 appears to be more compact at low redshift, possibly indicating some evolution out of a blob phase of galaxy evolution.
@@ -21,7 +21,7 @@ That is, while one could construct an isolated high-mass halo or galaxy that sys
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A1.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A1 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A1 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right), evenly spaced in lookback time.
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:rogues1}
@@ -31,7 +31,7 @@ That is, while one could construct an isolated high-mass halo or galaxy that sys
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A2.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A2 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A2 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right), evenly spaced in lookback time.
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:rogues2}
@@ -41,7 +41,7 @@ That is, while one could construct an isolated high-mass halo or galaxy that sys
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A8.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A8 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A8 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right), evenly spaced in lookback time. 
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:rogues8}
@@ -51,7 +51,7 @@ That is, while one could construct an isolated high-mass halo or galaxy that sys
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/rogues_A4.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A4 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A4 from $z=4.5$ (top-left) to $z=2.0$ (bottom-right), evenly spaced in lookback time.
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:rogues4}
@@ -217,13 +217,13 @@ Accordingly, we do not plot the collisional emissivity in the $J_{\rm UV}^{\rm m
 
 The trends in our controlled experiment (Figure~\ref{fig:luminosity_vs_temperature}) provide us with the physical insight we need to understand which gas in our simulation is emitting Ly$\alpha$, and which gas is not.
 In the bottom panel of Figure~\ref{fig:luminosity_vs_temperature}, we show the cumulative distribution of recombination and collisionally-excited emission in a single snapshot.
-From this we can see that the bulk of the Ly$\alpha$ photons are produced by ``cold'' photoionized gas gas ($T < 5\times 10^3$ K) and the ``warm'' collisionally-excited gas $(6\times10^3\ \mathrm{K} \leq T \leq 10^4\ \mathrm{K})$.
+From this we can see that the bulk of the Ly$\alpha$ photons are produced by ``cold'' photoionized gas ($T < 5\times 10^3$ K) and the ``warm'' collisionally-excited gas $(6\times10^3\ \mathrm{K} \leq T \leq 10^4\ \mathrm{K})$.
 The emission sources (recombination and collisional de-excitation) are segregated by temperature on account of the astrophysical mechanisms responsible for the gas temperature.
-Cooler, recombining gas gas typically lies at high densities with efficient cooling and must be ionized primarily by a nearby UV source, often newly formed stars.
+Cooler, recombining gas typically lies at high densities with efficient cooling and must be ionized primarily by a nearby UV source, often newly formed stars.
 
 \begin{figure}
   \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/luminosity_vs_temperature.pdf}
+    \includegraphics[width=\textwidth,height=0.8\textheight,keepaspectratio]{figures/luminosity_vs_temperature.pdf}
   \caption{
     In the top panel, we show the Ly$\alpha$ luminosity for a parcel of gas typical gas at an average density and metallicity in our simulations as a function of temperature.
     The purple curve represents emissivity as a function of temperature for gas with the minimum ionizing UV field we find in our simulations, and the orange curves are for gas in the strongest ionizing UV field we find.
@@ -346,7 +346,7 @@ Often in this work we will plot or discuss the Ly$\alpha$ luminosity of a halo f
 This deserves explanation on two accounts; the choice of median and the importance of line of sight in general.
 
 We choose the median because in almost all discussion of the Ly$\alpha$ luminosity of a halo, we are trying to make some connection to either the range of observed luminosities as in Figure~\ref{fig:luminosity_redshift}, or we want a single value to simplify our data visualization.
-The median of the distribution is notionally the most likely value to observe if the object is randomly placed on the sky, wheras the mean luminosity may be strongly biased by lines of sight with particularly high escape fractions, and therefore particularly high observed Ly$\alpha$ luminosity.
+The median of the distribution is notionally the most likely value to observe if the object is randomly placed on the sky, whereas the mean luminosity may be strongly biased by lines of sight with particularly high escape fractions, and therefore particularly high observed Ly$\alpha$ luminosity.
 
 Such lines of sight can arise from an ionized region embedded asymmetrically in a cloud of neutral hydrogen.
 In the limit where an ionization front breaks through the cloud of neutral hydrogen, this geometry comes to resemble a laser cavity.

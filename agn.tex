@@ -5,7 +5,7 @@ We now turn our attention to the influence of AGN on our modeled Ly$\alpha$ emis
 Note that from the perspective if the hydrodynamic simulations, black holes are only implemented as sink particles without any feedback (\S~\ref{sec:methods}).
 That is, though the black hole particles in this simulation will accrete mass, there is no prescription for the flow of thermal and kinetic energy into the surrounding gas from the accretion.
 This should be contrasted with our use of an ionizing radiative transfer code to recompute the ionization state in postprocessing due to stars and the UV background.
-In both cases this is not self-consistent, but in the previous cases there is already some approximation in the simulations for the energy contribution from these ionizing sources, wheras when we approximate an AGN, we are very self-inconsistent.
+In both cases this is not self-consistent, but in the previous cases there is already some approximation in the simulations for the energy contribution from these ionizing sources, whereas when we approximate an AGN, we are very self-inconsistent.
 But that need not stop us from performing a numerical experiment in postprocessing; it only means that one needs to be cautious in interpreting the results of such an experiment.
 
 Here, we treat AGN as an ionizing source when we compute the ionization state of the gas with {\sc lycrt}.
@@ -28,7 +28,7 @@ That is, the overall change is to alter the distribution of surface brightness a
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A1.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A1 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A1 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:agn_rogues1}
@@ -38,7 +38,7 @@ That is, the overall change is to alter the distribution of surface brightness a
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A2.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A2 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A2 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times 10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:agn_rogues2}
@@ -48,7 +48,7 @@ That is, the overall change is to alter the distribution of surface brightness a
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A8.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A8 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A8 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:agn_rogues8}
@@ -58,7 +58,7 @@ That is, the overall change is to alter the distribution of surface brightness a
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_rogues_A4.png}
     \caption{
-        Ly$\alpha$ surface brightness images of of halo A4 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
+        Ly$\alpha$ surface brightness images of halo A4 with and without AGN from $z=4.5$ (top-left) to $z=2.0$ (bottom-right).
         All images are 75$\times$75 physical kpc across, and are scaled from $2\times10^{-19}-10^{-16}\ \rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$.
     }
   \label{fig:agn_rogues4}
@@ -85,7 +85,7 @@ The escape fraction of Ly$\alpha$ is linked to the opacity of the gas because bo
 Unlike the emission due to recombinations which is preferentially emitted in ionized regions, emission due to collisional excitations is preferentially emitted in neutral regions, where the local optical depth is high and thus such photons are more likely to be scatterd and absorbed before they escape the domain.
 
 There is one more question raised by Figure~\ref{fig:agn_recombination_collision} we would like to answer: Why doesn't the recombination luminosity grow over redshift?
-We know that the mass of all AGN in the simulation grow, and since their luminosities in our simulation are tied only to the mass, their ionizing output grows proportionally, but we can see from this figure that the Ly$\alpha$ luminosity that this drives does not grow.
+We know that the mass of each AGN in the simulation grows, and since their luminosities in our simulation are tied only to the mass, their ionizing output grows proportionally, but we can see from this figure that the Ly$\alpha$ luminosity that this drives does not grow.
 A precise explanation of this is outside the scope of our current study, but for now we can offer a few explanations.
 It is possible that as the mass of the black hole grows, the system becomes more radially asymmetric (possibly because it is settling into a disk) which would reduce the covering fraction of the black hole, and more of the ionizing flux would not go into ionizing the surrounding gas.
 It is also possible that in this scenario the luminosity of the halo is not particularly sensitive to the ionizing luminosity of the AGN, which would be possible if the AGN has ionized essentially all of the gas except for a few small pockets of very self-shielded gas.
@@ -100,13 +100,13 @@ This explanation is supported by the dramatic drop in luminosity due to recombin
     \label{fig:agn_recombination_collision}
 \end{figure}
 
-Previously in section \S~\ref{sec:los} that Ly$\alpha$ escape can have a strong line-of-sight dependence, and explained why that can be and what sorts of geometries can arise.
+Previously in section \S~\ref{sec:los} we discussed how Ly$\alpha$ escape can have a strong line-of-sight dependence, and explained why that can be and what sorts of geometries can arise.
 With the presence of AGN in our model all these effects become more dramatic, as we show in Figure~\ref{fig:agn_los}.
 The most striking feature in this plot is the much greater dependence on line of sight with AGN (though we do also see a net increase in escape fraction this has been discussed previously).
 This huge variation when AGN are present is caused by the distinct non-uniformity of CGM opacity;  the AGN punches large ionization holes in the enclosing CGM through which Ly$\alpha$ readily escapes.
 
 
-There are two features in these plots that deserve specifc explanation: At some redshifts the escape fraction range of the AGN model extends below the no-AGN model, and at some redshifts the median escape fraction with AGN passes below that of the no-AGN model.
+There are two features in these plots that deserve specific explanation: At some redshifts the escape fraction range of the AGN model extends below the no-AGN model, and at some redshifts the median escape fraction with AGN passes below that of the no-AGN model.
 These are surprising for the same reason: the effect of the AGN is to ionize more gas, which reduces the opacity of the halo... So how could this sometimes cause less Ly$\alpha$ to escape?
 
 For the first case, where some lines of sight see a lower escape fraction, we present an example scenario in Figure~\ref{fig:scattering_diagram}, where the star represents a source of Ly$\alpha$, the color of the box represents the ionization state of the gas, and the light gray circle represents a dense region of neutral gas.
@@ -134,7 +134,7 @@ Thus because of the weighting if the luminosity is disproportionately increased 
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_los.pdf}
+    \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{figures/agn_los.pdf}
     \caption{
          We plot the escape fraction from each of our halos over redshift, and in the shaded regions around the central dark line show the 1-$\sigma$, 2-$\sigma$, and 3-$\sigma$ extent of the distribution as well as the min and max in the palest color.
         These escape fractions were calculated at each redshift over 3072 evenly-spaced angles.
@@ -150,7 +150,7 @@ In these cases, since there is optically thick gas on the opposite side of a bri
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/many_los.png}
+    \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{figures/many_los.png}
     \caption{
         A single snapshot from halo A8 at redshift $z=2.4$, seen from 12 equally spaced lines of sight.
         The surface brightness is scaled between $2\times10^{-15}$ and $10^{-19}$ $\rm{erg}\ \rm{s}^{-1}\ \rm{cm}^{-2}\ \rm{arcsec}^{-2}$, to enhance the line-of-sight contrast.
@@ -161,7 +161,7 @@ In these cases, since there is optically thick gas on the opposite side of a bri
 
 \begin{figure}
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/agn_many_los.png}
+    \includegraphics[width=\textwidth,height=0.9\textheight,keepaspectratio]{figures/agn_many_los.png}
     \caption{
         A single snapshot from halo A8 at redshift $z=2.4$, seen from 12 equally spaced lines of sight.
         We have selected this snapshot because it has the greatest variance in escape fraction with line of sight.
@@ -185,7 +185,7 @@ Now in Figure~\ref{fig:agn_area_plot} we include dashed lines for example snapsh
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{figures/agn_area_profile.pdf}
     \caption{
-        Comparison of blob sizes in our models to literature sizes, compare to Figure~\ref{fig:area_plot}.
+        We compare the size of blobs our models to those found in the literature, and now include contours for models with our AGN approximation with dashed lines.
         We define the size as the area enclosed with in a surface brightness contour, and plot against units in an attempt to be consistent with the units used by a majority of published observations.
         Our contours pass through the space covered by observations, which is strong evidence that we are reproducing the observed spatial extent of these objects.
     }

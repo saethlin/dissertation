@@ -2,7 +2,7 @@
 \label{sec:methods}
 
 Our overall goal is to extract Ly$\alpha$ observables from cosmological zoom-in simulations of massive galaxies in evolution in post-processing.
-To do this, we construct a pipeline in which we smooth the particle data from snapshots onto an octree grid on which we perform ionizing radiative transfer, to determine the ionization state of the gas in the halo.
+To do this, we construct a pipeline in which we smooth the particle data from snapshots onto an octree (a particular kind of grid with adaptive resolution) on which we perform ionizing radiative transfer, to determine the ionization state of the gas in the halo.
 Then we use Ly$\alpha$ Monte-Carlo radiative transfer (MCRT) in order to compute the escape fraction from the simulation domain, as well as surface brightness images, moment maps, and spectra of the Ly$\alpha$ line.
 In what follows, we go into substantially more detail about each of these numerical techniques.
 
@@ -105,9 +105,10 @@ But we can minimize this change, in fact arbitrarily so.
 SPH particles are not points; they do not exist at only one location in space and instead define a density field, and since we can evaluate this density field at any location in space there is no particular reason to stop refining an octree at the limit of one particle center per cell.
 We \emph{could} sub-divide the space more, in a process often called over-refining and thus eventually reach at every point in space an octree cell size such that the discontinuities introduced by the discretized structure do not exceed the imprecisions in the original SPH data.
 
+\iffalse
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{figures/apple_octree.png}
+    \includegraphics[width=\textwidth,keepaspectratio]{figures/apple_octree.png}
     \label{fig:octree_refinement}
     \caption {
         A diagram of the octree refinement process, in a scenario where we require that an octree cell not contain more than one particle.
@@ -115,6 +116,7 @@ We \emph{could} sub-divide the space more, in a process often called over-refini
         Image from https://developer.apple.com/documentation/gameplaykit/gkoctree
     }
 \end{figure}
+\fi
 
 \begin{figure}[H]
    \centering
@@ -126,7 +128,7 @@ We \emph{could} sub-divide the space more, in a process often called over-refini
    \label{fig:octree_resolution}
 \end{figure}
 
-The deposition of the SPH data and subsequent calculation of the ionization state is done by {\sc lycrt} \citep{Ma2015}, a code which is built off of the {\sc sedona} code base \citep{Kasen2006}.
+The deposition of the SPH data and subsequent calculation of the ionization state is done by {\sc lycrt} (LYman-Continuum Radiative Transfer) \citep{Ma2015}.
 {\sc lycrt} is a Monte-Carlo radiative transfer code that iteratively computes the gas ionization state by emitting rays from both stars and a uniform UV background.
 These rays are subject to scattering by HI along with dust scattering and absorption, using the dust opacity formulation from \citet{Li2001}, and the passage of these rays through octree cells is used to compute the ionizing UV field.
 We assume a redshift-dependent UV background with intensity as described in \citet{Faucher-Giguere2009}.
@@ -157,7 +159,7 @@ We start by computing the opacity $\kappa$ in the octree cell that the photon cu
     \kappa = 6.0^{-18} E^{3} \rho n_{\rm{HI}} + \kappa_{\rm{dust}}
 \end{equation}
 
-where $E$ is the energy of the photon, $\rho$ is the density of the gas, $n_{\rm{HI}}$ is the number density of neutral hydrogen, $\kappa_{\rm{dust}}$ is the dust opacity.
+where $E$ is the energy of the photon, $\rho$ is the density of the gas, $n_{\rm{HI}}$ is the number density of neutral hydrogen, $\kappa_{\rm{dust}}$ is energy-dependent dust opacity from \citet{Weingartner2001}.
 We then draw a random optical depth which the photon shall traverse until it scatters, and use the known opacity of the cell to convert that optical depth to a distance.
 If travelling this distance along the photon's current direction would place the photon outside of the current grid cell, we find the cell it will cross into and repeat the conversion to distance based on the remaining optical depth.
 Once we have exhausted the randomly chosen optical depth, another random number is drawn to determine if the photon is scattered or absorbed by dust.
@@ -217,7 +219,7 @@ In this work we use a continued fraction expansion centered around $0$, $\infty$
 This provides better than $1\%$ error in the value of $H(a, x)$ across the range of frequencies and temperatures that we encounter in the simulations, while being efficient enough that it is not a major contributor to the runtime of MCRT simulations.
 
 Scattering events in Ly$\alpha$ radiative transfer are also much more complex than in a continuum radiative transfer code.
-Wheras before we described a scattering event as simply changing the direction of the photon packet, when frequency is very important we need to consider other effects.
+Whereas before we described a scattering event as simply changing the direction of the photon packet, when frequency is very important we need to consider other effects.
 A Ly$\alpha$ scattering event is not instantaneous; there is a rapid absorption and re-emission by the interacting atom and therefore we need to properly account for the atom's initial velocity and the recoil effect.
 Therefore, given an atom with initial velocity $\vec{u}_{\rm{atom}}$ and a photon packet with initial direction $k_{i}$ and initial frequency $x_{i}$, we can compute the final direction $k_{f}$ and frequency $x_{f}$:
 \begin{equation}
@@ -247,7 +249,8 @@ The formulation of this optimization currently present in \textsc{colt} is worth
 
 \subsection{Dust Absorption}
 Following \citet{Laursen2009}, we assume SMC-like dust properties with an effective cross-section per hydrogen atom of $3.95\times10^{-22}\ \rm{cm}^{2}$, and fiducial albedo of 0.32.
-But in contrast with previous works such as \citet{Laursen2007} and previous uses of \textsc{COLT} such as \citet{Smith2015}, we now treat dust absorption as a continuous process, such that each photon packet has a weight that is attenuated according to the traversed dust optical depth.
+The SMC may not be a particularly good model for the much older galaxies that this work studies, but it is the most simliar in metallicity of the galaxies for which we have good dust parameters.
+In contrast with previous works such as \citet{Laursen2007} and previous uses of \textsc{COLT} such as \citet{Smith2015}, we now treat dust absorption as a continuous process, such that each photon packet has a weight that is attenuated according to the traversed dust optical depth.
 
 In a naive implementation of continuous dust absorption, every photon must eventually escape the simulation domain.
 This increases the runtime of an MCRT simulation massively ($>100$x) so we introduce a threshold at which we discard photon packets from the simulation.
@@ -281,7 +284,7 @@ The value of $j_{\rm exp}$ can (should) be tuned to accelerate convergence at a 
 For most of our simulations, we need good convergence at least to a surface brightness of $10^{-18}\ \rm{erg}\rm{s}^{-1}\rm{cm}^{-2}\rm{arcsec}^{-2}$ because that is a typical sensitivity of Ly$\alpha$ surveys.
 Simulating $10^7$ MCRT photon packets gets us close to this number, so to study this we compare a grid of $j_{\rm exp}$ values at $10^7$ photon packets to a single run at $10^9$ photon packets which we assume is converged everywhere.
 We present this grid in Figure~\ref{fig:j_exp_profiles}.
-From this figure we can see that $j_{\rm exp} \sim 0.8$ provides the best convergence
+From this figure we can see that $j_{\rm exp} \sim 0.8$ provides the best convergence.
 
 \begin{figure}[H]
    \centering
@@ -304,7 +307,7 @@ The weight $w$ is trivially determined from the weight function $W$ for any cell
 \begin{equation}
     W_{i} = W(i)L_{i} / L_{\rm tot}
 \end{equation}
-In the weighting scheme we have so far discussed, the weight function depend on the luminosity of a cell, but that need not be the case.
+In the weighting scheme we have so far discussed, the weight function depends on the luminosity of a cell, but that need not be the case.
 
 Before, we mentioned that converging the effects of each cell proportionally to their luminosity is \emph{approximately} optimal for converging bulk properties.
 The precisely optimal scheme would sample each cell with respect to its contribution to the overall luminosity.
@@ -314,7 +317,7 @@ We can determine this per-cell escape fraction from a \textsc{colt} run because 
 \begin{equation}
     W_{i} = \frac{L_{i}}{L_{\rm tot}}f_{\rm esc}^{i} =\frac{L_{i}}{L_{\rm tot}} \sum_{p}\frac{W_{\rm escaping}}{W_{\rm emitted}}
 \end{equation}
-In practice, computing an accurate escape fraction to enable this optimal weighting scheme is limited the unfortunate reality that accurately computing these weights is equivalent to computing converged bulk properties of the simulation.\\
+In practice, computing an accurate escape fraction to enable this optimal weighting scheme is limited by the unfortunate reality that accurately computing these weights is equivalent to computing converged bulk properties of the simulation.\\
 
 \subsection{MPI and Work Scheduling}
 Normally in such a codebase, one would distribute work to MPI ranks in large batches under the logic that communication overhead is rather large compared to the smallest possible unit of work (in our case an MCRT photon packet).
