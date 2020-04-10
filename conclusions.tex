@@ -72,7 +72,7 @@ That is, fixing these problems properly requires an on-the-fly treatment of the 
 Additionally, Ly$\alpha$ luminosity has a duplicate dependence on gas temperature because temperature feeds into the ionization state directly and also because the gas temperature alters the rate coefficients for both of the emission mechanisms.
 Properly modeling this all is not computationally cheap, but may be critical for future more accurate Ly$\alpha$ studies.
 
-To be clear, the work we have done here in post-processing is not a panacea; this \emph{must} be done on-the-fly because all computations done in post-processing will not be self-consistent.
+To be clear, the work we have done here in post-processing is not a panacea; this must be done on-the-fly because all computations done in post-processing will not be self-consistent.
 In this work, we try to compute a more accurate ionization state at a timestep $t$ based on the physical conditions at $t$, but the ionization state will alter the evolution of the simulation.
 Therefore, the physical conditions we base our ionization state at time $t$ upon are incorrect, and we actually needed to do this more accurate calculation at timestep $t-1$ and so on.
 
@@ -146,7 +146,7 @@ That is, we know that our ionization state calculation is sufficient, but we do 
 These procedures we adopted are are fundamentally unsatisfying for multiple reasons.
 Most importantly, they are not necessarily reproducible.
 In general, astronomy has a problem with the repeatability of our analysis and magic numbers like this certainly aren't helping.
-Additionally, we do not have any guarantee that these outputs are {\emph actually} converged.
+Additionally, we do not have any guarantee that these outputs are actually converged.
 It's very unlikely that the results presented in this paper are meaningfully incorrect due to convergence issues, because all the code used here has been re-run for a variety of reasons and the plots do not seem to shift at all.
 But even that is a claim of repeatability, not convergence.
 We also know from experience running these simulations that the intensity plotted in our Ly$\alpha$ surface brightness images does not converge uniformly.
@@ -229,7 +229,7 @@ struct Cell {
 };
 \end{lstlisting}
 These two implementations both contain the same basic ingredients; the location of the octant, its size, some information required to navigate the tree structure, and the actual data that the octree carries(gas properties or a mass-only particle).
-Observe that \emph{in principle} an octree domain could be any rectangular prism, and in that case we would position for each octant, and there would be three side lengths.
+Observe that in principle an octree domain could be any rectangular prism, and in that case we would position for each octant, and there would be three side lengths.
 But in both these implementations, the implementer make the simplification that octants are cubic and therefore only one side length is required.
 There is opportunity for further simplification.
 

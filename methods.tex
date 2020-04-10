@@ -103,7 +103,7 @@ Remember that the point of this different data structure is to have a different 
 Therefore, we must concede that there is something lost in this deposition onto an octree.
 But we can minimize this change, in fact arbitrarily so.
 SPH particles are not points; they do not exist at only one location in space and instead define a density field, and since we can evaluate this density field at any location in space there is no particular reason to stop refining an octree at the limit of one particle center per cell.
-We \emph{could} sub-divide the space more, in a process often called over-refining and thus eventually reach at every point in space an octree cell size such that the discontinuities introduced by the discretized structure do not exceed the imprecisions in the original SPH data.
+We could sub-divide the space more, in a process often called over-refining and thus eventually reach at every point in space an octree cell size such that the discontinuities introduced by the discretized structure do not exceed the imprecisions in the original SPH data.
 
 \iffalse
 \begin{figure}[H]
@@ -238,7 +238,7 @@ Therefore, the distribution of the parallel component $u_{\parallel}$ is given b
 
 In general, to convert outputs from a pRNG which produces values on the interval $[0, 1)$ to an arbitrary distribution, we treat the values from the pRNG as values of the CDF of the desired distribution.
 So to convert from a pRNG to some arbitrary distribution, we require that the desired distribution have a density function that we can integrate, then invert.
-This possible for \emph{some} distributions, but for distribution of parallel atom velocities it is particularly challenging, in a numerical and computational sense and beyond the scope of this work.
+This possible for some distributions, but for distribution of parallel atom velocities it is particularly challenging, in a numerical and computational sense and beyond the scope of this work.
 We defer the reader to \citep{Smith2015} for a full description of the methodology used for this in \textsc{COLT}.
 
 \subsection{Core-Skipping}
@@ -309,7 +309,7 @@ The weight $w$ is trivially determined from the weight function $W$ for any cell
 \end{equation}
 In the weighting scheme we have so far discussed, the weight function depends on the luminosity of a cell, but that need not be the case.
 
-Before, we mentioned that converging the effects of each cell proportionally to their luminosity is \emph{approximately} optimal for converging bulk properties.
+Before, we mentioned that converging the effects of each cell proportionally to their luminosity is approximately optimal for converging bulk properties.
 The precisely optimal scheme would sample each cell with respect to its contribution to the overall luminosity.
 The naive non-boosted is just close because for the MCRT work we are doing, the variation in cell luminosity is much greater than the variation in escape fraction from cell to cell.
 So optimally, we would know for each cell in the simulation, what the escape fraction is for photons that originate in that cell.

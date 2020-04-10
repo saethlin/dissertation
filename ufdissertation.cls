@@ -68,7 +68,7 @@
 %                                               the gap between the chapter and section when they occur consecutively.
 \RequirePackage{titletoc}%          Use this to manipulate Table of Contents styling
 \RequirePackage{float}
-\RequirePackage[numbers]{natbib}
+\RequirePackage[authoryear]{natbib}
 
 \providecommand{\ifExists}[3]{%     Check to see if a macro is defined, for the use of detecting 
 %                                   which files have been supplied by the user.
