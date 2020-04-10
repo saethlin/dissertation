@@ -4,7 +4,7 @@
 \section{Impact of the UV Background}
 The original objective of this project included a study of the dominant physical sources of Ly$\alpha$ emission, which we assumed would be stars, cooling from accreting gas, and the cosmological UV background.
 As as apparent from the aforementioned text in this dissertation, the structure of the project has shifted since then, most notably to consider the underlying physical mechanisms (recombinations vs collisions) as opposed to the astrophysical origins (stars vs UV background vs accretion).
-Primarily, this is because the impact of stars or accretion is manyfold and therefore we cannot simply turn them off or adjust their intensity and maintain much self-consistency in the simulation.
+Primarily, this is because the impact of stars or accretion is many-fold and therefore we cannot simply turn them off or adjust their intensity and maintain much self-consistency in the simulation.
 
 That is, ideally we would ask some question along the lines of "What is the impact of the UV background on the formation of Ly$\alpha$ blobs?" and could answer this question by turning off the UV background and observing an impact on the Ly$\alpha$ luminosity and escape fraction.
 However, we cannot address this question in such a direct manner because the impact of this phenomenon is imprinted on the temperature of the gas during the hydrodynamical simulations we rely on as inputs.
@@ -54,7 +54,7 @@ To check how accurate this is, we run {\sc colt} 300 times with the same inputs 
 As we can see, this simple on-the-fly uncertainty estimate vastly underestimates the variation in a pixel between executions of the code.
 
 We believe this simplistic metric is wrong because each next event estimation contribution to a pixel is not a measurement of the luminosity of that pixel.
-How one could correctly derive a convergence metric in the face of this is beyond the scope of this paper because it requires statistics expertise we do not posess.
+How one could correctly derive a convergence metric in the face of this is beyond the scope of this paper because it requires statistics expertise we do not posses.
 Instead, our purpose here is to present these results because they cost many CPU-hours and we have verified that using a naive approach to on-the-fly assessment of MCRT convergence results in an incorrect metric.
 Future work on this should instead follow methodologies used in Markov Chain Monte-Carlo (MCMC) techniques, and in particular we suggest the Gelman-Rubin diagnostic may be a much better indicator of convergence (Aaron Smith, private communication).
 
