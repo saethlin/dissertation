@@ -8,24 +8,21 @@ In what follows, we go into substantially more detail about each of these numeri
 
 \section{Cosmological Hydrodynamic Zoom Galaxy Formation Simulations}
 
-The galaxy formation simulations studied here are a part of the MassiveFIRE suite of cosmological zoom-in hydrodynamic galaxy formation simulations \citep{Feldmann2016, Feldmann2017}, which itself is a part of the Feedback in Realistic Environments (FIRE) project.
-In particular, these simulations employ the FIRE-2 suite of physics.
+The galaxy formation simulations studied here were presented in \citet{Anglesalcazar2017a,Anglesalcazar2017b}, which are part of the Feedback In Realistic Environments (FIRE) project\footnote{See the FIRE project web site at: \href{http://fire.northwestern.edu}{http://fire.northwestern.edu}.}.
+These simulations employ the FIRE-2 suite of physics, and their initial conditions are derived from the MassiveFIRE suite \citet{Hopkins2018}.
 These physics modules are fully described in \citet{Hopkins2018}, and we point the reader to this work, summarizing the salient details.
 
-The initial conditions for the MassiveFIRE simulations are generated with the {\sc music} initial conditions generator for a $(100/h \ {\rm Mpc})^3$ box.
+The initial conditions for the MassiveFIRE simulations are generated with \textsc{music} \citep{Hahn2011} for a $(100\,\text{Mpc}/h)^3$ box.
 We first run an initial low-resolution simulation, from which we selected particular halos for re-simulation at much higher resolution.
-For these halos, the region encompassing the high-resolution particles was selected with a convex hull filter selecting all particles within $3$ virial radii of the halo at $z=2.$
-These particles were then split to obtain higher mass resolution, and the entire simulation was re-run with a final mass resolution of the high-resolution particles of $m_{\rm DM} = 1.7 \times 10^5 M_\odot$ and $m_{\rm baryon} = 3.3 \times 10^4 M_\odot$ for dark matter and baryons, respectively.
+For these halos, the region encompassing the high-resolution particles was selected with a convex hull filter selecting all particles within $3$ virial radii of the halo at $z=1.$
+These particles were then split to obtain higher mass resolution, and the entire simulation was re-run with a final mass resolution of the high-resolution particles of $m_\text{DM} = 1.7 \times 10^5\,\Msun$ and $m_\text{baryon} = 3.3 \times 10^4\,\Msun$ for dark matter and baryons, respectively.
 
-The simulations themselves are run with {\sc gizmo} \citep{Hopkins2015} with the hydrodynamics run in Meshless Finite Mass (MFM) mode.
-The FIRE-2 simulations use a metallicity-dependent treatment of radiative heating and cooling that covers a temperature range from 10 to $10^{10}$ K, and includes free-free, photoionization, recombination, Compton, photoelectric and dust collisional, cosmic ray, molecular, metal-line, and fine-structure processes.
-They also include cooling and abundances of 11 elements, and include sub-grid diffusion of metals via turbulence.
-These simulations include star formation in dense and self-gravitating gas \citep{Hopkins2013}, and stellar feedback channels that include radiation pressure, photoionization, photoelectric heating, O-star and Asymptotic Giant Branch (AGB) driven stellar winds, and Type I and II Supernovae.
+The simulations themselves are run with \textsc{gizmo} \citep{Hopkins2015} with the hydrodynamics run in Meshless Finite Mass (MFM) mode.
+These simulations include star formation in dense and self-gravitating gas \citep*{Hopkins2013}, and stellar feedback channels that include radiation pressure, photoionization, photoelectric heating, O-star and Asymptotic Giant Branch (AGB) driven stellar winds, and Type I and II Supernovae.
 Supermassive black holes are included in the simulations, but followed passively, meaning that feedback from an active galactic nuclei (AGN) is not included.
 This said, black holes accreted following the torque-limited accretion model of \citet{Anglesalcazar2017a,Anglesalcazar2017b}.
 In this paper, we examine $4$ massive halos, whose physical properties are described at $z=2$ and $z=5$ in Tables~\ref{table:sims2} and ~\ref{table:sims5} respectively.
-We use a $150 \times 150$ kpc box to encompass $2$ virial radii about the central galaxy at $z=2$, which we identify with a friends-of-friends search using star particles.
-These halos have the same initial conditions as those monikered ``A1", ``A2", ``A4", and ``A8" from \citet{Feldmann2016}.
+These halos have the same initial conditions as those monikered ``A1'', ``A2'', ``A4'', and ``A8'' from \citet{Feldmann2016}, though are different from the original halos in that they are run with FIRE-2 physics (the original halos presented in Feldmann et al. are run with FIRE-1 physics \citep{Hopkins2014} and did not include SMBHs).
 
 \begin{table*}
 \caption{Properties for our 3 model halos at $z=5$, within our $150 \times 150\ \rm kpc$ box}
